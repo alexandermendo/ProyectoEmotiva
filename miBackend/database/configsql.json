@@ -1,0 +1,15 @@
+{
+    "server": "PRINCIPAL",
+    "authentication": {
+      "type": "default",
+      "options": {
+        "userName": "sa",
+        "password": "123456"
+      }
+    },
+    "options": {
+      "encrypt": false,
+      "database": "AGROFERTIL"
+    },
+    "port": 1433
+  }
