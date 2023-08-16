@@ -1,5 +1,0 @@
-SELECT
-    OPLN.ListName
-FROM OPLN
-GROUP BY OPLN.ListName
-ORDER BY OPLN.ListName

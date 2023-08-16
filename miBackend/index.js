@@ -1,10 +1,17 @@
 const express = require('express');
 const cors = require('cors');
-
 const app = express();
+const usersRouter = require("../miBackend/routes/users");
+const authRouter = require("../miBackend/routes/login");
+const jwtSecret = "mi_secreto_secreto";
+
+app.set("jwtSecret", jwtSecret);
 
 app.use(express.json());
 app.use(cors());
+
+app.use("/users", usersRouter);
+app.use("/login", authRouter);
 
 app.use(function (req, res, next) { next(createError(404)) });
 app.use(function (err, req, res, next) {
