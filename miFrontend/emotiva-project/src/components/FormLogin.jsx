@@ -1,10 +1,11 @@
 import { useState } from 'react';
+import Swal from 'sweetalert2';
 import './FormLogin.css';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   };
@@ -13,11 +14,34 @@ function Login() {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Aquí puedes agregar lógica para manejar el envío del formulario
-    console.log('Usuario:', username);
-    console.log('Contraseña:', password);
+
+    try {
+      const response = await fetch('http://localhost:3000/login/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          usuario: username,
+          contraseña: password
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        Swal.fire('¡Inicio de sesión exitoso!', 'Bienvenido', 'success');
+        localStorage.setItem('token', data.token);
+        console.log('Token:', data.token);
+      } else {
+        Swal.fire('¡Error!', data.message, 'error');
+        console.log('Error:', data.message);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (

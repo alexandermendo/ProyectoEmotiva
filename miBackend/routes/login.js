@@ -15,11 +15,17 @@ const col = dba.collection('users');
 router.post("/", async (req, res, next) => {
   try {
     const jwtSecret = req.app.get("jwtSecret");
+    const { usuario, contraseña } = req.body;
+
+    if (!usuario || !contraseña) {
+      return res.status(400).json({ message: 'Por favor, completa todos los campos requeridos para acceder al sistema. Gracias.' });
+    }
+    
     const userData = await col.find({ usuario: req.body.usuario, contraseña: req.body.contraseña }).toArray();
     if (userData.length > 0) {
       res.json({ token: jwt.sign({ usuario: userData[0].usuario, rol: userData[0].rol }, jwtSecret, { expiresIn: '5h' }) });
     } else {
-      res.status(401).json({ message: 'Usuario o Clave Incorrecta' });
+      res.status(401).json({ message: 'Credenciales inválidas. Por favor, verifica tu usuario y clave.' });
     }
   } catch (error) {
     console.error(error);
