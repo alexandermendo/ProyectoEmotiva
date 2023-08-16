@@ -17,7 +17,7 @@ router.post("/", async (req, res, next) => {
     const jwtSecret = req.app.get("jwtSecret");
     const userData = await col.find({ usuario: req.body.usuario, contraseña: req.body.contraseña }).toArray();
     if (userData.length > 0) {
-      res.json({ token: jwt.sign({ usuario: userData[0].usuario }, jwtSecret, { expiresIn: '5h' }) });
+      res.json({ token: jwt.sign({ usuario: userData[0].usuario, rol: userData[0].rol }, jwtSecret, { expiresIn: '5h' }) });
     } else {
       res.status(401).json({ message: 'Usuario o Clave Incorrecta' });
     }
