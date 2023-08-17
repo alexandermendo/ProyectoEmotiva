@@ -1,8 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const dba = require("../database/db_mongo");
-const jwt = require("jsonwebtoken");
 const col = dba.collection('users');
+
+const { 
+  HTTP_INTERNAL_SERVER_ERROR,
+  getValidationErrors,
+  validationMiddleware,
+  handleValidationErrors,
+  authenticateUser  } = require('../common/utils')
 
 /**
  * @name loginUser
@@ -12,26 +18,18 @@ const col = dba.collection('users');
  * @param {function} next - La siguiente función middleware en la cadena de solicitud-respuesta
  * @returns {object} Objeto JSON con el resultado del inicio de sesión
  */
-router.post("/", async (req, res, next) => {
+router.post("/", validationMiddleware, async (req, res, next) => {
   try {
-    const jwtSecret = req.app.get("jwtSecret");
-    const { usuario, contraseña } = req.body;
-
-    if (!usuario || !contraseña) {
-      return res.status(400).json({ message: 'Por favor, completa todos los campos requeridos para acceder al sistema. Gracias.' });
-    }
-    
-    const userData = await col.find({ usuario: req.body.usuario, contraseña: req.body.contraseña }).toArray();
-    if (userData.length > 0) {
-      res.json({ token: jwt.sign({ usuario: userData[0].usuario, rol: userData[0].rol }, jwtSecret, { expiresIn: '5h' }) });
-    } else {
-      res.status(401).json({ message: 'Credenciales inválidas. Por favor, verifica tu usuario y clave.' });
+    const errors = getValidationErrors(req); // Validar los campos usando express-validator
+    if (!errors.isEmpty()) handleValidationErrors(errors, res); // Utiliza la función para manejar errores de validación
+    else {
+      const authResult = await authenticateUser(req, col); // Utiliza la función para autenticar al usuario
+      res.status(authResult.status).json(authResult.response); // Envía la respuesta basada en el resultado de la autenticación
     }
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    console.error(error); // Registrar el error completo en los registros del servidor
+    res.status(HTTP_INTERNAL_SERVER_ERROR).json({error: "Hubo un problema al procesar tu solicitud. Por favor, intenta nuevamente más tarde."}); // Mensaje genérico para el usuario
   }
 });
-
 
 module.exports = router;
