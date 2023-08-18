@@ -1,9 +1,15 @@
-import Login from "./components/formLogin";
+import { Provider } from "react-redux";
+import { AppRouter } from "./components/routers/AppRouter"
+import { store } from "../src/components/store/store";
 
 function App() {
   return (
     <>
-      <Login/>
+      <div className="wrapper">
+        <Provider store={store}>
+          <AppRouter />
+        </Provider>
+      </div>
     </>
   )
 }

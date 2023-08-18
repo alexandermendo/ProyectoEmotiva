@@ -99,7 +99,6 @@ async function authenticateUser(req, col) {
   }
 }
 
-
 // Exportar las constantes para su uso en otros módulos.
 module.exports = {
   HTTP_OK,
