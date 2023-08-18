@@ -10,6 +10,7 @@ export const EmotivaHome = () => {
             <li><a href="#">Acerca de</a></li>
             <li><a href="#">Servicios</a></li>
             <li><a href="#">Contacto</a></li>
+            <li><a href="#">Cierre Sesión</a></li>
           </ul>
         </nav>
       </header>
