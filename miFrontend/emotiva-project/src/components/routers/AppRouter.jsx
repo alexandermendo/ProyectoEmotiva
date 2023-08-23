@@ -7,8 +7,8 @@ export const AppRouter = () => {
     <Router>
       <div>
         <Routes>
-          <Route path="/" element={<EmotivaHomeRouter />} />
           <Route path="/login" element={<EmotivaLoginRouter />} />
+          <Route path="/" element={<EmotivaHomeRouter />} />
           <Route path="/" element={<Navigate to="/" />} />
         </Routes>
       </div>
