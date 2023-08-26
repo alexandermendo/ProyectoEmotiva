@@ -1,0 +1,57 @@
+.ligero-container-navbar {
+  background-color: transparent; /* Cambia el color de fondo a transparente */
+  padding: 1% 5%;
+  position: fixed; /* Asegúrate de que la navbar tenga una posición fija */
+  width: 100%; /* Asegúrate de que la navbar ocupe todo el ancho */
+  z-index: 1000; /* Ajusta el valor de z-index para que la navbar esté sobre el slider */
+  transition: background-color 0.3s; /* Agrega una transición para suavizar los cambios de color de fondo */
+}
+
+.ligero-container-navbar.scrolled {
+  background-color: rgba(117, 41, 149, 0.9); /* Cambia el color de fondo cuando está scrolled */
+}
+
+.navbar-nav .nav-link {
+  color: white;
+  text-transform: uppercase;
+  font-family: Proxima Nova Thin, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  text-transform: uppercase;
+  opacity: 1;
+  letter-spacing: .8px;
+  white-space: nowrap;
+}
+
+.img-logo-emotiva {
+  content: "";
+  width: 8em;
+  height: 26px;
+  display: inline-block;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+
+@media (max-width: 768px) {
+  .ligero-container-navbar {
+    padding: 3% 3%;
+    /* Ajustar el padding para dispositivos móviles */
+  }
+
+  .navbar-search {
+    display: none;
+    /* Ocultar el botón por defecto */
+  }
+
+  /* Mostrar el botón cuando el menú está expandido */
+  .navbar-toggler[aria-expanded="true"]~.navbar-search,
+  .navbar-toggler[aria-expanded="false"]:focus~.navbar-search {
+    display: inline-block;
+    visibility: visible;
+  }
+}

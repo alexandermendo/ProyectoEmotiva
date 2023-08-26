@@ -1,0 +1,21 @@
+.relevante-container {
+  background-color: #315c91;
+  padding: 2%;
+}
+
+.relev-cont h2 {
+  color: white;
+  font-family: Proxima Nova Alt, sans-serif;
+  font-size: 25px;
+}
+
+.card {
+  background-color: #315c91;
+}
+
+
+.foto-card-1 {
+  position: relative;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}

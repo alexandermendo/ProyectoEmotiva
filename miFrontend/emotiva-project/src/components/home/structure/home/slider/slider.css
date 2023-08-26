@@ -1,0 +1,16 @@
+.slider-test {
+  margin: auto;
+  top: 0;
+}
+
+.carousel-item img {
+  width: 100%; /* Esto hará que todas las imágenes tengan el mismo ancho del 100% del contenedor */
+  height: auto; /* Esto mantendrá la proporción de aspecto original de las imágenes */
+}
+
+@media only screen and (max-width: 900px) {
+  .slider-test {
+    margin: auto;
+    width: 100%;
+  }
+}

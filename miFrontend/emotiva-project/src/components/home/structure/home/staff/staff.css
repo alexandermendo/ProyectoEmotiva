@@ -1,0 +1,22 @@
+.slider-container {
+  background-color: #315c91;
+  padding: 2%;
+  padding-bottom: 4%;
+}
+
+.slider-image {
+  margin: 10px;
+  /* Ajusta el valor del margen según tus preferencias */
+}
+
+.slider-image img {
+  max-width: 100%;
+  /* Ajusta el tamaño máximo de la imagen al contenedor */
+  height: auto;
+}
+
+.staff-cont h2 {
+  color: white;
+  font-family: Proxima Nova Alt, sans-serif;
+  font-size: 25px;
+}

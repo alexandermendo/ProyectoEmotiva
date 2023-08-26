@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { EmotivaHome } from "../home/structure/home/EmotivaHome"
+import { EmotivaHome } from "../home/structure/home/structure/EmotivaHome"
 
 export const EmotivaHomeRouter = () => {
   const { rol } = useSelector((state) => state.auth);
