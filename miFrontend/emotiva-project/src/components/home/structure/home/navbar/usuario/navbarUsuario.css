@@ -1,16 +1,17 @@
 .ligero-container-navbar {
-  background-color: transparent; /* Cambia el color de fondo a transparente */
+  background-color: transparent;
   padding: 1% 5%;
-  position: fixed; /* Asegúrate de que la navbar tenga una posición fija */
-  width: 100%; /* Asegúrate de que la navbar ocupe todo el ancho */
-  z-index: 1000; /* Ajusta el valor de z-index para que la navbar esté sobre el slider */
-  transition: background-color 0.3s; /* Agrega una transición para suavizar los cambios de color de fondo */
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  transition: background-color 0.3s;
 }
 
 .ligero-container-navbar.scrolled {
-  background-color: rgba(117, 41, 149, 0.9); /* Cambia el color de fondo cuando está scrolled */
+  background-color: rgba(117, 41, 149, 0.9);
 }
 
+/* Estilos para los elementos de navegación en la barra */
 .navbar-nav .nav-link {
   color: white;
   text-transform: uppercase;
@@ -18,10 +19,16 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;
-  text-transform: uppercase;
   opacity: 1;
   letter-spacing: .8px;
   white-space: nowrap;
+  margin-right: 20px;
+  /* Agregar margen derecho para separar los elementos */
+}
+
+.nav-link:hover {
+  color: #00aef8;
+  font-weight: bold;
 }
 
 .img-logo-emotiva {
@@ -36,22 +43,85 @@
   background-repeat: no-repeat;
 }
 
+/* Estilos para los botones */
+.btn-cre-usu {
+  background-color: #00aef8;
+  color: white;
+  font-family: Proxima Nova Thin, sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-right: 10px;
+  /* Agregar margen derecho para separar los botones */
+}
 
+.btn-cer-ses {
+  background-color: #BB025E;
+  color: white;
+  font-family: Proxima Nova Thin, sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-right: 10px;
+}
+
+.btn-cre-usu:hover,
+.btn-cer-ses:hover {
+  background-color: #aa0436;
+}
+
+.navbar-toggler-icon {
+  color: aliceblue;
+}
+
+.menu-bar {
+  width: 35px;
+  height: 5px;
+  background-color: aliceblue;
+  margin: 6px 0;
+}
+
+
+/* Media query para dispositivos móviles */
 @media (max-width: 768px) {
   .ligero-container-navbar {
     padding: 3% 3%;
-    /* Ajustar el padding para dispositivos móviles */
   }
 
+  /* Mostrar los botones en dispositivos móviles */
+  .navbar-search .btn-cre-usu,
+  .navbar-search .btn-cer-ses {
+    display: inline-block;
+  }
+
+  /* Ocultar la barra de búsqueda en dispositivos móviles */
   .navbar-search {
     display: none;
-    /* Ocultar el botón por defecto */
   }
 
-  /* Mostrar el botón cuando el menú está expandido */
-  .navbar-toggler[aria-expanded="true"]~.navbar-search,
-  .navbar-toggler[aria-expanded="false"]:focus~.navbar-search {
+  .mobile-menu-btn {
     display: inline-block;
-    visibility: visible;
+  }
+
+  .btn-cre-usu {
+    background-color: #00aef8;
+    color: white;
+    font-family: Proxima Nova Thin, sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-right: 10px;
+    width: 50%;
+  }
+
+  .btn-cer-ses {
+    background-color: #BB025E;
+    color: white;
+    font-family: Proxima Nova Thin, sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-right: 10px;
+    width: 50%;
+  }
+
+  .navbar-nav .nav-link {
+    margin-top: 1%;
   }
 }

@@ -1,0 +1,23 @@
+.account-container-navbar {
+  background-color: rgba(117, 41, 149, 0.9);
+  /* Cambia el color de fondo a transparente */
+  position: fixed;
+  /* Asegúrate de que la navbar tenga una posición fija */
+  width: 100%;
+  /* Asegúrate de que la navbar ocupe todo el ancho */
+  z-index: 1000;
+  /* Ajusta el valor de z-index para que la navbar esté sobre el slider */
+  transition: background-color 0.3s;
+  /* Agrega una transición para suavizar los cambios de color de fondo */
+}
+
+.btn-back {
+  font-family: Proxima Nova Thin, sans-serif;
+  color: white !important;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.img-logo-account {
+  width: 10%;
+}

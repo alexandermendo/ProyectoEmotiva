@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router";
-import Swal from 'sweetalert2';
 import './formLogin.css';
+import { NavbarLogin } from '../home/navbar/usuario/login/NavbarLogin';
 
 export const FormLogin = () => {
   let navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [usernameError, setUsernameError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  let [ hasErrors ] = useState(false);
+
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -18,6 +22,17 @@ export const FormLogin = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!username) {
+      setUsernameError('Por favor, ingresa tu email.');
+      hasErrors = true;
+    }
+    if (!password) {
+      setPasswordError('Por favor, ingresa tu contraseña.');
+      hasErrors = true;
+    }
+    if (hasErrors) {
+      return; // Stop submission if there are errors
+    }
 
     try {
       const response = await fetch('http://localhost:3000/login/', {
@@ -26,7 +41,7 @@ export const FormLogin = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          usuario: username,
+          nombre: username,
           contraseña: password
         })
       });
@@ -34,12 +49,11 @@ export const FormLogin = () => {
       const data = await response.json();
 
       if (response.ok) {
-        Swal.fire('¡Inicio de sesión exitoso!', 'Bienvenido', 'success');
         localStorage.setItem('token', data.token);
         console.log('Token:', data.token);
         navigate('/');
       } else {
-        Swal.fire('¡Error!', data.message, 'error');
+        alert('¡Error!', data.message, 'error');
       }
     } catch (error) {
       console.error('Error:', error);
@@ -47,36 +61,42 @@ export const FormLogin = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-form">
-        <h1>Iniciar sesión</h1>
-        <form onSubmit={handleSubmit}>
+    <>
+      <NavbarLogin />
+      <div className="login-container">
+        <div className="login-form">
+          <h1>Iniciar sesión</h1>
+          <hr />
+
           <div className="form-group">
-            <label htmlFor="username">Usuario:</label>
             <input
               type="text"
               id="username"
               value={username}
               onChange={handleUsernameChange}
               className="form-control"
+              placeholder='Email'
             />
+            {usernameError && <p className="error-message">{usernameError}</p>}
           </div>
           <div className="form-group">
-            <label htmlFor="password">Contraseña:</label>
             <input
               type="password"
               id="password"
               value={password}
               onChange={handlePasswordChange}
               className="form-control"
+              placeholder='Password'
             />
+            {passwordError && <p className="error-message">{passwordError}</p>}
           </div>
           <div className="form-group">
-            <button type="submit" className="btn-login">Iniciar sesión</button>
+            <button type="submit" onClick={handleSubmit} className="btn-login">Continuar</button>
           </div>
-        </form>
+
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

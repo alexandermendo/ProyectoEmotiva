@@ -60,7 +60,7 @@ function getValidationErrors(req) {
  * @returns {void}
  */
 const validationMiddleware = [
-  body('usuario').trim().notEmpty().withMessage('El campo usuario es requerido'),
+  body('nombre').trim().notEmpty().withMessage('El campo nombre es requerido'),
   body('contraseña').trim().notEmpty().withMessage('El campo contraseña es requerido')
 ];
 
@@ -88,11 +88,11 @@ function handleValidationErrors(errors, res) {
  */
 async function authenticateUser(req, col) {
   const jwtSecret = req.app.get("jwtSecret");
-  const { usuario, contraseña } = req.body;  
-  const userData = await col.find({ usuario: req.body.usuario, contraseña: req.body.contraseña }).toArray();
-  
+  const { nombre, contraseña } = req.body;  // Cambio de "usuario" a "nombre"
+  const userData = await col.find({ nombre: req.body.nombre, contraseña: req.body.contraseña }).toArray(); // Cambio de "usuario" a "nombre"
+
   if (userData.length > 0) {
-      const token = jwt.sign({ usuario: userData[0].usuario, rol: userData[0].rol }, jwtSecret, { expiresIn: '5h' });
+      const token = jwt.sign({ nombre: userData[0].nombre, rol: userData[0].rol }, jwtSecret, { expiresIn: '5h' }); // Cambio de "usuario" a "nombre"
       return { status: HTTP_OK, response: { token } };
   } else {
       return { status: HTTP_UNAUTHORIZED, response: { message: 'Credenciales inválidas. Por favor, verifica tu usuario y clave.' } };

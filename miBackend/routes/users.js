@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const dba = require("../database/db_mongo");
-const bcrypt = require("bcrypt"); 
-const jwt = require("jsonwebtoken");
+const validator = require('validator'); // Importa el módulo validator
+const jwt = require('jsonwebtoken');
 
 /**
  * @name getUsers
@@ -22,5 +22,51 @@ router.get("/listaUsuarios", async (req, res, next) => {
     res.status(500).json({ error: "Error al obtener la lista de usuarios" });
   }
 });
+
+
+router.post('/agregarUsuario', async (req, res) => {
+  try {
+    const { nombre, email, país, departamento, ciudad, contraseña, rol } = req.body;
+    // Validar el formato del correo electrónico
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({ message: 'El correo electrónico no es válido.' });
+    }
+
+    // Comprobar si el usuario ya existe
+    const existingUser = await dba.collection('users').findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: 'El usuario ya existe.' });
+    }
+
+    // Obtener la fecha y hora actual
+    const fechaHoraRegistro = new Date();
+
+    // Insertar el nuevo usuario con los campos adicionales en la colección "users"
+    const newUser = { nombre, email, país, departamento, ciudad, contraseña, rol };
+    await dba.collection('users').insertOne(newUser);
+
+    const jwtSecret = req.app.get('jwtSecret');
+    const token = jwt.sign({ email, rol }, jwtSecret, { expiresIn: '5h' });
+
+    // Insertar los datos en la colección "history" con fecha y hora de registro
+    const historyData = {
+      nombre,
+      email,
+      país,
+      departamento,
+      ciudad,
+      contraseña,
+      rol,
+      fechaHoraRegistro,
+    };
+    await dba.collection('history').insertOne(historyData);
+
+    res.status(201).json({ message: 'Usuario agregado exitosamente', token });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error interno del servidor' });
+  }
+});
+
 
 module.exports = router;

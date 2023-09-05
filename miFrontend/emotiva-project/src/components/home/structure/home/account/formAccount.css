@@ -1,0 +1,27 @@
+.account-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #315c91;
+}
+
+
+.account-form {
+  position: absolute;
+  top: 20%;
+}
+
+.account-form h1 {
+  font-family: Proxima Nova Alt, sans-serif;
+  font-size: 45px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.account-form label {
+  font-family: Proxima Nova Alt, sans-serif;
+  font-size: 15px;
+  margin-bottom: 20px;
+  color: white;
+}

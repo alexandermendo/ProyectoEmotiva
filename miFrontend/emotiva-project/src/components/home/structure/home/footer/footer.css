@@ -4,3 +4,30 @@
   text-align: center;
   padding: 1rem;
 }
+
+.foo-ter {
+  text-align: start;
+  margin-left: 1%;
+}
+
+.img-logo-foo {
+  width: 35%;
+  margin-left: 0;
+  margin-top: 10%;
+  margin-bottom: 2%;
+}
+
+.foo-ter-nav {
+  text-align: start;
+  margin-left: 3%;
+}
+
+.foo-ter-nav h1 {
+  font-family: Proxima Nova Bold, sans-serif;
+  font-size: 25px;
+}
+
+.nav-item-1, .nav-link-1 {
+  font-family: Proxima Nova Bold, sans-serif;
+  font-size: 18px;
+}
