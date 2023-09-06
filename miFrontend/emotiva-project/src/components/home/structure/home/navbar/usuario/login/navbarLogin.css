@@ -1,10 +1,10 @@
 .emotiva-container-navbar {
-  background-color: rgba(117, 41, 149, 0.9); /* Cambia el color de fondo a transparente */
+  background-color: rgba(117, 41, 149, 0.9);
   padding: 1% 5%;
-  position: fixed; /* Asegúrate de que la navbar tenga una posición fija */
-  width: 100%; /* Asegúrate de que la navbar ocupe todo el ancho */
-  z-index: 1000; /* Ajusta el valor de z-index para que la navbar esté sobre el slider */
-  transition: background-color 0.3s; /* Agrega una transición para suavizar los cambios de color de fondo */
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  transition: background-color 0.3s;
 }
 
 .btn-cre-cue {
@@ -16,4 +16,19 @@
 
 .img-logo-login {
   width: 10%;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+  .emotiva-container-navbar {
+    padding: 3% 3%;
+  }
+
+  .img-logo-login {
+    width: 20%;
+  }
+
+  .btn-cre-cue {
+    font-size: 12px;
+  }
 }

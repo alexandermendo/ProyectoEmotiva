@@ -40,6 +40,7 @@ export const Staff = () => {
 
   // Rutas de las imágenes que deseas mostrar en el slider
   const imagePaths = [
+    "../assets/PR.jpg",
     "../assets/Paris.jpg",
     "../assets/Paris.jpg",
     "../assets/Paris.jpg",
@@ -69,14 +70,12 @@ export const Staff = () => {
     "../assets/Paris.jpg",
     "../assets/Paris.jpg",
     "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    // Agrega más rutas de imágenes según sea necesario
+    "../assets/PR.jpg",
   ];
 
   // Genera elementos img para el slider
   const items = imagePaths.map((imagePath, index) => (
-    <div key={index} className="slider-image">
+    <div key={index} className="slider-image" >
       <img src={imagePath} alt={`Imagen ${index + 1}`} />
     </div>
   ));

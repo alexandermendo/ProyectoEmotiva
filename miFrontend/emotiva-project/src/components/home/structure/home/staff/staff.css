@@ -5,18 +5,36 @@
 }
 
 .slider-image {
-  margin: 10px;
-  /* Ajusta el valor del margen según tus preferencias */
+  margin: 10px 10px 0 0;
 }
 
 .slider-image img {
   max-width: 100%;
-  /* Ajusta el tamaño máximo de la imagen al contenedor */
   height: auto;
+  width: 95%;
 }
 
 .staff-cont h2 {
   color: white;
   font-family: Proxima Nova Alt, sans-serif;
   font-size: 25px;
+}
+
+@media (max-width: 768px) {
+  .slider-container {
+    padding: 10%;
+    padding-bottom: 4%;
+  }
+
+  .slider-image {
+    margin: 10px 10px 0 0;
+  }
+
+  .slider-image img {
+    width: 98%;
+  }
+
+  .staff-cont h2 {
+    font-size: 20px;
+  }
 }

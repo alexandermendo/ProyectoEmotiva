@@ -31,3 +31,35 @@
   font-family: Proxima Nova Bold, sans-serif;
   font-size: 18px;
 }
+
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+  .foo-ter {
+    text-align: center; 
+    margin-left: 0; 
+    margin-top: 5%; 
+  }
+
+  .img-logo-foo {
+    width: 50%; 
+    margin-top: 5%; 
+    margin-bottom: 2%;
+  }
+
+  .foo-ter-nav {
+    text-align: justify; 
+    margin-left: 0; 
+    margin-top: 5%; 
+    margin-bottom: 5%;
+  }
+
+  .foo-ter-nav h1 {
+    font-size: 20px; 
+  }
+
+  .nav-item-1,
+  .nav-link-1 {
+    font-size: 16px; 
+  }
+}

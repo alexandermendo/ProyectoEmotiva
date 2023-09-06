@@ -18,7 +18,7 @@ export const NavbarLogin = () => {
             className="img-logo-login"
             src="../assets/Emotiva_Logo.png"
             alt="Ligero" />
-          <div className="navbar-search">
+          <div className="navbar-search-2">
             <button className="btn-cre-cue btn" type="submit" onClick={createAccount}>Crear Cuenta</button>
           </div>
         </div>

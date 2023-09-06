@@ -11,7 +11,6 @@
   background-color: rgba(117, 41, 149, 0.9);
 }
 
-/* Estilos para los elementos de navegación en la barra */
 .navbar-nav .nav-link {
   color: white;
   text-transform: uppercase;
@@ -23,7 +22,6 @@
   letter-spacing: .8px;
   white-space: nowrap;
   margin-right: 20px;
-  /* Agregar margen derecho para separar los elementos */
 }
 
 .nav-link:hover {
@@ -43,7 +41,6 @@
   background-repeat: no-repeat;
 }
 
-/* Estilos para los botones */
 .btn-cre-usu {
   background-color: #00aef8;
   color: white;
@@ -51,7 +48,6 @@
   font-size: 12px;
   text-transform: uppercase;
   margin-right: 10px;
-  /* Agregar margen derecho para separar los botones */
 }
 
 .btn-cer-ses {
@@ -79,20 +75,19 @@
   margin: 6px 0;
 }
 
-
-/* Media query para dispositivos móviles */
+/* Estilos para dispositivos móviles */
 @media (max-width: 768px) {
   .ligero-container-navbar {
-    padding: 3% 3%;
+    padding: 3% 0;
   }
 
-  /* Mostrar los botones en dispositivos móviles */
   .navbar-search .btn-cre-usu,
   .navbar-search .btn-cer-ses {
     display: inline-block;
+    width: auto;
+    /* Restablezco el ancho automático para los botones */
   }
 
-  /* Ocultar la barra de búsqueda en dispositivos móviles */
   .navbar-search {
     display: none;
   }
@@ -101,24 +96,10 @@
     display: inline-block;
   }
 
-  .btn-cre-usu {
-    background-color: #00aef8;
-    color: white;
-    font-family: Proxima Nova Thin, sans-serif;
-    font-size: 12px;
-    text-transform: uppercase;
-    margin-right: 10px;
-    width: 50%;
-  }
-
+  .btn-cre-usu,
   .btn-cer-ses {
-    background-color: #BB025E;
-    color: white;
-    font-family: Proxima Nova Thin, sans-serif;
-    font-size: 12px;
-    text-transform: uppercase;
-    margin-right: 10px;
-    width: 50%;
+    width: auto;
+    /* Restablezco el ancho automático para los botones */
   }
 
   .navbar-nav .nav-link {

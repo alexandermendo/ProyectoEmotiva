@@ -19,7 +19,7 @@ export const NavbarAccount = () => {
             className="img-logo-account"
             src="../assets/Emotiva_Logo.png"
             alt="Ligero" />
-          <div className="navbar-search">
+          <div className="navbar-search-1">
             <button className="btn-back btn" type="submit" onClick={goToBack}>Atrás</button>
           </div>
         </div>

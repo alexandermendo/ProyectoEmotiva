@@ -7,55 +7,13 @@ export const StyleTop = () => {
         <div className="col-md-6">
           <h2>Estilo de Vida</h2>
           <div className='row'>
-            <div className='col-md-2'>
+            <div className='col-12 col-sm-6 col-md-2'>
               <img
-                className='foto-card-1 img-fluid' // Agrega la clase 'img-fluid' aquí
+                className='foto-card-2 img-fluid'
                 src="../assets/Paris.jpg"
                 alt="Ligero" />
             </div>
-            <div className='col-md-10'>
-              <div className='info-lfsty'>
-                <p>Hola Mundo</p>
-                <h1>Aquí hay una nota de estilo de vida</h1>
-              </div>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-md-2'>
-              <img
-                className='foto-card-1 img-fluid' // Agrega la clase 'img-fluid' aquí
-                src="../assets/Paris.jpg"
-                alt="Ligero" />
-            </div>
-            <div className='col-md-10'>
-              <div className='info-lfsty'>
-                <p>Hola Mundo</p>
-                <h1>Aquí hay una nota de estilo de vida</h1>
-              </div>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-md-2'>
-              <img
-                className='foto-card-1 img-fluid' // Agrega la clase 'img-fluid' aquí
-                src="../assets/Paris.jpg"
-                alt="Ligero" />
-            </div>
-            <div className='col-md-10'>
-              <div className='info-lfsty'>
-                <p>Hola Mundo</p>
-                <h1>Aquí hay una nota de estilo de vida</h1>
-              </div>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-md-2'>
-              <img
-                className='foto-card-1 img-fluid' // Agrega la clase 'img-fluid' aquí
-                src="../assets/Paris.jpg"
-                alt="Ligero" />
-            </div>
-            <div className='col-md-10'>
+            <div className='col-12 col-sm-6 col-md-10'>
               <div className='info-lfsty'>
                 <p>Hola Mundo</p>
                 <h1>Aquí hay una nota de estilo de vida</h1>
@@ -65,64 +23,50 @@ export const StyleTop = () => {
         </div>
 
         <div className="col-md-6">
-          <h2>TOP 10</h2>
-          <div className='row'>
-            <div className='col-md-2'>
-              <img
-                className='foto-card-1 img-fluid' // Agrega la clase 'img-fluid' aquí
-                src="../assets/Paris.jpg"
-                alt="Ligero" />
-            </div>
-            <div className='col-md-10'>
-              <div className='info-lfsty'>
-                <p>Hola Mundo</p>
-                <h1>Hola Mundo</h1>
-              </div>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-md-2'>
-              <img
-                className='foto-card-1 img-fluid' // Agrega la clase 'img-fluid' aquí
-                src="../assets/Paris.jpg"
-                alt="Ligero" />
-            </div>
-            <div className='col-md-10'>
-              <div className='info-lfsty'>
-                <p>Hola Mundo</p>
-                <h1>Hola Mundo</h1>
-              </div>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-md-2'>
-              <img
-                className='foto-card-1 img-fluid' // Agrega la clase 'img-fluid' aquí
-                src="../assets/Paris.jpg"
-                alt="Ligero" />
-            </div>
-            <div className='col-md-10'>
-              <div className='info-lfsty'>
-                <p>Hola Mundo</p>
-                <h1>Hola Mundo</h1>
-              </div>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-md-2'>
-              <img
-                className='foto-card-1 img-fluid' // Agrega la clase 'img-fluid' aquí
-                src="../assets/Paris.jpg"
-                alt="Ligero" />
-            </div>
-            <div className='col-md-10'>
-              <div className='info-lfsty'>
-                <p>Hola Mundo</p>
-                <h1>Hola Mundo</h1>
-              </div>
-            </div>
+          <div className='top-10'>
+            <h1>EMOTIVA Top 10</h1>
+            <ol>
+              <li>
+                <img src="../assets/Paris.jpg" className="img-top-10" alt="Portada Canción 1" />
+                <div className='text-top'>
+                  <h1>Top 1</h1>
+                  <p>Top 1</p>
+                </div>
+              </li>
+              <li>
+                <img src="../assets/Buenos Aires.jpg" className="img-top-10" alt="Portada Canción 2" />
+                <div className='text-top'>
+                  <h1>Top 2</h1>
+                  <p>Top 2</p>
+                </div>
+              </li>
+              <li>
+                <img src="../assets/PR.jpg" className="img-top-10" alt="Portada Canción 3" />
+                <div className='text-top'>
+                  <h1>Top 3</h1>
+                  <p>Top 3</p>
+                </div>
+              </li>
+              <li>
+                <img src="../assets/PR.jpg" className="img-top-10" alt="Portada Canción 3" />
+                <div className='text-top'>
+                  <h1>Top 4</h1>
+                  <p>Top 4</p>
+                </div>
+              </li>
+              <li>
+                <img src="../assets/PR.jpg" className="img-top-10" alt="Portada Canción 3" />
+                <div className='text-top'>
+                  <h1>Top 5</h1>
+                  <p>Top 5</p>
+                </div>
+              </li>
+            </ol>
+            <button className='btn-top-list'>Ver la Lista Completa</button>
           </div>
         </div>
+
+
       </div>
     </div>
   );
