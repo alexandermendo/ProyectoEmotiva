@@ -4,37 +4,64 @@
   padding-bottom: 4%;
 }
 
-.slider-image {
-  margin: 10px 10px 0 0;
-}
-
-.slider-image img {
-  max-width: 100%;
-  height: auto;
-  width: 95%;
-}
-
 .staff-cont h2 {
   color: white;
   font-family: Proxima Nova Alt, sans-serif;
-  font-size: 25px;
+  font-size: 40px;
 }
+
+.slider-card {
+  margin: 0 10px;
+}
+
+.card {
+  background-color: #315c91;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-body-staff {
+  display: flex;
+  margin-top: 2%;
+}
+
+.card-name-staff {
+  font-size: 14px;
+  color: #f3aa21;
+  font-family: Proxima Nova Thin, sans-serif;
+  text-transform: uppercase;
+  margin-top: 2%;
+  margin-left: 2%;
+}
+
+.card-lastname-staff {
+  font-size: 25px;
+  font-weight: bold;
+  color: aliceblue;
+  font-family: Proxima Nova Thin, sans-serif;
+  text-transform: uppercase;
+  margin-left: 1%;
+}
+
+.card-name-st {
+  font-size: 12px;
+  font-weight: bold;
+  color: aliceblue;
+  font-family: Proxima Nova Thin, sans-serif;
+  text-transform: uppercase;
+  margin-left: 2%;
+}
+
 
 @media (max-width: 768px) {
   .slider-container {
-    padding: 10%;
+    background-color: #315c91;
+    padding: 6%;
     padding-bottom: 4%;
-  }
-
-  .slider-image {
-    margin: 10px 10px 0 0;
-  }
-
-  .slider-image img {
-    width: 98%;
-  }
-
-  .staff-cont h2 {
-    font-size: 20px;
   }
 }

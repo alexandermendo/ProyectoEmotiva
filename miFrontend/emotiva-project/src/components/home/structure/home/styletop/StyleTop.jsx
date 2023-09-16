@@ -2,21 +2,68 @@ import './styleTop.css';
 
 export const StyleTop = () => {
   return (
-    <div className="styletop-container st-cont">
+    <div className="styletop-container st-cont-2">
       <div className="row align-items-start">
         <div className="col-md-6">
           <h2>Estilo de Vida</h2>
-          <div className='row'>
-            <div className='col-12 col-sm-6 col-md-2'>
-              <img
-                className='foto-card-2 img-fluid'
-                src="../assets/Paris.jpg"
-                alt="Ligero" />
+          <div className="row">
+            {/* Primera tarjeta */}
+            <div className="col-12 col-sm-6">
+              <div className="card estilo-card">
+                <img
+                  className="foto-card-2 img-fluid"
+                  src="../assets/Paris.jpg"
+                  alt="Ligero"
+                />
+                <div className="card-body">
+                  <p>Hola Mundo</p>
+                  <h5 className="card-title">Aquí hay una nota de estilo de vida</h5>
+                </div>
+              </div>
             </div>
-            <div className='col-12 col-sm-6 col-md-10'>
-              <div className='info-lfsty'>
-                <p>Hola Mundo</p>
-                <h1>Aquí hay una nota de estilo de vida</h1>
+
+            {/* Segunda tarjeta */}
+            <div className="col-12 col-sm-6">
+              <div className="card estilo-card">
+                <img
+                  className="foto-card-2 img-fluid"
+                  src="../assets/Paris.jpg"
+                  alt="Ligero"
+                />
+                <div className="card-body">
+                  <p>Hola Mundo</p>
+                  <h5 className="card-title">Aquí hay otra nota de estilo de vida</h5>
+                </div>
+              </div>
+            </div>
+
+            {/* Tercera tarjeta */}
+            <div className="col-12 col-sm-6">
+              <div className="card estilo-card">
+                <img
+                  className="foto-card-2 img-fluid"
+                  src="../assets/Paris.jpg"
+                  alt="Ligero"
+                />
+                <div className="card-body">
+                  <p>Hola Mundo</p>
+                  <h5 className="card-title">Tercera nota de estilo de vida</h5>
+                </div>
+              </div>
+            </div>
+
+            {/* Cuarta tarjeta */}
+            <div className="col-12 col-sm-6">
+              <div className="card estilo-card">
+                <img
+                  className="foto-card-2 img-fluid"
+                  src="../assets/Paris.jpg"
+                  alt="Ligero"
+                />
+                <div className="card-body">
+                  <p>Hola Mundo</p>
+                  <h5 className="card-title">Cuarta nota de estilo de vida</h5>
+                </div>
               </div>
             </div>
           </div>
@@ -64,9 +111,12 @@ export const StyleTop = () => {
             </ol>
             <button className='btn-top-list'>Ver la Lista Completa</button>
           </div>
+
+          <div className='spot-cls'>
+            <h1>Hola Mundo</h1>
+            <p>Hola Mundo</p>
+          </div>
         </div>
-
-
       </div>
     </div>
   );

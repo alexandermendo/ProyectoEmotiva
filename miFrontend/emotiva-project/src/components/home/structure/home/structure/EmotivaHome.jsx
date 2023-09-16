@@ -1,3 +1,4 @@
+import { Entertainment } from "../entertainment/Entertainment";
 import { Footer } from "../footer/Footer";
 import { NavbarUsuario } from "../navbar/usuario/NavbarUsuario";
 import { Relevante } from "../relevante/Relevante";
@@ -15,6 +16,7 @@ export const EmotivaHome = () => {
       <Relevante/>
       <StyleTop/>
       <SportEnt/>
+      <Entertainment/>
       <Footer/>
     </div>
   );

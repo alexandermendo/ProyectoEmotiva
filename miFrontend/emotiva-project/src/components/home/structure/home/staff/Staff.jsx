@@ -7,7 +7,7 @@ export const Staff = () => {
     infinite: false,
     speed: 500,
     slidesToShow: 6,
-    slidesToScroll: 5,
+    slidesToScroll: 3,
     initialSlide: 0,
     centerPadding: '50px', // Ajusta el valor de margen según tus necesidades
     responsive: [
@@ -21,11 +21,10 @@ export const Staff = () => {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 768,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2,
         },
       },
       {
@@ -38,45 +37,74 @@ export const Staff = () => {
     ],
   };
 
-  // Rutas de las imágenes que deseas mostrar en el slider
-  const imagePaths = [
-    "../assets/PR.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/Paris.jpg",
-    "../assets/PR.jpg",
+  // Datos del staff que deseas mostrar en el slider
+  const staffData = [
+    {
+      name: "Nombre 1",
+      position: "Posición 1",
+      image: "../assets/Prueba.jpg",
+    },
+    {
+      name: "Nombre 2",
+      position: "Posición 2",
+      image: "../assets/Prueba.jpg",
+    },
+    {
+      name: "Nombre 1",
+      position: "Posición 1",
+      image: "../assets/Prueba.jpg",
+    },
+    {
+      name: "Nombre 2",
+      position: "Posición 2",
+      image: "../assets/Prueba.jpg",
+    },
+    {
+      name: "Nombre 1",
+      position: "Posición 1",
+      image: "../assets/Prueba.jpg",
+    },
+    {
+      name: "Nombre 2",
+      position: "Posición 2",
+      image: "../assets/Prueba.jpg",
+    },
+    {
+      name: "Nombre 1",
+      position: "Posición 1",
+      image: "../assets/Prueba.jpg",
+    },
+    {
+      name: "Nombre 2",
+      position: "Posición 2",
+      image: "../assets/Prueba.jpg",
+    },
+    {
+      name: "Nombre 1",
+      position: "Posición 1",
+      image: "../assets/Prueba.jpg",
+    },
+    {
+      name: "Nombre 2",
+      position: "Posición 2",
+      image: "../assets/Prueba.jpg",
+    },
+    // Agrega más datos de staff aquí
   ];
 
-  // Genera elementos img para el slider
-  const items = imagePaths.map((imagePath, index) => (
-    <div key={index} className="slider-image" >
-      <img src={imagePath} alt={`Imagen ${index + 1}`} />
+  // Genera elementos de tarjeta para el slider
+  const items = staffData.map((staffMember, index) => (
+    <div key={index} className="slider-card">
+      <div className="card">
+        <img src={staffMember.image} className="card-img-top-1" alt={staffMember.name} />
+        <div className="card-body-staff">
+          <p className="card-name-staff">{staffMember.position}</p>
+          <h5 className="card-lastname-staff">{staffMember.name}</h5>
+        </div>
+        <div className="card-body-st">
+          <p className="card-name-st">{staffMember.position}</p>
+        </div>
+      </div>
     </div>
   ));
 

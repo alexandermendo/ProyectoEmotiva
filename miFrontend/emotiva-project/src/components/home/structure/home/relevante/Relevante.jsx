@@ -4,82 +4,96 @@ export const Relevante = () => {
   return (
     <div className="relevante-container relev-cont">
       <h2>Lo + Relevante</h2>
-      <div className="row align-items-start">
+      <div className="row">
+        {/* Tarjeta 1 */}
         <div className="col-md-5">
-          <div className="card">
-            <div className="card-body">
-              <img
-                className='foto-card img-fluid' // Agrega la clase 'img-fluid' aquí
-                src="../assets/Paris.jpg"
-                alt="Ligero" />
-              {/* <h5 className="card-title">Título de la Tarjeta 1</h5>
-              <p className="card-text">Contenido de la Tarjeta 1</p> */}
+          <div className="card-pri">
+            <img
+              className='card-img-top-pri img-fluid'
+              src="../assets/Paris.jpg"
+              alt="Ligero" />
+            <div className="card-body-rel">
+              <p className="card-text-rel">Contenido de la Tarjeta 7</p>
+              <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
             </div>
           </div>
         </div>
 
+        {/* Tarjeta 2 */}
         <div className="col-md-7">
-          <div className='card1 row'>
+          <div className="row">
             <div className="col-md-4">
-              <div className="card w-100">
-                <div className="card-body">
-                  <img
-                    className='foto-card-1 img-fluid' // Agrega la clase 'img-fluid' aquí
-                    src="../assets/Paris.jpg"
-                    alt="Ligero" />
+              <div className="card">
+                <img
+                  className='card-img-top img-fluid'
+                  src="../assets/Paris.jpg"
+                  alt="Ligero" />
+                <div className="card-body-rel">
+                  <p className="card-text-rel">Contenido de la Tarjeta 7</p>
+                  <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
                 </div>
               </div>
             </div>
             <div className="col-md-4">
-              <div className="card w-100">
-                <div className="card-body">
-                  <img
-                    className='foto-card-1 img-fluid' // Agrega la clase 'img-fluid' aquí
-                    src="../assets/Paris.jpg"
-                    alt="Ligero" />
+              <div className="card">
+                <img
+                  className='card-img-top img-fluid'
+                  src="../assets/Paris.jpg"
+                  alt="Ligero" />
+                <div className="card-body-rel">
+                  <p className="card-text-rel">Contenido de la Tarjeta 7</p>
+                  <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
                 </div>
               </div>
             </div>
             <div className="col-md-4">
-              <div className="card w-100">
-                <div className="card-body">
-                  <img
-                    className='foto-card-1 img-fluid' // Agrega la clase 'img-fluid' aquí
-                    src="../assets/Paris.jpg"
-                    alt="Ligero" />
+              <div className="card">
+                <img
+                  className='card-img-top img-fluid'
+                  src="../assets/Paris.jpg"
+                  alt="Ligero" />
+                <div className="card-body-rel">
+                  <p className="card-text-rel">Contenido de la Tarjeta 7</p>
+                  <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className='row'>
+          <div className="row">
             <div className="col-md-4">
-              <div className="card w-100">
-                <div className="card-body">
-                  <img
-                    className='foto-card-1 img-fluid' // Agrega la clase 'img-fluid' aquí
-                    src="../assets/Paris.jpg"
-                    alt="Ligero" />
+              <div className="card">
+                <img
+                  className='card-img-top img-fluid'
+                  src="../assets/Paris.jpg"
+                  alt="Ligero" />
+                <div className="card-body-rel">
+                  <p className="card-text-rel">Contenido de la Tarjeta 7</p>
+                  <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
                 </div>
               </div>
             </div>
             <div className="col-md-4">
-              <div className="card w-100">
-                <div className="card-body">
-                  <img
-                    className='foto-card-1 img-fluid' // Agrega la clase 'img-fluid' aquí
-                    src="../assets/Paris.jpg"
-                    alt="Ligero" />
+              <div className="card">
+                <img
+                  className='card-img-top img-fluid'
+                  src="../assets/Paris.jpg"
+                  alt="Ligero" />
+                <div className="card-body-rel">
+                  <p className="card-text-rel">Contenido de la Tarjeta 7</p>
+                  <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
                 </div>
               </div>
             </div>
             <div className="col-md-4">
-              <div className="card w-100">
-                <div className="card-body">
-                  <img
-                    className='foto-card-1 img-fluid' // Agrega la clase 'img-fluid' aquí
-                    src="../assets/Paris.jpg"
-                    alt="Ligero" />
+              <div className="card">
+                <img
+                  className='card-img-top img-fluid'
+                  src="../assets/Paris.jpg"
+                  alt="Ligero" />
+                <div className="card-body-rel">
+                  <p className="card-text-rel">Contenido de la Tarjeta 7</p>
+                  <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
                 </div>
               </div>
             </div>
