@@ -5,7 +5,15 @@ export const SportEnt = () => {
     <div className="styletop-container st-cont-1">
       <div className="row">
         <div className="col-md-12">
-          <h2>Deportes</h2>
+          <div className="header">
+            <img
+              src="../assets/Icono.png"
+              alt="Logo de la empresa"
+              className="logo"
+            />
+            <h2>Deportes</h2>
+          </div>
+
         </div>
         <div className="col-md-3">
           <div className="card sport-card">

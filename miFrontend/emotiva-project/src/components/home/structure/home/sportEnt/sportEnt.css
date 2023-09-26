@@ -7,7 +7,7 @@
   color: white;
   font-family: Proxima Nova Alt, sans-serif;
   font-size: 40px;
-  margin-bottom: 2%;
+  font-weight: bold;
 }
 
 .card-title {
@@ -55,12 +55,5 @@
 
   .card.sport-card {
     margin-bottom: 10px;
-  }
-
-  .st-cont-1 h2 {
-    color: white;
-    font-family: Proxima Nova Alt, sans-serif;
-    font-size: 25px;
-    margin-bottom: 5%;
   }
 }

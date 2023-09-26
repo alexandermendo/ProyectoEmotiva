@@ -8,10 +8,22 @@
   color: white;
   font-family: Proxima Nova Alt, sans-serif;
   font-size: 40px;
+  font-weight: bold;
 }
 
 .slider-card {
   margin: 0 10px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  max-width: 25px; 
+  margin-right: 10px; 
 }
 
 .card {
@@ -56,7 +68,6 @@
   text-transform: uppercase;
   margin-left: 2%;
 }
-
 
 @media (max-width: 768px) {
   .slider-container {

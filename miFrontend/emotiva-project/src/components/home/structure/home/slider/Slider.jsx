@@ -1,3 +1,5 @@
+import './slider.css';
+
 export const Slider = () => {
   const images = [
     {
@@ -33,7 +35,12 @@ export const Slider = () => {
                 style={{ width: '600px', height: '1000px' }}
               />
               <div className="carousel-caption d-none d-md-block">
-                <h5>{image.text}</h5>
+                <div className="text-slider">
+                  <h3>Hola Mundo</h3>
+                  <p>Este es una imágen de prueba</p>
+                  <h1 className='text-sl'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h1>
+                  <button className='btn-sli'>Explora más</button>
+                </div>
               </div>
             </div>
           ))}

@@ -7,7 +7,7 @@
   color: white;
   font-family: Proxima Nova Alt, sans-serif;
   font-size: 40px;
-  margin-bottom: 2%;
+  font-weight: bold;
 }
 
 .estilo-card {
@@ -53,12 +53,18 @@
   padding: 3%;
 }
 
+.logo-e {
+  max-width: 25px; 
+  margin-right: 10px; 
+}
+
+
 .top-10 h1 {
   font-family: Proxima Nova Alt, sans-serif;
   color: #f09916;
   font-size: 40px;
   text-align: start;
-  margin-bottom: 3%;
+  font-weight: bold;
 }
 
 .top-10 ol {
@@ -107,7 +113,7 @@
   color: white;
   text-transform: uppercase;
   position: relative;
-  left: 75%;
+  left: 72%;
 }
 
 .btn-top-list:hover {
@@ -116,7 +122,7 @@
   color: white;
   text-transform: uppercase;
   position: relative;
-  left: 75%;
+  left: 72%;
 }
 
 .text-top {
@@ -160,12 +166,12 @@
   }
 
   .top-10 h1 {
-    color: white;
     font-family: Proxima Nova Alt, sans-serif;
+    color: #f09916;
     font-size: 40px;
-    margin-left: 1%;
-    margin-bottom: 10%;
-    padding-top: 3%;
+    text-align: start;
+    margin-bottom: 3%;
+    font-weight: bold;
   }
 
   .img-top-10 {

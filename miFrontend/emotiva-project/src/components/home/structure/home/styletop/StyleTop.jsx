@@ -5,7 +5,15 @@ export const StyleTop = () => {
     <div className="styletop-container st-cont-2">
       <div className="row align-items-start">
         <div className="col-md-6">
-          <h2>Estilo de Vida</h2>
+          <div className="header">
+            <img
+              src="../assets/Icono.png"
+              alt="Logo de la empresa"
+              className="logo"
+            />
+            <h2>Estilo de Vida</h2>
+          </div>
+
           <div className="row">
             {/* Primera tarjeta */}
             <div className="col-12 col-sm-6">
@@ -71,7 +79,15 @@ export const StyleTop = () => {
 
         <div className="col-md-6">
           <div className='top-10'>
-            <h1>EMOTIVA Top 10</h1>
+            <div className="header">
+              <img
+                src="../assets/Icono.png"
+                alt="Logo de la empresa"
+                className="logo-e"
+              />
+              <h1>EMOTIVA Top 10</h1>
+            </div>
+
             <ol>
               <li>
                 <img src="../assets/Paris.jpg" className="img-top-10" alt="Portada Canción 1" />

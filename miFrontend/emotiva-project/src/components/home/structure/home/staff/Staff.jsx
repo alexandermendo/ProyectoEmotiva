@@ -110,7 +110,14 @@ export const Staff = () => {
 
   return (
     <div className="slider-container staff-cont">
-      <h2>Nuestro Staff</h2>
+      <div className="header">
+        <img
+          src="../assets/Icono.png" 
+          alt="Logo de la empresa"
+          className="logo"
+        />
+        <h2>Nuestro Staff</h2>
+      </div>
       <Slider {...settings} className="slider">
         {items}
       </Slider>
