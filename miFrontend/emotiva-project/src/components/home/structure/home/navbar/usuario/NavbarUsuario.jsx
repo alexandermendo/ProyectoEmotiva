@@ -27,6 +27,10 @@ export const NavbarUsuario = () => {
     navigate("/login");
   }
 
+  const gotoDashboard = () => {
+    navigate("/dashboard");
+  }
+
   return (
     <>
       <nav className={`navbar navbar-expand-lg ligero-container-navbar ${isScrolled ? "scrolled" : ""}`}>
@@ -55,7 +59,7 @@ export const NavbarUsuario = () => {
               </li>
             </ul>
             <form className="d-flex" role="search">
-              <button className="btn-cre-usu mobile-menu-btn" type="button">Dashboard</button>
+              <button className="btn-cre-usu mobile-menu-btn" type="button" onClick={gotoDashboard}>Dashboard</button>
               <button className="btn-cer-ses mobile-menu-btn" type="button" onClick={logout}>Cerrar Sesión</button>
             </form>
           </div>

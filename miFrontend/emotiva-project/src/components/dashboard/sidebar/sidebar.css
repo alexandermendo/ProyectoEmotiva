@@ -1,0 +1,66 @@
+.sidebar {
+  width: 14rem;
+  height: calc(170vh - 60px);
+  background-color: rgba(117, 41, 149, 0.9);
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.sidebar a:hover {
+  color: #61dafb; 
+}
+
+.img-logo-emotiva-1 {
+  content: "";
+  width: 10em;
+  height: 26px;
+  display: inline-block;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin-bottom: 25%;
+}
+
+.dash-item {
+  display: flex;
+}
+
+.logo-dash {
+  width: 10%;
+  height: 25px;
+  margin-right: 5%;
+}
+
+.text-side {
+  display: grid;
+}
+
+.title-text {
+  font-family: Proxima Nova Regular, sans-serif;
+  text-transform: uppercase;
+}
+
+.text-add-note {
+  font-family: Proxima Nova Thin, sans-serif;
+}

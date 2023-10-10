@@ -117,7 +117,6 @@ router.put("/updatePersonas", upload.single("foto"), async (req, res) => {
   }
 });
 
-// Ruta para eliminar una persona por su ID
 router.delete("/deletePersonas/:identi", async (req, res) => {
   try {
     const identi = req.params.identi;
