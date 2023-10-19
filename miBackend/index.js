@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const createError = require('http-errors');
 const app = express();
 const celebritiesRouter = require("./routes/celebrities");
 const citiesRouter = require("./routes/cities");
@@ -19,10 +20,15 @@ app.use("/cities", citiesRouter);
 app.use("/countries", paisesRouter);
 app.use("/users", usersRouter);
 app.use("/login", authRouter);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-app.use(function (req, res, next) { next(createError(404)) });
-app.use(function (err, req, res, next) {
-    console.log("Error handler:", err);
+app.use((req, res, next) => {
+    res.status(404).json({ message: 'Ruta no encontrada' });
+});
+
+// Manija de errores general
+app.use((err, req, res, next) => {
+    console.error("Error handler:", err);
     res.locals.message = err.message;
     res.locals.error = req.app.get("env") === "development" ? err : {};
     res.status(err.status || 500);

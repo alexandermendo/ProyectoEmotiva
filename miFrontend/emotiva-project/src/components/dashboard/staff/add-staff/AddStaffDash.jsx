@@ -11,7 +11,7 @@ export const AddStaffDash = () => {
     fec_nac: "",
     red_soc: "",
     biograf: "",
-    foto: null, // Para el campo de la foto
+    foto: null, 
   });
 
   const handleChange = (e) => {
@@ -55,6 +55,10 @@ export const AddStaffDash = () => {
       console.error("Error al agregar celebridad:", error);
     }
   };
+
+  const addCelebrity = () => {
+    alert('Señor Administrador, Celebridad agregada exitosamente');
+  }
 
   return (
     <div className="container">
@@ -165,7 +169,7 @@ export const AddStaffDash = () => {
                 onChange={handleChange}
               />
             </div>
-            <button type="submit" className="btn-add-cel">
+            <button type="submit" onClick={addCelebrity} className="btn-add-cel">
               Ingresar Celebridad
             </button>
           </form>

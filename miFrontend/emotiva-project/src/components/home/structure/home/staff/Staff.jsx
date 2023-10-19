@@ -1,13 +1,18 @@
+import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import './staff.css';
 
 export const Staff = () => {
+  const [staffData, setStaffData] = useState([]);
+  const [setLoading] = useState(true);
+  const serverUrl = "http://localhost:3000"
+
   const settings = {
     dots: true,
     infinite: false,
     speed: 500,
     slidesToShow: 6,
-    slidesToScroll: 3,
+    slidesToScroll: 4,
     initialSlide: 0,
     centerPadding: '50px', // Ajusta el valor de margen según tus necesidades
     responsive: [
@@ -37,82 +42,49 @@ export const Staff = () => {
     ],
   };
 
-  // Datos del staff que deseas mostrar en el slider
-  const staffData = [
-    {
-      name: "Nombre 1",
-      position: "Posición 1",
-      image: "../assets/Prueba.jpg",
-    },
-    {
-      name: "Nombre 2",
-      position: "Posición 2",
-      image: "../assets/Prueba.jpg",
-    },
-    {
-      name: "Nombre 1",
-      position: "Posición 1",
-      image: "../assets/Prueba.jpg",
-    },
-    {
-      name: "Nombre 2",
-      position: "Posición 2",
-      image: "../assets/Prueba.jpg",
-    },
-    {
-      name: "Nombre 1",
-      position: "Posición 1",
-      image: "../assets/Prueba.jpg",
-    },
-    {
-      name: "Nombre 2",
-      position: "Posición 2",
-      image: "../assets/Prueba.jpg",
-    },
-    {
-      name: "Nombre 1",
-      position: "Posición 1",
-      image: "../assets/Prueba.jpg",
-    },
-    {
-      name: "Nombre 2",
-      position: "Posición 2",
-      image: "../assets/Prueba.jpg",
-    },
-    {
-      name: "Nombre 1",
-      position: "Posición 1",
-      image: "../assets/Prueba.jpg",
-    },
-    {
-      name: "Nombre 2",
-      position: "Posición 2",
-      image: "../assets/Prueba.jpg",
-    },
-    // Agrega más datos de staff aquí
-  ];
+  useEffect(() => {
+    async function fetchStaffData() {
+      try {
+        const response = await fetch(`${serverUrl}/celebrities/consulta`);
+        if (response.ok) {
+          const data = await response.json();
+          setStaffData(data);
+        } else {
+          console.error("Error al obtener los datos del servidor.");
+        }
+      } catch (error) {
+        console.error("Error al realizar la solicitud:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchStaffData();
+  }, []);
 
-  // Genera elementos de tarjeta para el slider
   const items = staffData.map((staffMember, index) => (
     <div key={index} className="slider-card">
       <div className="card">
-        <img src={staffMember.image} className="card-img-top-1" alt={staffMember.name} />
+        <img src={`${serverUrl}/${staffMember.fot_fam}`} className="card-img-top-1" alt={staffMember.nombre} />
         <div className="card-body-staff">
-          <p className="card-name-staff">{staffMember.position}</p>
-          <h5 className="card-lastname-staff">{staffMember.name}</h5>
+          <p className="card-name-staff">{staffMember.nombre}</p>
+          <h5 className="card-lastname-staff">{staffMember.apelli}</h5>
         </div>
         <div className="card-body-st">
-          <p className="card-name-st">{staffMember.position}</p>
+          <p className="card-name-st">{staffMember.nom_cat}</p>
         </div>
       </div>
     </div>
   ));
 
+  // if (loading) {
+  //   return <p>Cargando datos...</p>;
+  // }
+
   return (
     <div className="slider-container staff-cont">
       <div className="header">
         <img
-          src="../assets/Icono.png" 
+          src="../assets/Icono.png"
           alt="Logo de la empresa"
           className="logo"
         />

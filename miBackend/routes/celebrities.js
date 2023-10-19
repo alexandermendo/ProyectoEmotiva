@@ -16,6 +16,19 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
+router.get("/consulta", async (req, res) => {
+  try {
+    const sqlFilePath = path.join(__dirname, "selectCelebrities.sql");
+    const sqlQuery = await fileRead(sqlFilePath)
+    const result = await execSQL(sqlQuery);
+    if (result.length > 0) res.json(result); 
+    else res.status(404).json({ message: "No se encontraron resultados" });
+  } catch (error) {
+    console.error("Error al ejecutar la consulta SQL:", error);
+    res.status(500).json({ message: "Error al ejecutar la consulta SQL" });
+  }
+});
+
 router.post('/personas', upload.single('foto'), async (req, res) => {
   try {
     const {
@@ -62,7 +75,6 @@ router.post('/personas', upload.single('foto'), async (req, res) => {
     res.status(500).json({ message: 'Error al guardar en la base de datos' });
   }
 });
-
 
 router.put("/updatePersonas", upload.single("foto"), async (req, res) => {
   try {

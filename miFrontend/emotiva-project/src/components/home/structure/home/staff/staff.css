@@ -44,18 +44,18 @@
 
 .card-name-staff {
   font-size: 14px;
-  color: #f3aa21;
-  font-family: Proxima Nova Thin, sans-serif;
+  color: aliceblue;
+  font-family: Proxima Nova Alt, sans-serif;
   text-transform: uppercase;
-  margin-top: 2%;
+  margin-top: 5%;
   margin-left: 2%;
 }
 
 .card-lastname-staff {
-  font-size: 25px;
+  font-size: 35px;
   font-weight: bold;
-  color: aliceblue;
-  font-family: Proxima Nova Thin, sans-serif;
+  color: #f3aa21;
+  font-family: Proxima Nova Alt, sans-serif;
   text-transform: uppercase;
   margin-left: 1%;
 }
