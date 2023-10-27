@@ -1,16 +1,13 @@
-import { Provider } from "react-redux";
-import { AppRouter } from "./components/routers/AppRouter"
-import { store } from "../src/components/store/store";
+import AuthContextProvider from "./contexts/AuthContext";
+import { AppRouter } from "./components/routers/AppRouter";
 
 function App() {
   return (
-    <>
-      <div className="wrapper">
-        <Provider store={store}>
-          <AppRouter />
-        </Provider>
-      </div>
-    </>
+    <div className="wrapper">
+      <AuthContextProvider>
+        <AppRouter />
+      </AuthContextProvider>
+    </div>
   )
 }
 

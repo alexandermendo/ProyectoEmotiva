@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { useNavigate } from "react-router";
+import { useAuthContext } from '../../../../../contexts/AuthContext';
 import './loginComponent.css';
 
+
 export const LoginComponent = () => {
-  let navigate = useNavigate();
+  const { login } = useAuthContext();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [usernameError, setUsernameError] = useState('');
@@ -48,7 +49,7 @@ export const LoginComponent = () => {
       if (response.ok) {
         localStorage.setItem('token', data.token);
         console.log('Token:', data.token);
-        navigate('/');
+        login();
       } else {
         alert('¡Error!', data.message, 'error');
       }

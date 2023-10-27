@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router";
-import { NavbarAccount } from '../navbar/usuario/account/NavbarAccount';
+import { NavbarAccount } from '../navbar/admin/account/NavbarAccount';
 import './formAccount.css';
 
 export const FormAccount = () => {

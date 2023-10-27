@@ -4,7 +4,7 @@ import './staff.css';
 
 export const Staff = () => {
   const [staffData, setStaffData] = useState([]);
-  const [setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const serverUrl = "http://localhost:3000"
 
   const settings = {

@@ -78,7 +78,6 @@ function handleValidationErrors(errors, res) {
   }
 }
 
-
 /**
  * Autenticar al usuario mediante credenciales proporcionadas y generar un token JWT en caso de éxito.
  * @param {object} req - Objeto de solicitud HTTP que contiene la información de la solicitud.

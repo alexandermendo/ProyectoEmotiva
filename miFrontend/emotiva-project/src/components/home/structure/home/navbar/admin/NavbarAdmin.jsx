@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "../../../../../../contexts/AuthContext";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./navbarUsuario.css";
+import "./navbarAdmin.css";
 
-export const NavbarUsuario = () => {
-  const value = useAuthContext();
+export const NavbarAdmin = () => {
   const navigate = useNavigate();
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -18,16 +16,19 @@ export const NavbarUsuario = () => {
 
   const toggleMobileMenu = () => { setIsMobileMenuOpen(!isMobileMenuOpen); };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+  useEffect(() => { window.addEventListener("scroll", handleScroll);
     return () => { window.removeEventListener("scroll", handleScroll); };
   }, []);
 
   const logout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('token'); 
     if (!localStorage.getItem('token')) console.log('Token eliminado con éxito.');
-    else console.log('Error al eliminar el token.');
-    navigate("/private/logout");
+    else console.log('Error al eliminar el token.'); 
+    navigate("/login");
+  }
+
+  const gotoDashboard = () => {
+    navigate("/dashboard");
   }
 
   return (
@@ -58,7 +59,7 @@ export const NavbarUsuario = () => {
               </li>
             </ul>
             <form className="d-flex" role="search">
-              <h1 className="home-auth">Página de Inicio: {value.isAuthenticated ? 'SI' : 'NO'} </h1>
+              <button className="btn-cre-usu mobile-menu-btn" type="button" onClick={gotoDashboard}>Dashboard</button>
               <button className="btn-cer-ses mobile-menu-btn" type="button" onClick={logout}>Cerrar Sesión</button>
             </form>
           </div>

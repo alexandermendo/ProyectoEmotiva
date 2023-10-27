@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../../../../../contexts/AuthContext";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./navbarUsuario.css";
+import "./navbar.css";
 
-export const NavbarUsuario = () => {
+export const Navbar = () => {
   const value = useAuthContext();
   const navigate = useNavigate();
 
@@ -23,11 +23,8 @@ export const NavbarUsuario = () => {
     return () => { window.removeEventListener("scroll", handleScroll); };
   }, []);
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    if (!localStorage.getItem('token')) console.log('Token eliminado con éxito.');
-    else console.log('Error al eliminar el token.');
-    navigate("/private/logout");
+  const login = () => {
+    navigate("/login");
   }
 
   return (
@@ -59,7 +56,7 @@ export const NavbarUsuario = () => {
             </ul>
             <form className="d-flex" role="search">
               <h1 className="home-auth">Página de Inicio: {value.isAuthenticated ? 'SI' : 'NO'} </h1>
-              <button className="btn-cer-ses mobile-menu-btn" type="button" onClick={logout}>Cerrar Sesión</button>
+              <button className="btn-cer-ses mobile-menu-btn" type="button" onClick={login}>Iniciar Sesión</button>
             </form>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { NavbarLogin } from '../home/navbar/usuario/login/NavbarLogin';
+import { NavbarLogin } from '../home/navbar/admin/login/NavbarLogin';
 import { LoginComponent } from './component/LoginComponent';
 
 export const FormLogin = () => {
