@@ -32,14 +32,14 @@ export const Slider = () => {
                 src={image.src}
                 className="d-block w-100"
                 alt={image.alt}
-                style={{ width: '600px', height: '1000px' }}
+                style={{ width: '600px', height: '700px' }}
               />
               <div className="carousel-caption d-none d-md-block">
                 <div className="text-slider">
-                  <h3>Hola Mundo</h3>
-                  <p>Este es una imágen de prueba</p>
-                  <h1 className='text-sl'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h1>
-                  <button className='btn-sli'>Explora más</button>
+                  <h3>Pedro es EMOTIVA</h3>
+                  <p>Pedro Perez se integra a nuestra familia </p>
+                  <h1 className='text-sl'>Pedro es un talentoso presentador con un carisma único</h1>
+                  <button className='btn-sli'>Conoce más</button>
                 </div>
               </div>
             </div>

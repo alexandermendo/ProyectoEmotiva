@@ -15,10 +15,11 @@ export const NavbarAccount = () => {
     <>
       <nav className={`navbar navbar-expand-lg account-container-navbar`}>
         <div className="container-fluid">
-          <img
-            className="img-logo-account"
+          <a className="navbar-brand" href="/"><img
+            className="img-logo-emotiva"
             src="../assets/Emotiva_Logo.png"
-            alt="Ligero" />
+            alt="Ligero"
+          /></a>
           <div className="navbar-search-1">
             <button className="btn-back btn" type="submit" onClick={goToBack}>Atrás</button>
           </div>

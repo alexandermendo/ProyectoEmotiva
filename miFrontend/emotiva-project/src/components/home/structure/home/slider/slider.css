@@ -29,7 +29,7 @@
 .text-slider .text-sl {
   color: white;
   font-family: Proxima Nova Thin, sans-serif;
-  font-size: 15px;
+  font-size: 18px;
 }
 
 .btn-sli {
@@ -48,6 +48,10 @@
   font-size: 14px;
   color: white;
   text-transform: uppercase;
+}
+
+.d-block {
+  filter: brightness(60%);
 }
 
 @media only screen and (max-width: 900px) {

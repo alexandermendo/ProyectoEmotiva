@@ -1,6 +1,9 @@
+import { useRef } from "react";
 import './entertainment.css';
 
 export const Entertainment = () => {
+  const entertainmentRef = useRef();
+
   // Datos de entretenimiento
   const entertainmentData = [
     {
@@ -63,37 +66,39 @@ export const Entertainment = () => {
   const rows = chunk(entertainmentData, 3);
 
   return (
-    <div className="entertainment-card-container">
-      <div className="header">
-        <img
-          src="../assets/Icono.png"
-          alt="Logo de la empresa"
-          className="logo"
-        />
-        <h2>Entretenimiento</h2>
-      </div>
-      
-      {rows.map((row, rowIndex) => (
-        <div className="row" key={rowIndex}>
-          {row.map((item, columnIndex) => (
-            <div className="col-md-4" key={columnIndex}>
-              <div className="entertainment-cont">
-                <div className="entertainment-image">
-                  <img
-                    src={item.imagen}
-                    alt="Imagen de entretenimiento"
-                    className="img-fluid"
-                  />
-                </div>
-                <div className="entertainment-content">
-                  <p>{item.fecha}</p>
-                  <h3>{item.titulo}</h3>
+    <div ref={entertainmentRef} id="entretenimiento">
+      <div className="entertainment-card-container">
+        <div className="header">
+          <img
+            src="../assets/Icono.png"
+            alt="Logo de la empresa"
+            className="logo"
+          />
+          <h2>Entretenimiento</h2>
+        </div>
+
+        {rows.map((row, rowIndex) => (
+          <div className="row" key={rowIndex}>
+            {row.map((item, columnIndex) => (
+              <div className="col-md-4" key={columnIndex}>
+                <div className="entertainment-cont">
+                  <div className="entertainment-image">
+                    <img
+                      src={item.imagen}
+                      alt="Imagen de entretenimiento"
+                      className="img-fluid"
+                    />
+                  </div>
+                  <div className="entertainment-content">
+                    <p>{item.fecha}</p>
+                    <h3>{item.titulo}</h3>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      ))}
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

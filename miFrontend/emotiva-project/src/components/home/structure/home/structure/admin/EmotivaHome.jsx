@@ -1,7 +1,6 @@
 import { Entertainment } from "../../entertainment/Entertainment";
 import { Footer } from "../../footer/Footer";
 import { Navbar } from "../../navbar/navbar/Navbar";
-// import { NavbarUsuario } from "../../navbar/usuario/NavbarUsuario";
 import { Relevante } from "../../relevante/Relevante";
 import { Slider } from "../../slider/Slider";
 import { SportEnt } from "../../sportEnt/SportEnt";

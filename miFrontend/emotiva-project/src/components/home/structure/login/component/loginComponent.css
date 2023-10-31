@@ -30,6 +30,13 @@
   border-radius: 4px;
 }
 
+.sel-rol {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 .btn-login {
   background-color: rgba(117, 41, 149, 0.9);;
   color: #ffffff;

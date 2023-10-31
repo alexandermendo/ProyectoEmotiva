@@ -87,8 +87,8 @@ function handleValidationErrors(errors, res) {
  */
 async function authenticateUser(req, col) {
   const jwtSecret = req.app.get("jwtSecret");
-  const { nombre, contraseña } = req.body;  // Cambio de "usuario" a "nombre"
-  const userData = await col.find({ nombre: req.body.nombre, contraseña: req.body.contraseña }).toArray(); // Cambio de "usuario" a "nombre"
+  const { nombre, contraseña, rol } = req.body;  // Cambio de "usuario" a "nombre"
+  const userData = await col.find({ nombre: req.body.nombre, contraseña: req.body.contraseña, rol: req.body.rol }).toArray(); // Cambio de "usuario" a "nombre"
 
   if (userData.length > 0) {
       const token = jwt.sign({ nombre: userData[0].nombre, rol: userData[0].rol }, jwtSecret, { expiresIn: '5h' }); // Cambio de "usuario" a "nombre"

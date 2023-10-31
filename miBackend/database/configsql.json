@@ -4,12 +4,12 @@
       "type": "default",
       "options": {
         "userName": "sa",
-        "password": "123456"
+        "password": "Pruebas+123"
       }
     },
     "options": {
       "encrypt": false,
-      "database": "AGROFERTIL"
+      "database": "EMOTIVA_CELEBRIDADES"
     },
     "port": 1433
   }

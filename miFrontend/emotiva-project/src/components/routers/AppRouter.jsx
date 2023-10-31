@@ -26,12 +26,13 @@ export const AppRouter = () => {
           <Route index element={<EmotivaHomeRouter />} />
           <Route path={LOGIN} element={<EmotivaLoginRouter />} />
           <Route path="/create-account" element={<EmotivaAccountRouter />} />
-          <Route path="/dashboard" element={<Dashboard />}>
-            <Route path="resumen" element={<Resumen />} />
-            <Route path="staff" element={<StaffDash />} />
-            <Route path="add-staff" element={<AddStaffDash />} />
-            <Route path="usuarios" element={<Usuarios />} />
-          </Route>
+        </Route>
+
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="resumen" element={<Resumen />} />
+          <Route path="staff" element={<StaffDash />} />
+          <Route path="add-staff" element={<AddStaffDash />} />
+          <Route path="usuarios" element={<Usuarios />} />
         </Route>
       </Routes>
     </Router>

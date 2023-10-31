@@ -14,10 +14,11 @@ export const NavbarLogin = () => {
     <>
       <nav className={`navbar navbar-expand-lg emotiva-container-navbar`}>
         <div className="container-fluid">
-          <img
-            className="img-logo-login"
+          <a className="navbar-brand" href="/"><img
+            className="img-logo-emotiva"
             src="../assets/Emotiva_Logo.png"
-            alt="Ligero" />
+            alt="Ligero"
+          /></a>
           <div className="navbar-search-2">
             <button className="btn-cre-cue btn" type="submit" onClick={createAccount}>Crear Cuenta</button>
           </div>

@@ -1,16 +1,16 @@
 import { useState } from 'react';
+import { Alert } from 'react-bootstrap';
 import { useAuthContext } from '../../../../../contexts/AuthContext';
 import './loginComponent.css';
 
-
 export const LoginComponent = () => {
   const { login } = useAuthContext();
+  const [alert, setAlert] = useState(null);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [usernameError, setUsernameError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  let [hasErrors] = useState(false);
-
+  const [usernameError, setUsernameError] = useState('Por favor, ingresa tu nombre de usuario.');
+  const [passwordError, setPasswordError] = useState('Por favor, ingresa tu contraseña.');
+  const [selectedRole, setSelectedRole] = useState('Por favor, selecciona un rol.'); 
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -20,17 +20,27 @@ export const LoginComponent = () => {
     setPassword(event.target.value);
   };
 
+  const handleRoleChange = (event) => {
+    setSelectedRole(event.target.value);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!username) {
       setUsernameError('Por favor, ingresa tu email.');
-      hasErrors = true;
+      setAlert(<Alert variant="warning">{usernameError}</Alert>);
+      return;
     }
     if (!password) {
       setPasswordError('Por favor, ingresa tu contraseña.');
-      hasErrors = true;
+      setAlert(<Alert variant="warning">{passwordError}</Alert>);
+      return;
     }
-    if (hasErrors) return;
+    if (!selectedRole) {
+      setSelectedRole('Por favor, selecciona un rol.');
+      setAlert(<Alert variant="warning">{selectedRole}</Alert>);
+      return;
+    }
 
     try {
       const response = await fetch('http://localhost:3000/login/', {
@@ -40,18 +50,19 @@ export const LoginComponent = () => {
         },
         body: JSON.stringify({
           nombre: username,
-          contraseña: password
+          contraseña: password,
+          rol: selectedRole, 
         })
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem('token', data.token);
+        localStorage.setItem('authToken', data.token);
         console.log('Token:', data.token);
-        login();
+        login(selectedRole); 
       } else {
-        alert('¡Error!', data.message, 'error');
+        setAlert(<Alert variant="danger" style={{ width: "42rem" }}>{data.message}</Alert>);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -64,6 +75,8 @@ export const LoginComponent = () => {
         <h1>Iniciar sesión</h1>
         <hr />
 
+        {alert}
+
         <div className="form-group">
           <input
             type="text"
@@ -71,9 +84,8 @@ export const LoginComponent = () => {
             value={username}
             onChange={handleUsernameChange}
             className="form-control"
-            placeholder='Email'
+            placeholder='Nombre'
           />
-          {usernameError && <p className="error-message">{usernameError}</p>}
         </div>
         <div className="form-group">
           <input
@@ -84,10 +96,17 @@ export const LoginComponent = () => {
             className="form-control"
             placeholder='Password'
           />
-          {passwordError && <p className="error-message">{passwordError}</p>}
+        </div>
+        <div className="form-group">
+          <select value={selectedRole} onChange={handleRoleChange} className='sel-rol'>
+            <option value="">-- Seleccionar Rol --</option>
+            <option value="Administrador">Administrador</option>
+            <option value="Usuario">Usuario</option>
+          </select>
         </div>
         <div className="form-group">
           <button type="submit" onClick={handleSubmit} className="btn-login">Continuar</button>
+          {/* <button type="submit" className="btn-login">Iniciar Sesión con Google</button> */}
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../../../../../contexts/AuthContext";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,6 +7,9 @@ import "./navbar.css";
 export const Navbar = () => {
   const value = useAuthContext();
   const navigate = useNavigate();
+  const noticiasRef = useRef();
+  const deportesRef = useRef();
+  const entertainmentRef = useRef();
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -27,6 +30,24 @@ export const Navbar = () => {
     navigate("/login");
   }
 
+  const goToNews = () => {
+    if (noticiasRef.current) {
+      noticiasRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const goToSports = () => {
+    if (deportesRef.current) {
+      deportesRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const goToEntertainment = () => {
+    if (entertainmentRef.current) {
+      entertainmentRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <nav className={`navbar navbar-expand-lg ligero-container-navbar ${isScrolled ? "scrolled" : ""}`}>
@@ -45,13 +66,13 @@ export const Navbar = () => {
           <div className={`collapse navbar-collapse ${isMobileMenuOpen ? 'show' : ''}`} id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link" href="#">Noticias</a>
+                <a className="nav-link" href="#noticias" onClick={goToNews}>Noticias</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Deportes</a>
+                <a className="nav-link" href="#deportes" onClick={goToSports}>Deportes</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Entretenimiento</a>
+                <a className="nav-link" href="#entretenimiento" onClick={goToEntertainment}>Entretenimiento</a>
               </li>
             </ul>
             <form className="d-flex" role="search">

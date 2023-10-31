@@ -15,7 +15,7 @@ export const EmotivaHomeUser = () => {
 
   return (
     <div>
-      <NavbarUsuario/>
+      <NavbarUsuario />
       <Slider />
       <Staff />
       <hr style={hrStyle} />
