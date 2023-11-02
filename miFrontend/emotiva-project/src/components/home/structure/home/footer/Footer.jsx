@@ -31,7 +31,7 @@ export const Footer = () => {
                   <a className="nav-link-1" href="#">Deportes</a>
                 </li>
                 <li className="nav-item-1">
-                  <a className="nav-link-1-1" href="#">Entretenimiento</a>
+                  <a className="nav-link-1" href="#">Entretenimiento</a>
                 </li>
                 <li className="nav-item-1">
                   <a className="nav-link-1" href="#">Estilo de Vida</a>
@@ -68,7 +68,7 @@ export const Footer = () => {
         </div>
       </div>
 
-      <p>&copy; {new Date().getFullYear()} EMOTIVA. Todos los derechos reservados.</p>
+      <p className='p-foot'>&copy; {new Date().getFullYear()} EMOTIVA. Todos los derechos reservados.</p>
 
     </footer>
   )

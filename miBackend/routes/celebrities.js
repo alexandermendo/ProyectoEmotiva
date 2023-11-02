@@ -29,6 +29,28 @@ router.get("/consulta", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const identi = parseInt(req.params.id);
+
+    const sqlFilePath = path.join(__dirname, "selectCelebrityById.sql");
+    const query = await fileRead(sqlFilePath);
+
+    const sqlT = query.replace("{id}", identi);
+    const result = await execSQL(sqlT);
+
+    if (result.length > 0) {
+      res.json(result[0]);
+    } else {
+      res.status(404).json({ message: "No se encontraron detalles para la celebridad con ID " + identi });
+    }
+  } catch (error) {
+    console.error("Error al ejecutar la consulta SQL:", error);
+    res.status(500).json({ message: "Error al obtener los detalles de la celebridad" });
+  }
+});
+
+
 router.post('/personas', upload.single('foto'), async (req, res) => {
   try {
     const {

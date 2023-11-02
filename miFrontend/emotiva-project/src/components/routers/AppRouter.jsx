@@ -12,6 +12,7 @@ import { PrivateRoute } from "./private/PrivateRoute";
 import { PublicRoute } from "./public/PublicRoute";
 import { EmotivaLogoutRouter } from "./EmotivaLogoutRouter";
 import { EmotivaHomeUserRouter } from "./EmotivaHomeUserRouter";
+import { EmotivaStaff } from "../home/structure/home/structure/staff/EmotivaStaff";
 
 export const AppRouter = () => {
   return (
@@ -27,6 +28,8 @@ export const AppRouter = () => {
           <Route path={LOGIN} element={<EmotivaLoginRouter />} />
           <Route path="/create-account" element={<EmotivaAccountRouter />} />
         </Route>
+
+        <Route path="/staff/detalle/:id" element={<EmotivaStaff />} />
 
         <Route path="/dashboard" element={<Dashboard />}>
           <Route path="resumen" element={<Resumen />} />

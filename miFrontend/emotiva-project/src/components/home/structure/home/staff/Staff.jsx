@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import './staff.css';
 
@@ -61,24 +62,25 @@ export const Staff = () => {
     fetchStaffData();
   }, []);
 
-  const items = staffData.map((staffMember, index) => (
-    <div key={index} className="slider-card">
-      <div className="card">
-        <img src={`${serverUrl}/${staffMember.fot_fam}`} className="card-img-top-1" alt={staffMember.nombre} />
-        <div className="card-body-staff">
-          <p className="card-name-staff">{staffMember.nombre}</p>
-          <h5 className="card-lastname-staff">{staffMember.apelli}</h5>
-        </div>
-        <div className="card-body-st">
-          <p className="card-name-st">{staffMember.nom_cat}</p>
-        </div>
+const items = staffData.map((staffMember, index) => (
+  <Link to={`/staff/detalle/${staffMember.identi}`} key={index} className="slider-card">
+    <div className="card">
+      <img src={`${serverUrl}/${staffMember.fot_fam}`} className="card-img-top-1" alt={staffMember.nombre} />
+      <div className="card-body-staff">
+        <p className="card-name-staff">{staffMember.nombre}</p>
+        <h5 className="card-lastname-staff">{staffMember.apelli}</h5>
+      </div>
+      <div className="card-body-st">
+        <p className="card-name-st">{staffMember.nom_cat}</p>
       </div>
     </div>
-  ));
+  </Link>
+));
 
-  // if (loading) {
-  //   return <p>Cargando datos...</p>;
-  // }
+
+  if (loading) {
+    return <p>Cargando datos...</p>;
+  }
 
   return (
     <div className="slider-container staff-cont">

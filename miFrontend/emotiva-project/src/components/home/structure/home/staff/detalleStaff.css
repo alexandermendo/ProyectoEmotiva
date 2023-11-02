@@ -1,0 +1,99 @@
+.cont-staff-1 {
+  background-color: #315c91;
+  padding: 30px;
+  height: 45em;
+  display: flex;
+  justify-content: center;
+  /* Centra horizontalmente el contenido en el contenedor */
+  align-items: center;
+  /* Centra verticalmente el contenido en el contenedor */
+  text-align: start;
+  /* Centra el texto horizontalmente en el contenedor */
+}
+
+.details-staff {
+  padding-top: 15%;
+  padding-left: 20%;
+}
+
+.body-staff {
+  display: flex;
+}
+
+.name-staff {
+  font-size: 25px;
+  color: aliceblue;
+  font-family: Proxima Nova Alt, sans-serif;
+  text-transform: uppercase;
+  margin-top: 2.5%;
+  margin-bottom: 5%;
+}
+
+.lastname-staff {
+  font-size: 50px;
+  font-weight: bold;
+  color: #f3aa21;
+  font-family: Proxima Nova Alt, sans-serif;
+  text-transform: uppercase;
+}
+
+/* Estilos para la información del personal */
+.staff-details p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: aliceblue;
+  font-family: Proxima Nova Alt, sans-serif;
+}
+
+/* Estilos para la imagen del personal */
+.card-img-st {
+  margin-top: 15%;
+  margin-left: 15%;
+  max-width: 60%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* .biograf {
+  text-align: justify;
+} */
+
+
+@media (max-width: 768px) {
+  .cont-staff-1 {
+    padding: 45px;
+    min-height: auto;
+  }
+
+  .details-staff {
+    position: relative;
+    top: 80%;
+    padding-left: 0%;
+    text-align: start;
+  }
+
+  .name-staff {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+
+  .lastname-staff {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+
+  .staff-details p {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .card-img-st {
+    max-width: 60%;
+    position: absolute;
+    left: 8%;
+    top: 0%;
+  }
+}
