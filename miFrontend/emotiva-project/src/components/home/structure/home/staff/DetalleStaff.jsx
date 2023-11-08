@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import './detalleStaff.css';
 
 export const DetalleStaff = () => {
@@ -45,11 +47,28 @@ export const DetalleStaff = () => {
             <div className="body-staff">
               <p className="name-staff">{staffDetails.nombre}</p>
               <h5 className="lastname-staff">{staffDetails.apelli}</h5>
+              <div>
+                <a href={`https://www.instagram.com/${staffDetails.red_soc}`} target="_blank" rel="noopener noreferrer" className="insta-logo">
+                  <FontAwesomeIcon icon={faInstagram} size="2x" />
+                </a>
+              </div>
             </div>
             <div className="staff-details">
-              <p>Icon: {staffDetails.red_soc}</p>
-              <p>Apellido: {staffDetails.apelli}</p>
-              <p>Categoría: {staffDetails.nom_cat}</p>
+              <div className="social-m">
+                <h2>Categoría: </h2>
+                <p>{staffDetails.nom_cat}</p>
+              </div>
+              <div className="social-m">
+                <h2>Ciudad: </h2>
+                <p>{staffDetails.nom_ciu}</p>
+              </div>
+              <div className="social-m">
+                <h2>País: </h2>
+                <p>{staffDetails.nom_pai}</p>
+              </div>
+              <div className="biograf">
+                <p>{staffDetails.biograf}</p>
+              </div>
             </div>
           </div>
         </div>

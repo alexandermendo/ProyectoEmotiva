@@ -2,6 +2,7 @@ import { useAuthContext } from "../../../../../../contexts/AuthContext"
 import { Footer } from "../../footer/Footer"
 import { NavbarAdmin } from "../../navbar/admin/admin/NavbarAdmin"
 import { NavbarUsuario } from "../../navbar/usuario/NavbarUsuario"
+import { AuthStaffError } from "../../staff/AuthStaffError"
 import { DetalleStaff } from "../../staff/DetalleStaff"
 
 
@@ -26,10 +27,12 @@ export const EmotivaStaff = () => {
           </div>
         ) : (
           <div>
-            <p>Debe iniciar sesión para acceder a esta página.</p>
+            <AuthStaffError />
           </div>
         )) : (
-        alert("Debe iniciar sesión para acceder al Staff")
+        <div>
+          <AuthStaffError />
+        </div>
       )
       }
     </div>

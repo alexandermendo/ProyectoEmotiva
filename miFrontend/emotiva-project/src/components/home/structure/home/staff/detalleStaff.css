@@ -4,11 +4,8 @@
   height: 45em;
   display: flex;
   justify-content: center;
-  /* Centra horizontalmente el contenido en el contenedor */
   align-items: center;
-  /* Centra verticalmente el contenido en el contenedor */
   text-align: start;
-  /* Centra el texto horizontalmente en el contenedor */
 }
 
 .details-staff {
@@ -45,7 +42,40 @@
   font-family: Proxima Nova Alt, sans-serif;
 }
 
-/* Estilos para la imagen del personal */
+.social-m {
+  display: flex;
+}
+
+.social-m h2 {
+  font-family: Proxima Nova Alt, sans-serif;
+  font-size: 17px;
+  color: white;
+  text-transform: uppercase;
+  margin-top: 1.8%;
+}
+
+.social-m p {
+  font-family: Proxima Nova Thin, sans-serif;
+  font-size: 17px;
+  color: white;
+  margin-left: 2%;
+  margin-top: 1.5%;
+}
+
+.biograf p {
+  font-family: Proxima Nova Thin, sans-serif;
+  font-size: 17px;
+  text-align: justify;
+}
+
+.insta-logo {
+  color: aliceblue;
+  font-size: 15px;
+  position: absolute;
+  top: 25.5%;
+  left: 30%;
+}
+
 .card-img-st {
   margin-top: 15%;
   margin-left: 15%;
@@ -56,33 +86,31 @@
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* .biograf {
-  text-align: justify;
-} */
-
-
 @media (max-width: 768px) {
   .cont-staff-1 {
-    padding: 45px;
-    min-height: auto;
+    padding: 20px;
+    height: 60em;
   }
 
   .details-staff {
-    position: relative;
-    top: 80%;
-    padding-left: 0%;
-    text-align: start;
+    position: absolute;
+    padding-left: 10%;
+    padding-right: 10%;
+    top: 60%;
+    left: 0%;
   }
 
   .name-staff {
     font-size: 20px;
-    margin-top: 10px;
+    margin-top: 5%;
     margin-bottom: 5px;
+    margin-left: 25%;
   }
 
   .lastname-staff {
     font-size: 40px;
     margin-bottom: 10px;
+    margin-top: 3%;
   }
 
   .staff-details p {
@@ -91,9 +119,16 @@
   }
 
   .card-img-st {
-    max-width: 60%;
     position: absolute;
-    left: 8%;
-    top: 0%;
+    top: 7%;
+    left: 7%;
+  }
+
+  .insta-logo {
+    color: aliceblue;
+    font-size: 15px;
+    position: relative;
+    top: 30%;
+    left: 50%;
   }
 }

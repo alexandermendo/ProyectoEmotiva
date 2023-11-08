@@ -8,6 +8,7 @@ const citiesRouter = require("./routes/cities");
 const paisesRouter = require("./routes/countries");
 const usersRouter = require("../miBackend/routes/users");
 const authRouter = require("../miBackend/routes/login");
+const sliderRouter = require("../miBackend/routes/slider");
 const jwtSecret = "mi_secreto_secreto";
 app.set("jwtSecret", jwtSecret);
 app.set('view engine', 'ejs');
@@ -21,6 +22,8 @@ app.use("/countries", paisesRouter);
 app.use("/users", usersRouter);
 app.use("/login", authRouter);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/upload-slider', express.static(path.join(__dirname, 'upload-slider')));
+app.use("/slider", sliderRouter);
 
 app.use((req, res, next) => {
     res.status(404).json({ message: 'Ruta no encontrada' });
