@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../../../../../contexts/AuthContext";
+import { url } from "../../../../../../../../common/utils";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./navbarUsuario.css";
 
 export const NavbarUsuario = () => {
   const value = useAuthContext();
   const navigate = useNavigate();
-
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [imageData, setImageData] = useState([{ fotoFileLogoPath: "" }]);
+  const [setError] = useState(null);
 
   const handleScroll = () => {
     if (window.scrollY > 0) setIsScrolled(true);
@@ -22,6 +24,18 @@ export const NavbarUsuario = () => {
     window.addEventListener("scroll", handleScroll);
     return () => { window.removeEventListener("scroll", handleScroll); };
   }, []);
+
+  useEffect(() => {
+    async function fetchLogoData() {
+      try {
+        const response = await fetch(`${url}/logo/getLogo`);
+        if (!response.ok) { throw new Error('No se pudo obtener el slider'); }
+        const data = await response.json();
+        setImageData(data.data);
+      } catch (err) { setError(err.message); }
+    }
+    fetchLogoData();
+  }, [])
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -39,12 +53,8 @@ export const NavbarUsuario = () => {
             <div className="menu-bar"></div>
             <div className="menu-bar"></div>
           </button>
-          <a className="navbar-brand" href="/"><img
-            className="img-logo-emotiva"
-            src="../assets/Emotiva_Logo.png"
-            alt="Ligero"
-          /></a>
-
+          <a className="navbar-brand" href="/"><img className="img-logo-emotiva" src={`${url}/${imageData[0].fotoFileLogoPath}`}
+            alt="Ligero"/></a>
           <div className={`collapse navbar-collapse ${isMobileMenuOpen ? 'show' : ''}`} id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">

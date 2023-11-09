@@ -1,4 +1,4 @@
-export const Resumen = () => {
+export const Slider = () => {
   return (
     <div>
       <h2>Resumen</h2>

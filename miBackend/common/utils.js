@@ -38,6 +38,13 @@ const HTTP_UNAUTHORIZED = 401;
 const HTTP_INTERNAL_SERVER_ERROR = 500;
 
 /**
+ * Código de estado HTTP 404 Not Found.
+ * @constant {number}
+ * @default
+ */
+const HTTP_NOT_FOUND = 404;
+
+/**
  * Obtiene los errores de validación de una solicitud.
  *
  * @param {object} req - La solicitud que se desea validar.
@@ -46,7 +53,6 @@ const HTTP_INTERNAL_SERVER_ERROR = 500;
 function getValidationErrors(req) {
   return validationResult(req);
 }
-
 
 /**
  * Middleware de validación
@@ -64,7 +70,6 @@ const validationMiddleware = [
   body('contraseña').trim().notEmpty().withMessage('El campo contraseña es requerido')
 ];
 
-
 /**
  * Maneja los errores de validación y responde con un mensaje si existen errores.
  *
@@ -74,7 +79,7 @@ const validationMiddleware = [
  */
 function handleValidationErrors(errors, res) {
   if (!errors.isEmpty()) {
-      return res.status(HTTP_BAD_REQUEST).json({ message: 'Por favor, completa todos los campos requeridos para acceder al sistema. Gracias.' });
+    return res.status(HTTP_BAD_REQUEST).json({ message: 'Por favor, completa todos los campos requeridos para acceder al sistema. Gracias.' });
   }
 }
 
@@ -91,10 +96,10 @@ async function authenticateUser(req, col) {
   const userData = await col.find({ nombre: req.body.nombre, contraseña: req.body.contraseña, rol: req.body.rol }).toArray(); // Cambio de "usuario" a "nombre"
 
   if (userData.length > 0) {
-      const token = jwt.sign({ nombre: userData[0].nombre, rol: userData[0].rol }, jwtSecret, { expiresIn: '5h' }); // Cambio de "usuario" a "nombre"
-      return { status: HTTP_OK, response: { token } };
+    const token = jwt.sign({ nombre: userData[0].nombre, rol: userData[0].rol }, jwtSecret, { expiresIn: '5h' }); // Cambio de "usuario" a "nombre"
+    return { status: HTTP_OK, response: { token } };
   } else {
-      return { status: HTTP_UNAUTHORIZED, response: { message: 'Credenciales inválidas. Por favor, verifica tu usuario y clave.' } };
+    return { status: HTTP_UNAUTHORIZED, response: { message: 'Credenciales inválidas. Por favor, verifica tu usuario y clave.' } };
   }
 }
 
@@ -104,6 +109,7 @@ module.exports = {
   HTTP_BAD_REQUEST,
   HTTP_UNAUTHORIZED,
   HTTP_INTERNAL_SERVER_ERROR,
+  HTTP_NOT_FOUND,
   getValidationErrors,
   validationMiddleware,
   handleValidationErrors,

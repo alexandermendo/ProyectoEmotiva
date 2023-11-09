@@ -30,7 +30,7 @@ export const SidebarDash = () => {
             />
             <div className="text-side">
               <Link to="/dashboard/resumen" className="title-text">Slider</Link>
-              <Link to="#" className="text-add-note">Ingresar Nota</Link>
+              <Link to="/dashboard/add-slider" className="text-add-note">Ingresar Nota</Link>
             </div>
           </li>
 

@@ -9,6 +9,7 @@ const paisesRouter = require("./routes/countries");
 const usersRouter = require("../miBackend/routes/users");
 const authRouter = require("../miBackend/routes/login");
 const sliderRouter = require("../miBackend/routes/slider");
+const logoRouter = require("../miBackend/routes/logo");
 const jwtSecret = "mi_secreto_secreto";
 app.set("jwtSecret", jwtSecret);
 app.set('view engine', 'ejs');
@@ -23,13 +24,12 @@ app.use("/users", usersRouter);
 app.use("/login", authRouter);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/upload-slider', express.static(path.join(__dirname, 'upload-slider')));
+app.use('/upload-logo', express.static(path.join(__dirname, 'upload-logo')));
 app.use("/slider", sliderRouter);
+app.use("/logo", logoRouter);
 
-app.use((req, res, next) => {
-    res.status(404).json({ message: 'Ruta no encontrada' });
-});
+app.use((req, res, next) => { res.status(404).json({ message: 'Ruta no encontrada' }); });
 
-// Manija de errores general
 app.use((err, req, res, next) => {
     console.error("Error handler:", err);
     res.locals.message = err.message;
@@ -40,12 +40,7 @@ app.use((err, req, res, next) => {
 
 const port = process.env.PORT || 3000;
 
-try {
-    app.listen(port, () => {
-        console.log(`Escuchando en el puerto ${port}...`);
-    });
-} catch (error) {
-    console.error(`Error al iniciar el servidor: ${error.message}`);
-}
+try { app.listen(port, () => { console.log(`Escuchando en el puerto ${port}...`); }); } 
+catch (error) {console.error(`Error al iniciar el servidor: ${error.message}`); }
 
 module.exports = app;

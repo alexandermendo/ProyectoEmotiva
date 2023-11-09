@@ -1,6 +1,23 @@
+import { useEffect, useState } from 'react';
+import { url } from '../../../../../../../common/utils';
 import './footer.css';
 
 export const Footer = () => {
+  const [imageData, setImageData] = useState([{ fotoFileLogoPath: "" } ]);
+  const [setError] = useState(null);
+
+  useEffect(() => {
+    async function fetchLogoData() {
+      try {
+        const response = await fetch(`${url}/logo/getLogo`);
+        if (!response.ok) throw new Error('No se pudo obtener el slider');
+        const data = await response.json();
+        setImageData(data.data);
+      } catch (err) { setError(err.message); }
+    }
+    fetchLogoData();
+  }, [])
+
   return (
     <footer className="footer">
       <div className='row'>
@@ -8,7 +25,7 @@ export const Footer = () => {
           <div className='foo-ter col-md-4'>
             <a className="footer-logo" href="/"><img
               className="img-logo-foo"
-              src="../assets/Emotiva_Logo.png"
+              src={`${url}/${imageData[0].fotoFileLogoPath}`}
               alt="Ligero"
             /></a>
           </div>

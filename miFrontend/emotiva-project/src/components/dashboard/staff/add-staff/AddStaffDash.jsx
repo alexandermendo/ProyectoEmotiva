@@ -1,19 +1,11 @@
 import { useState } from "react";
+import { url } from "../../../../../../common/utils";
 import './addStaffDash.css';
 
 export const AddStaffDash = () => {
-  const [formData, setFormData] = useState({
-    nombre: "",
-    apellido: "",
-    ide_cat: 0,
-    ide_pai: 0,
-    ide_ciu: 0,
-    fec_nac: "",
-    red_soc: "",
-    biograf: "",
-    foto: null, 
-  });
-
+  const [formData, setFormData] = useState({ nombre: "", apellido: "", ide_cat: 0, ide_pai: 0,
+                                             ide_ciu: 0, fec_nac: "", red_soc: "", biograf: "", 
+                                             foto: null, });
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -26,8 +18,6 @@ export const AddStaffDash = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Crear un objeto FormData para enviar los datos y la imagen
     const formDataToSend = new FormData();
     formDataToSend.append("nombre", formData.nombre);
     formDataToSend.append("apellido", formData.apellido);
@@ -40,25 +30,16 @@ export const AddStaffDash = () => {
     formDataToSend.append("foto", formData.foto);
 
     try {
-      const response = await fetch('http://localhost:3000/celebrities/personas', {
-        method: "POST",
-        body: formDataToSend,
-      });
-
+      const response = await fetch(`${url}/celebrities/personas`, { method: "POST", body: formDataToSend });
       if (response.ok) {
         console.log("Celebridad agregada con éxito");
         console.log("Data:", formData.apellido);
       } else {
         console.error("Error al agregar celebridad");
       }
-    } catch (error) {
-      console.error("Error al agregar celebridad:", error);
-    }
+    } catch (error) { console.error("Error al agregar celebridad:", error); }
   };
-
-  const addCelebrity = () => {
-    alert('Señor Administrador, Celebridad agregada exitosamente');
-  }
+  const addCelebrity = () => { alert('Señor Administrador, Celebridad agregada exitosamente'); }
 
   return (
     <div className="container">

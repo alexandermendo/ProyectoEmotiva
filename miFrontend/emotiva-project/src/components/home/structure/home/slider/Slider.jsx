@@ -13,14 +13,12 @@ export const Slider = () => {
         if (!response.ok) {
           throw new Error('No se pudo obtener el slider');
         }
-
         const data = await response.json();
         setSliderData(data.data);
       } catch (err) {
         setError(err.message);
       }
     }
-
     fetchSliderData();
   }, []);
 
