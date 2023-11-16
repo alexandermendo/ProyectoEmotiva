@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
+import { url } from "../../../../../../../common/utils";
 import './staff.css';
 
 export const Staff = () => {
   const [staffData, setStaffData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const serverUrl = "http://localhost:3000"
-
+ 
   const settings = {
     dots: true,
     infinite: false,
@@ -46,7 +46,7 @@ export const Staff = () => {
   useEffect(() => {
     async function fetchStaffData() {
       try {
-        const response = await fetch(`${serverUrl}/celebrities/consulta`);
+        const response = await fetch(`${url}/celebrities/consulta`);
         if (response.ok) {
           const data = await response.json();
           setStaffData(data);
@@ -65,7 +65,7 @@ export const Staff = () => {
 const items = staffData.map((staffMember, index) => (
   <Link to={`/staff/detalle/${staffMember.identi}`} key={index} className="slider-card">
     <div className="card">
-      <img src={`${serverUrl}/${staffMember.fot_fam}`} className="card-img-top-1" alt={staffMember.nombre} />
+      <img src={`${url}/${staffMember.fot_fam}`} className="card-img-top-1" alt={staffMember.nombre} />
       <div className="card-body-staff">
         <p className="card-name-staff">{staffMember.nombre}</p>
         <h5 className="card-lastname-staff">{staffMember.apelli}</h5>

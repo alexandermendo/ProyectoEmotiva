@@ -38,8 +38,8 @@ export const NavbarUsuario = () => {
   }, [])
 
   const logout = () => {
-    localStorage.removeItem('token');
-    if (!localStorage.getItem('token')) console.log('Token eliminado con éxito.');
+    localStorage.removeItem('authToken');
+    if (!localStorage.getItem('authToken')) console.log('Token eliminado con éxito.');
     else console.log('Error al eliminar el token.');
     navigate("/private/logout");
   }

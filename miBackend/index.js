@@ -10,6 +10,11 @@ const usersRouter = require("../miBackend/routes/users");
 const authRouter = require("../miBackend/routes/login");
 const sliderRouter = require("../miBackend/routes/slider");
 const logoRouter = require("../miBackend/routes/logo");
+const newsRouter = require("../miBackend/routes/news");
+const lifestyleRouter = require("../miBackend/routes/lifestyle");
+const sportsRouter = require("../miBackend/routes/sports");
+const entertainmentRouter = require("../miBackend/routes/entertainment");
+
 const jwtSecret = "mi_secreto_secreto";
 app.set("jwtSecret", jwtSecret);
 app.set('view engine', 'ejs');
@@ -25,8 +30,16 @@ app.use("/login", authRouter);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/upload-slider', express.static(path.join(__dirname, 'upload-slider')));
 app.use('/upload-logo', express.static(path.join(__dirname, 'upload-logo')));
+app.use('/upload-news', express.static(path.join(__dirname, 'upload-news')));
+app.use('/upload-lifestyle', express.static(path.join(__dirname, 'upload-lifestyle')));
+app.use('/upload-sports', express.static(path.join(__dirname, 'upload-sports')));
+app.use('/upload-entertainment', express.static(path.join(__dirname, 'upload-entertainment')));
 app.use("/slider", sliderRouter);
 app.use("/logo", logoRouter);
+app.use("/news", newsRouter);
+app.use("/lifestyle", lifestyleRouter);
+app.use("/sports", sportsRouter);
+app.use("/entertainment", entertainmentRouter);
 
 app.use((req, res, next) => { res.status(404).json({ message: 'Ruta no encontrada' }); });
 

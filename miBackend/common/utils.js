@@ -103,7 +103,69 @@ async function authenticateUser(req, col) {
   }
 }
 
-// Exportar las constantes para su uso en otros módulos.
+const createNewsMiddleware = [
+  body('title').trim().notEmpty().withMessage('El campo title es requerido'),
+  body('subtitle').trim().notEmpty().withMessage('El campo subtitle es requerido'),
+  body('description').trim().notEmpty().withMessage('El campo description es requerido'),
+  body('fotoFileNewsPath').trim().notEmpty().withMessage('El campo image es requerido'),
+];
+
+const createNews = async (req, res) => {
+  try {
+    const { title, subtitle, description } = req.body;
+    const fotoFileNewsPath = req.file?.path; 
+    if (!title || !subtitle || !description || !fotoFileNewsPath)  return res.status(400).json({ error: 'Faltan datos requeridos' });
+    const nuevaNoticia = { title, subtitle, description, image: fotoFileNewsPath };
+    await dba.collection("news").insertOne(nuevaNoticia);
+    res.json({ message: 'Noticia creada con éxito.' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send();
+  }
+};
+
+const createLifestyle = async (req, res) => {
+  try {
+    const { title, subtitle, description } = req.body;
+    const fotoFileNewsPath = req.file?.path; 
+    if (!title || !subtitle || !description || !fotoFileNewsPath)  return res.status(400).json({ error: 'Faltan datos requeridos' });
+    const nuevaNoticia = { title, subtitle, description, image: fotoFileNewsPath };
+    await dba.collection("lifestyle").insertOne(nuevaNoticia);
+    res.json({ message: 'Noticia de Estilo de Vida creada con éxito.' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send();
+  }
+};
+
+const createSports = async (req, res) => {
+  try {
+    const { title, subtitle, description } = req.body;
+    const fotoFileNewsPath = req.file?.path; 
+    if (!title || !subtitle || !description || !fotoFileNewsPath)  return res.status(400).json({ error: 'Faltan datos requeridos' });
+    const nuevaNoticia = { title, subtitle, description, image: fotoFileNewsPath };
+    await dba.collection("sports").insertOne(nuevaNoticia);
+    res.json({ message: 'Noticia de Deportes creada con éxito.' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send();
+  }
+};
+
+const createEntertainment = async (req, res) => {
+  try {
+    const { title, subtitle, description } = req.body;
+    const fotoFileNewsPath = req.file?.path; 
+    if (!title || !subtitle || !description || !fotoFileNewsPath)  return res.status(400).json({ error: 'Faltan datos requeridos' });
+    const nuevaNoticia = { title, subtitle, description, image: fotoFileNewsPath };
+    await dba.collection("entertainment").insertOne(nuevaNoticia);
+    res.json({ message: 'Noticia de Entretenimiento creada con éxito.' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send();
+  }
+};
+
 module.exports = {
   HTTP_OK,
   HTTP_BAD_REQUEST,
@@ -113,5 +175,10 @@ module.exports = {
   getValidationErrors,
   validationMiddleware,
   handleValidationErrors,
-  authenticateUser
+  authenticateUser,
+  createNewsMiddleware,
+  createNews,
+  createLifestyle,
+  createSports,
+  createEntertainment
 };

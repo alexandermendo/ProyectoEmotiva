@@ -24,8 +24,8 @@ export const Relevante = () => {
                 src="../assets/Paris.jpg"
                 alt="Ligero" />
               <div className="card-body-rel">
-                <p className="card-text-rel">Contenido de la Tarjeta 7</p>
                 <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
+                <p className="card-text-rel">Contenido de la Tarjeta 7</p>
               </div>
             </div>
           </div>
@@ -40,8 +40,8 @@ export const Relevante = () => {
                     src="../assets/Paris.jpg"
                     alt="Ligero" />
                   <div className="card-body-rel">
-                    <p className="card-text-rel">Contenido de la Tarjeta 7</p>
                     <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
+                    <p className="card-text-rel">Contenido de la Tarjeta 7</p>
                   </div>
                 </div>
               </div>
@@ -52,8 +52,8 @@ export const Relevante = () => {
                     src="../assets/Paris.jpg"
                     alt="Ligero" />
                   <div className="card-body-rel">
-                    <p className="card-text-rel">Contenido de la Tarjeta 7</p>
                     <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
+                    <p className="card-text-rel">Contenido de la Tarjeta 7</p>
                   </div>
                 </div>
               </div>
@@ -64,8 +64,8 @@ export const Relevante = () => {
                     src="../assets/Paris.jpg"
                     alt="Ligero" />
                   <div className="card-body-rel">
-                    <p className="card-text-rel">Contenido de la Tarjeta 7</p>
                     <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
+                    <p className="card-text-rel">Contenido de la Tarjeta 7</p>
                   </div>
                 </div>
               </div>
@@ -79,8 +79,8 @@ export const Relevante = () => {
                     src="../assets/Paris.jpg"
                     alt="Ligero" />
                   <div className="card-body-rel">
-                    <p className="card-text-rel">Contenido de la Tarjeta 7</p>
                     <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
+                    <p className="card-text-rel">Contenido de la Tarjeta 7</p>
                   </div>
                 </div>
               </div>
@@ -91,8 +91,8 @@ export const Relevante = () => {
                     src="../assets/Paris.jpg"
                     alt="Ligero" />
                   <div className="card-body-rel">
-                    <p className="card-text-rel">Contenido de la Tarjeta 7</p>
                     <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
+                    <p className="card-text-rel">Contenido de la Tarjeta 7</p>
                   </div>
                 </div>
               </div>
@@ -103,8 +103,8 @@ export const Relevante = () => {
                     src="../assets/Paris.jpg"
                     alt="Ligero" />
                   <div className="card-body-rel">
-                    <p className="card-text-rel">Contenido de la Tarjeta 7</p>
                     <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
+                    <p className="card-text-rel">Contenido de la Tarjeta 7</p>
                   </div>
                 </div>
               </div>

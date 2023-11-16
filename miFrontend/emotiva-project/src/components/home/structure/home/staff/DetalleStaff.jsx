@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { url } from "../../../../../../../common/utils";
 import './detalleStaff.css';
 
 export const DetalleStaff = () => {
   const { id } = useParams(); // Obtiene el valor del parámetro de la URL
   const [staffDetails, setStaffDetails] = useState(null);
   const [loading, setLoading] = useState(true);
-  const serverUrl = "http://localhost:3000"
-
+ 
   // Supongamos que tienes una función para cargar los detalles del personal por su ID
   const fetchStaffDetails = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/celebrities/${id}`);
+      const response = await fetch(`${url}/celebrities/${id}`);
       if (response.ok) {
         const data = await response.json();
         setStaffDetails(data);
@@ -73,7 +73,7 @@ export const DetalleStaff = () => {
           </div>
         </div>
         <div className="col-md-6">
-          <img src={`${serverUrl}/${staffDetails.fot_fam}`} className="card-img-st" alt={staffDetails.nombre} />
+          <img src={`${url}/${staffDetails.fot_fam}`} className="card-img-st" alt={staffDetails.nombre} />
         </div>
       </div>
     </div>

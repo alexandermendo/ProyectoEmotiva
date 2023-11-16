@@ -1,20 +1,21 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { EmotivaLoginRouter } from "./EmotivaLoginRouter";
-import { EmotivaHomeRouter } from "./EmotivaHomeRouter";
-import { EmotivaAccountRouter } from "./EmotivaAccountRouter";
+import { LOGIN, LOGOUT, PRIVATE } from "../../../../common/utils";
 import { Dashboard } from "../dashboard/Dashboard";
 import { Slider } from "../dashboard/slider/Slider";
 import { StaffDash } from "../dashboard/staff/StaffDash";
 import { AddStaffDash } from "../dashboard/staff/add-staff/AddStaffDash"
 import { Usuarios } from "../dashboard/usuarios/Usuarios";
+import { EmotivaStaff } from "../home/structure/home/structure/staff/EmotivaStaff";
+import { AddSlider } from "../dashboard/slider/add-slider/AddSlider";
 import { PrivateRoute } from "./private/PrivateRoute";
 import { PublicRoute } from "./public/PublicRoute";
+import { EmotivaLoginRouter } from "./EmotivaLoginRouter";
+import { EmotivaHomeRouter } from "./EmotivaHomeRouter";
+import { EmotivaAccountRouter } from "./EmotivaAccountRouter";
 import { EmotivaLogoutRouter } from "./EmotivaLogoutRouter";
 import { EmotivaHomeUserRouter } from "./EmotivaHomeUserRouter";
-import { EmotivaStaff } from "../home/structure/home/structure/staff/EmotivaStaff";
-import { LOGIN, LOGOUT, PRIVATE } from "../../../../common/utils";
-import { AddSlider } from "../dashboard/slider/add-slider/AddSlider";
-
+import { EmotivaNewsRouter } from "./EmotivaNewsRouter";
+import { EmotivaRelevanteRouter } from "./EmotivaRelevanteRouter";
 
 export const AppRouter = () => {
   return (
@@ -32,6 +33,8 @@ export const AppRouter = () => {
         </Route>
 
         <Route path="/staff/detalle/:id" element={<EmotivaStaff />} />
+        <Route path="/news/:id" element={<EmotivaNewsRouter />} />
+        <Route path="/relevante/:id" element={<EmotivaRelevanteRouter />} />
 
         <Route path="/dashboard" element={<Dashboard />}>
           <Route path="resumen" element={<Slider />} />

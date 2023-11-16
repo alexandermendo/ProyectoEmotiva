@@ -25,12 +25,11 @@ router.get("/getLogo", async (req, res, next) => {
 
 router.post('/addLogoItem', upload.single('image-logo'), async (req, res, next) => {
   try {
-    const logosCollection = dba.collection('logo');
     const fotoFileLogoPath = req.file?.path; 
     if (!fotoFileLogoPath) return res.status(400).json({ error: 'Faltan datos requeridos' });
     const logoItem = { fotoFileLogoPath };
-    const result = await logosCollection.insertOne(logoItem);
-    if (result.insertedCount === 1) res.json({ message: 'Contenido agregado al logo exitosamente' });
+    await dba.collection('logo').insertOne(logoItem);
+    res.json({ message: "Logo creado con éxito. "});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Error al procesar la solicitud' });

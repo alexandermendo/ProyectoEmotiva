@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
+import { url } from '../../../../../../../common/utils';
 import './slider.css';
 
 export const Slider = () => {
   const [sliderData, setSliderData] = useState([]);
   const [error, setError] = useState(null);
-  const serverUrl = "http://localhost:3000"
 
   useEffect(() => {
     async function fetchSliderData() {
       try {
-        const response = await fetch("http://localhost:3000/slider/getSlider"); // Reemplaza la URL con la correcta si es diferente
+        const response = await fetch(`${url}/slider/getSlider`); // Reemplaza la URL con la correcta si es diferente
         if (!response.ok) {
           throw new Error('No se pudo obtener el slider');
         }
@@ -30,17 +31,19 @@ export const Slider = () => {
         <div id="carouselExampleFade" className="carousel slide carousel-fade">
           <div className="carousel-inner">
             {sliderData.map((slide, index) => (
-              <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
-                <img src={`${serverUrl}/${slide.fotoFilePath}`} className="d-block w-100" alt={slide.title} style={{ width: '600px', height: '700px' }} />
-                <div className="carousel-caption d-none d-md-block">
-                  <div className="text-slider">
-                    <h3>{slide.title}</h3>
-                    <p>{slide.subtitle}</p>
-                    <h1 className='text-sl'>{slide.description}</h1>
-                    <button className='btn-sli'>Conoce más</button>
+              <Link to={`/news/${slide._id}`} key={index} className="slider-card">
+                <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+                  <img src={`${url}/${slide.fotoFilePath}`} className="d-block w-100" alt={slide.title} style={{ width: '600px', height: '700px' }} />
+                  <div className="carousel-caption d-none d-md-block">
+                    <div className="text-slider">
+                      <h3>{slide.title}</h3>
+                      <p>{slide.subtitle}</p>
+                      <h1 className='text-sl'>{slide.description}</h1>
+                      <h1 className='text-sl'>Haz clic sobre la imágen para ver más información</h1>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
           <button
