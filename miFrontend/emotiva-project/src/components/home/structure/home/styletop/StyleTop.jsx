@@ -1,6 +1,25 @@
+import { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
+import { url } from '../../../../../../../common/utils';
 import './styleTop.css';
 
 export const StyleTop = () => {
+  const [lifestyleData, setLifestyleData] = useState([]);
+
+  useEffect(() => {
+    const getLifestyleData = async () => {
+      try {
+        const response = await fetch(`${url}/lifestyle/getLifeStyle`); 
+        const data = await response.json();
+        setLifestyleData(data.data);
+      } catch (error) {
+        console.error('Error al obtener datos de estilo de vida:', error);
+      }
+    };
+
+    getLifestyleData();
+  }, []);
+
   return (
     <div className="styletop-container st-cont-2">
       <div className="row align-items-start">
@@ -15,65 +34,17 @@ export const StyleTop = () => {
           </div>
 
           <div className="row">
-            {/* Primera tarjeta */}
-            <div className="col-12 col-sm-6">
-              <div className="card estilo-card">
-                <img
-                  className="foto-card-2 img-fluid"
-                  src="../assets/Paris.jpg"
-                  alt="Ligero"
-                />
-                <div className="card-body">
-                  <p>Hola Mundo</p>
-                  <h5 className="card-title">Aquí hay una nota de estilo de vida</h5>
+            {lifestyleData.map((item, index) => (
+              <Link to={`/lifestyle/${item._id}`} key={index} className="col-12 col-sm-6">
+                <div className="card estilo-card">
+                  <img className="foto-card-2 img-fluid" src={`${url}/${item.image}`} alt={item.title} />
+                  <div className="card-body">
+                    <p>{item.subtitle}</p>
+                    <h5 className="card-title">{item.title}</h5>
+                  </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Segunda tarjeta */}
-            <div className="col-12 col-sm-6">
-              <div className="card estilo-card">
-                <img
-                  className="foto-card-2 img-fluid"
-                  src="../assets/Paris.jpg"
-                  alt="Ligero"
-                />
-                <div className="card-body">
-                  <p>Hola Mundo</p>
-                  <h5 className="card-title">Aquí hay otra nota de estilo de vida</h5>
-                </div>
-              </div>
-            </div>
-
-            {/* Tercera tarjeta */}
-            <div className="col-12 col-sm-6">
-              <div className="card estilo-card">
-                <img
-                  className="foto-card-2 img-fluid"
-                  src="../assets/Paris.jpg"
-                  alt="Ligero"
-                />
-                <div className="card-body">
-                  <p>Hola Mundo</p>
-                  <h5 className="card-title">Tercera nota de estilo de vida</h5>
-                </div>
-              </div>
-            </div>
-
-            {/* Cuarta tarjeta */}
-            <div className="col-12 col-sm-6">
-              <div className="card estilo-card">
-                <img
-                  className="foto-card-2 img-fluid"
-                  src="../assets/Paris.jpg"
-                  alt="Ligero"
-                />
-                <div className="card-body">
-                  <p>Hola Mundo</p>
-                  <h5 className="card-title">Cuarta nota de estilo de vida</h5>
-                </div>
-              </div>
-            </div>
+              </Link>
+            ))}
           </div>
         </div>
 

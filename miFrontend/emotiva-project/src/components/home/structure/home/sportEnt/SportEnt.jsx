@@ -1,8 +1,29 @@
-import { useRef } from "react";
+import { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
+import { url } from "../../../../../../../common/utils";
 import './sportEnt.css';
 
 export const SportEnt = () => {
   const deportesRef = useRef();
+  const [sports, setSports] = useState([]);
+
+  useEffect(() => {
+    const getSportsData = async () => {
+      try {
+        const response = await fetch(`${url}/sports/getSports`);
+        if (!response.ok) {
+          throw new Error("No se pudo obtener la lista de deportes");
+        }
+        const sportsData = await response.json();
+        setSports(sportsData.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getSportsData();
+  }, []);
+
   return (
     <div ref={deportesRef} id="deportes">
       <div className="styletop-container st-cont-1">
@@ -16,63 +37,19 @@ export const SportEnt = () => {
               />
               <h2>Deportes</h2>
             </div>
-
-          </div>
-          <div className="col-md-3">
-            <div className="card sport-card">
-              <img
-                className="card-img-top"
-                src="../assets/Paris.jpg"
-                alt="Ligero"
-              />
-              <div className="card-body">
-                <p className="card-text">Descripción corta de la nota 1.</p>
-                <h5 className="card-title">Título de la Nota 1</h5>
-              </div>
-            </div>
           </div>
 
-          <div className="col-md-3">
-            <div className="card sport-card">
-              <img
-                className="card-img-top"
-                src="../assets/Paris.jpg"
-                alt="Ligero"
-              />
-              <div className="card-body">
-                <p className="card-text">Descripción corta de la nota 2.</p>
-                <h5 className="card-title">Título de la Nota 2</h5>
+          {sports.map((sport, index) => (
+            <Link to={`/sports/${sport._id}`} key={index} className="col-md-3">
+              <div className="card sport-card">
+                <img className="card-img-top" src={`${url}/${sport.image}`} alt={sport.title} />
+                <div className="card-body">
+                  <p className="card-text">{sport.description}</p>
+                  <h5 className="card-title">{sport.title}</h5>
+                </div>
               </div>
-            </div>
-          </div>
-
-          <div className="col-md-3">
-            <div className="card sport-card">
-              <img
-                className="card-img-top"
-                src="../assets/Paris.jpg"
-                alt="Ligero"
-              />
-              <div className="card-body">
-                <p className="card-text">Descripción corta de la nota 3.</p>
-                <h5 className="card-title">Título de la Nota 3</h5>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-md-3">
-            <div className="card sport-card">
-              <img
-                className="card-img-top"
-                src="../assets/Paris.jpg"
-                alt="Ligero"
-              />
-              <div className="card-body">
-                <p className="card-text">Descripción corta de la nota 4.</p>
-                <h5 className="card-title">Título de la Nota 4</h5>
-              </div>
-            </div>
-          </div>
+            </Link>
+          ))}
         </div>
       </div>
     </div>

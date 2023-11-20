@@ -1,57 +1,28 @@
-import { useRef } from "react";
+import { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
+import { url } from "../../../../../../../common/utils";
 import './entertainment.css';
 
 export const Entertainment = () => {
   const entertainmentRef = useRef();
+  const [entertainmentData, setEntertainmentData] = useState([]);
 
-  // Datos de entretenimiento
-  const entertainmentData = [
-    {
-      fecha: "Fecha 1",
-      titulo: "Título de Entretenimiento 1",
-      imagen: "../assets/Paris.jpg",
-    },
-    {
-      fecha: "Fecha 2",
-      titulo: "Título de Entretenimiento 2",
-      imagen: "../assets/Paris.jpg",
-    },
-    {
-      fecha: "Fecha 3",
-      titulo: "Título de Entretenimiento 3",
-      imagen: "../assets/Paris.jpg",
-    },
-    {
-      fecha: "Fecha 4",
-      titulo: "Título de Entretenimiento 4",
-      imagen: "../assets/Paris.jpg",
-    },
-    {
-      fecha: "Fecha 5",
-      titulo: "Título de Entretenimiento 5",
-      imagen: "../assets/Paris.jpg",
-    },
-    {
-      fecha: "Fecha 6",
-      titulo: "Título de Entretenimiento 6",
-      imagen: "../assets/Paris.jpg",
-    },
-    {
-      fecha: "Fecha 7",
-      titulo: "Título de Entretenimiento 7",
-      imagen: "../assets/Paris.jpg",
-    },
-    {
-      fecha: "Fecha 8",
-      titulo: "Título de Entretenimiento 8",
-      imagen: "../assets/Paris.jpg",
-    },
-    {
-      fecha: "Fecha 9",
-      titulo: "Título de Entretenimiento 9",
-      imagen: "../assets/Paris.jpg",
-    },
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${url}/entertainment/getEntertainment`);
+        if (!response.ok) {
+          throw new Error("Error al obtener los datos de entretenimiento");
+        }
+        const data = await response.json();
+        setEntertainmentData(data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   // Función para dividir el arreglo en grupos de 3 (filas)
   const chunk = (array, size) => {
@@ -80,21 +51,21 @@ export const Entertainment = () => {
         {rows.map((row, rowIndex) => (
           <div className="row" key={rowIndex}>
             {row.map((item, columnIndex) => (
-              <div className="col-md-4" key={columnIndex}>
+              <Link to={`/entertainment/${item._id}`} key={columnIndex} className="col-md-4" >
                 <div className="entertainment-cont">
                   <div className="entertainment-image">
                     <img
-                      src={item.imagen}
+                      src={`${url}/${item.image}`}
                       alt="Imagen de entretenimiento"
                       className="img-fluid"
                     />
                   </div>
                   <div className="entertainment-content">
-                    <p>{item.fecha}</p>
-                    <h3>{item.titulo}</h3>
+                    <p>{item.subtitle}</p>
+                    <h3>{item.title}</h3>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         ))}

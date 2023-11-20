@@ -1,8 +1,29 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { url } from "../../../../../../../common/utils";
 import './relevante.css';
 
 export const Relevante = () => {
   const noticiasRef = useRef();
+  const [noticias, setNoticias] = useState([]);
+
+  useEffect(() => {
+    const obtenerNoticias = async () => {
+      try {
+        const response = await fetch(`${url}/news/getNews`); // Ajusta la ruta según tu configuración
+        if (!response.ok) {
+          throw new Error('Error al obtener las noticias');
+        }
+        const data = await response.json();
+        setNoticias(data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    obtenerNoticias();
+  }, []);
+
   return (
     <div ref={noticiasRef} id="noticias">
       <div className="relevante-container relev-cont">
@@ -15,100 +36,23 @@ export const Relevante = () => {
           <h2>Lo + Relevante</h2>
         </div>
 
-        <div className="row">
-          {/* Tarjeta 1 */}
-          <div className="col-md-5">
-            <div className="card-pri">
-              <img
-                className='card-img-top-pri img-fluid'
-                src="../assets/Paris.jpg"
-                alt="Ligero" />
-              <div className="card-body-rel">
-                <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
-                <p className="card-text-rel">Contenido de la Tarjeta 7</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Tarjeta 2 */}
-          <div className="col-md-7">
-            <div className="row">
-              <div className="col-md-4">
+        <div className="col-md-12">
+          <div className="row">
+            {noticias.map((noticia, index) => (
+              <Link to={`/relevante/${noticia._id}`} key={index} className="col-md-4">
                 <div className="card">
                   <img
                     className='card-img-top img-fluid'
-                    src="../assets/Paris.jpg"
-                    alt="Ligero" />
+                    src={`${url}/${noticia.image}`}
+                    alt="Ligero"
+                  />
                   <div className="card-body-rel">
-                    <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
-                    <p className="card-text-rel">Contenido de la Tarjeta 7</p>
+                    <h5 className="card-title-rel">{noticia.title}</h5>
+                    <p className="card-text-rel">{noticia.description}</p>
                   </div>
                 </div>
-              </div>
-              <div className="col-md-4">
-                <div className="card">
-                  <img
-                    className='card-img-top img-fluid'
-                    src="../assets/Paris.jpg"
-                    alt="Ligero" />
-                  <div className="card-body-rel">
-                    <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
-                    <p className="card-text-rel">Contenido de la Tarjeta 7</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="card">
-                  <img
-                    className='card-img-top img-fluid'
-                    src="../assets/Paris.jpg"
-                    alt="Ligero" />
-                  <div className="card-body-rel">
-                    <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
-                    <p className="card-text-rel">Contenido de la Tarjeta 7</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-md-4">
-                <div className="card">
-                  <img
-                    className='card-img-top img-fluid'
-                    src="../assets/Paris.jpg"
-                    alt="Ligero" />
-                  <div className="card-body-rel">
-                    <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
-                    <p className="card-text-rel">Contenido de la Tarjeta 7</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="card">
-                  <img
-                    className='card-img-top img-fluid'
-                    src="../assets/Paris.jpg"
-                    alt="Ligero" />
-                  <div className="card-body-rel">
-                    <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
-                    <p className="card-text-rel">Contenido de la Tarjeta 7</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="card">
-                  <img
-                    className='card-img-top img-fluid'
-                    src="../assets/Paris.jpg"
-                    alt="Ligero" />
-                  <div className="card-body-rel">
-                    <h5 className="card-title-rel">Título de la Tarjeta 7</h5>
-                    <p className="card-text-rel">Contenido de la Tarjeta 7</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+              </Link>
+            ))}
           </div>
         </div>
       </div>

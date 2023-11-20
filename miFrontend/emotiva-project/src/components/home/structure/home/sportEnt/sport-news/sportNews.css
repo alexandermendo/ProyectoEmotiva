@@ -1,0 +1,35 @@
+.cont-news {
+  padding-top: 10%;
+  padding-left: 10%;
+}
+
+.cont-news p {
+  font-family: Proxima Nova Alt, sans-serif;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.cont-news h1 {
+  font-family: Proxima Nova Bold, sans-serif;
+  font-weight: bold;
+}
+
+.cont-pub {
+  margin-left: 10%;
+  margin-bottom: 2%;
+}
+
+.cont-img {
+  margin-left: 10%;
+  margin-bottom: 5%;
+}
+
+.cont-texto {
+  margin-left: 10%;
+  margin-right: 8%;
+  margin-bottom: 5%;
+}
+
+.cont-texto p{
+  text-align: justify;
+}

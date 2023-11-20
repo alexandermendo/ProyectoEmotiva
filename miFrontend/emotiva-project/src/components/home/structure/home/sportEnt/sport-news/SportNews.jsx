@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { url } from "../../../../../../../../common/utils";
-import './relevanteNews.css';
+import './sportNews.css';
 
-export const RelevanteNews = () => {
+
+export const SportNews = () => {
   const { id } = useParams();
   const [usuario, setUsuario] = useState(null);
-  const [relevanteDetails, setRelevanteDetails] = useState(null);
+  const [sportsDetails, setSportsDetails] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -32,12 +33,12 @@ export const RelevanteNews = () => {
     fetchUsuario();
   }, []);
 
-  const fetchRelevanteDetails = async () => {
+  const fetchSportsDetails = async () => {
     try {
-      const response = await fetch(`${url}/news/${id}`);
+      const response = await fetch(`${url}/sports/${id}`);
       if (response.ok) {
         const data = await response.json();
-        setRelevanteDetails(data);
+        setSportsDetails(data);
       } else {
         console.error("Error al obtener los detalles del personal.");
       }
@@ -49,8 +50,8 @@ export const RelevanteNews = () => {
   };
 
   useEffect(() => {
-    fetchRelevanteDetails();
-  }, []);
+    fetchSportsDetails();
+  }, [id]);
 
   if (loading) {
     return <p>Cargando datos...</p>;
@@ -59,8 +60,8 @@ export const RelevanteNews = () => {
   return (
     <>
       <div className='cont-news'>
-        <p>Lo + Relevante</p>
-        <h1>{relevanteDetails.data.title}</h1>
+        <p>Deportes</p>
+        <h1>{sportsDetails.data.title}</h1>
       </div>
 
       <div className='cont-pub'>
@@ -70,12 +71,12 @@ export const RelevanteNews = () => {
       </div>
 
       <div className='cont-img'>
-        <img src={`${url}/${relevanteDetails.data.image}`} alt="Foto 1" style={{ width: '1250px', height: '700px' }} />
+        <img src={`${url}/${sportsDetails.data.image}`} alt="Foto 1" style={{ width: '1250px', height: '700px' }} />
       </div>
 
       <div className='cont-texto'>
         <p>
-          {relevanteDetails.data.description}
+          {sportsDetails.data.description}
           Descripción
         </p>
       </div>

@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { url } from "../../../../../../../../common/utils";
-import './relevanteNews.css';
+import './styleTopNews.css';
 
-export const RelevanteNews = () => {
+export const StyleTopNews = () => {
   const { id } = useParams();
   const [usuario, setUsuario] = useState(null);
-  const [relevanteDetails, setRelevanteDetails] = useState(null);
+  const [styleDetails, setStyleDetails] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -32,12 +32,12 @@ export const RelevanteNews = () => {
     fetchUsuario();
   }, []);
 
-  const fetchRelevanteDetails = async () => {
+  const fetchStyleDetails = async () => {
     try {
-      const response = await fetch(`${url}/news/${id}`);
+      const response = await fetch(`${url}/lifestyle/${id}`);
       if (response.ok) {
         const data = await response.json();
-        setRelevanteDetails(data);
+        setStyleDetails(data);
       } else {
         console.error("Error al obtener los detalles del personal.");
       }
@@ -49,8 +49,8 @@ export const RelevanteNews = () => {
   };
 
   useEffect(() => {
-    fetchRelevanteDetails();
-  }, []);
+    fetchStyleDetails();
+  }, [id]);
 
   if (loading) {
     return <p>Cargando datos...</p>;
@@ -59,8 +59,8 @@ export const RelevanteNews = () => {
   return (
     <>
       <div className='cont-news'>
-        <p>Lo + Relevante</p>
-        <h1>{relevanteDetails.data.title}</h1>
+        <p>Estilo de Vida</p>
+        <h1>{styleDetails.data.title}</h1>
       </div>
 
       <div className='cont-pub'>
@@ -70,12 +70,12 @@ export const RelevanteNews = () => {
       </div>
 
       <div className='cont-img'>
-        <img src={`${url}/${relevanteDetails.data.image}`} alt="Foto 1" style={{ width: '1250px', height: '700px' }} />
+        <img src={`${url}/${styleDetails.data.image}`} alt="Foto 1" style={{ width: '1250px', height: '700px' }} />
       </div>
 
       <div className='cont-texto'>
         <p>
-          {relevanteDetails.data.description}
+          {styleDetails.data.description}
           Descripción
         </p>
       </div>
