@@ -19,6 +19,14 @@ import { EmotivaRelevanteRouter } from "./EmotivaRelevanteRouter";
 import { EmotivaLifeStyleRouter } from "./EmotivaLifeStyleRouter";
 import { EmotivaSportsRouter } from "./EmotivaSportsRouter";
 import { EmotivaEntertainmentRouter } from "./EmotivaEntertainmentRouter";
+import { RelevanteDash } from "../dashboard/relevante/Relevante";
+import { AddRelevante } from "../dashboard/relevante/add-relevante/AddRelevante";
+import { AddLifeStyle } from "../dashboard/lifestyle/add-lifestyle/AddLifeStyle";
+import { LifeStyleDash } from "../dashboard/lifestyle/LifeStyle";
+import { SportsDash } from "../dashboard/sports/SportsDash";
+import { AddSports } from "../dashboard/sports/add-sports/AddSports";
+import { EntertainmentfDash } from "../dashboard/entertainment/EntertainmentDash";
+import { AddEntertainment } from "../dashboard/entertainment/add-entertainment/AddEntertainment";
 
 export const AppRouter = () => {
   return (
@@ -48,6 +56,14 @@ export const AppRouter = () => {
           <Route path="add-staff" element={<AddStaffDash />} />
           <Route path="usuarios" element={<Usuarios />} />
           <Route path="add-slider" element={<AddSlider />} />
+          <Route path= "relevante-dash" element={<RelevanteDash />} />
+          <Route path="add-relevante" element={<AddRelevante />} />
+          <Route path="lifestyle" element={<LifeStyleDash />} />
+          <Route path="add-lifestyle" element={<AddLifeStyle />} />
+          <Route path="sports" element={<SportsDash />} />
+          <Route path="add-sports" element={<AddSports />} />
+          <Route path="entertainment" element={<EntertainmentfDash/>} />
+          <Route path="add-entertainment" element={<AddEntertainment/>} />
         </Route>
       </Routes>
     </Router>

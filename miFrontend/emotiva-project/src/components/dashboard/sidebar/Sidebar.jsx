@@ -53,8 +53,8 @@ export const SidebarDash = () => {
               className="logo-dash"
             />
             <div className="text-side">
-              <Link to="/dashboard/usuarios" className="title-text">Lo + relevante</Link>
-              <Link to="#" className="text-add-note">Ingresar Nota</Link>
+              <Link to="/dashboard/relevante-dash" className="title-text">Lo + relevante</Link>
+              <Link to="/dashboard/add-relevante" className="text-add-note">Ingresar Nota</Link>
             </div>
           </li>
 
@@ -65,8 +65,8 @@ export const SidebarDash = () => {
               className="logo-dash"
             />
             <div className="text-side">
-              <Link to="/dashboard/usuarios" className="title-text">Estilo de Vida</Link>
-              <Link to="#" className="text-add-note">Ingresar Nota</Link>
+              <Link to="/dashboard/lifestyle" className="title-text">Estilo de Vida</Link>
+              <Link to="/dashboard/add-lifestyle" className="text-add-note">Ingresar Nota</Link>
             </div>
           </li>
 
@@ -89,8 +89,8 @@ export const SidebarDash = () => {
               className="logo-dash"
             />
             <div className="text-side">
-              <Link to="/dashboard/usuarios" className="title-text">Deportes</Link>
-              <Link to="#" className="text-add-note">Ingresar Nota</Link>
+              <Link to="/dashboard/sports" className="title-text">Deportes</Link>
+              <Link to="/dashboard/add-sports" className="text-add-note">Ingresar Nota</Link>
             </div>
           </li>
 
@@ -101,8 +101,8 @@ export const SidebarDash = () => {
               className="logo-dash"
             />
             <div className="text-side">
-              <Link to="/dashboard/usuarios" className="title-text">Entretenimiento</Link>
-              <Link to="#" className="text-add-note">Ingresar Nota</Link>
+              <Link to="/dashboard/entertainment" className="title-text">Entretenimiento</Link>
+              <Link to="/dashboard/add-entertainment" className="text-add-note">Ingresar Nota</Link>
             </div>
           </li>
         </ul>

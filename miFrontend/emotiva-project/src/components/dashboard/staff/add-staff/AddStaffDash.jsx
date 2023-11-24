@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { url } from "../../../../../../common/utils";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import './addStaffDash.css';
 
 export const AddStaffDash = () => {
-  const [formData, setFormData] = useState({ nombre: "", apellido: "", ide_cat: 0, ide_pai: 0,
-                                             ide_ciu: 0, fec_nac: "", red_soc: "", biograf: "", 
-                                             foto: null, });
+  const [formData, setFormData] = useState({
+    nombre: "", apellido: "", ide_cat: 0, ide_pai: 0,
+    ide_ciu: 0, fec_nac: "", red_soc: "", biograf: "",
+    foto: null,
+  });
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -142,12 +146,12 @@ export const AddStaffDash = () => {
               <label htmlFor="biografia" className="form-label">
                 Biografía
               </label>
-              <textarea
-                className="form-control"
+              <ReactQuill
+                className="quill-editor"
                 id="biograf"
                 name="biograf"
                 value={formData.biograf}
-                onChange={handleChange}
+                onChange={(value) => setFormData({ ...formData, biograf: value })}
               />
             </div>
             <button type="submit" onClick={addCelebrity} className="btn-add-cel">

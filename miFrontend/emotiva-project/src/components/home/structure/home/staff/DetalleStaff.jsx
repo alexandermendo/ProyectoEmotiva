@@ -9,7 +9,7 @@ export const DetalleStaff = () => {
   const { id } = useParams(); // Obtiene el valor del parámetro de la URL
   const [staffDetails, setStaffDetails] = useState(null);
   const [loading, setLoading] = useState(true);
- 
+
   // Supongamos que tienes una función para cargar los detalles del personal por su ID
   const fetchStaffDetails = async () => {
     try {
@@ -67,7 +67,7 @@ export const DetalleStaff = () => {
                 <p>{staffDetails.nom_pai}</p>
               </div>
               <div className="biograf">
-                <p>{staffDetails.biograf}</p>
+                <p dangerouslySetInnerHTML={{ __html: staffDetails.biograf }} />
               </div>
             </div>
           </div>
