@@ -54,7 +54,7 @@ export const AppRouter = () => {
           <Route path="resumen" element={<Slider />} />
           <Route path="staff" element={<StaffDash />} />
           <Route path="add-staff" element={<AddStaffDash />} />
-          <Route path="usuarios" element={<Usuarios />} />
+          <Route path="usuarios" element={<Usuarios />} /> 
           <Route path="add-slider" element={<AddSlider />} />
           <Route path= "relevante-dash" element={<RelevanteDash />} />
           <Route path="add-relevante" element={<AddRelevante />} />

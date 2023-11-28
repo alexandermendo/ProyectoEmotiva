@@ -14,6 +14,7 @@ const newsRouter = require("../miBackend/routes/news");
 const lifestyleRouter = require("../miBackend/routes/lifestyle");
 const sportsRouter = require("../miBackend/routes/sports");
 const entertainmentRouter = require("../miBackend/routes/entertainment");
+const categoryRouter = require("../miBackend/routes/categories");
 
 const jwtSecret = "mi_secreto_secreto";
 app.set("jwtSecret", jwtSecret);
@@ -40,6 +41,7 @@ app.use("/news", newsRouter);
 app.use("/lifestyle", lifestyleRouter);
 app.use("/sports", sportsRouter);
 app.use("/entertainment", entertainmentRouter);
+app.use("/categories", categoryRouter);
 
 app.use((req, res, next) => { res.status(404).json({ message: 'Ruta no encontrada' }); });
 

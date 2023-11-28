@@ -9,7 +9,7 @@
     },
     "options": {
       "encrypt": false,
-      "database": "EMOTIVA_CELEBRIDADES"
+      "database": "EMOTIVA_CELEBRIDADES_BD_REP"
     },
     "port": 1433
   }

@@ -1,15 +1,49 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { url } from "../../../../../../common/utils";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import './addStaffDash.css';
 
 export const AddStaffDash = () => {
-  const [formData, setFormData] = useState({
-    nombre: "", apellido: "", ide_cat: 0, ide_pai: 0,
-    ide_ciu: 0, fec_nac: "", red_soc: "", biograf: "",
+  const [formData, setFormData] = useState({ nombre: "", apellido: "", nom_cat: "", nom_ciu: "", fec_nac: "", red_soc: "", biograf: "",
     foto: null,
   });
+
+  const [categorias, setCategorias] = useState([]);
+  const [ciudades, setCiudades] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch(`${url}/categories/getCategory`);
+        if (!response.ok) {
+          throw new Error("Error al obtener la lista de categorias");
+        }
+        const data = await response.json();
+        setCategorias(data);
+      } catch (error) {
+        console.error("Error al obtener la lista de categorías:", error);
+      }
+    };
+    fetchCategories();
+  }, []); 
+
+  useEffect(() => {
+    const fetchCities = async () => {
+      try {
+        const response = await fetch(`${url}/cities/getCities`);
+        if (!response.ok) {
+          throw new Error("Error al obtener la lista de ciudades");
+        }
+        const data = await response.json();
+        setCiudades(data);
+      } catch (error) {
+        console.error("Error al obtener la lista de ciudades:", error);
+      }
+    };
+    fetchCities();
+  }, []); 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -25,9 +59,8 @@ export const AddStaffDash = () => {
     const formDataToSend = new FormData();
     formDataToSend.append("nombre", formData.nombre);
     formDataToSend.append("apellido", formData.apellido);
-    formDataToSend.append("ide_cat", formData.ide_cat);
-    formDataToSend.append("ide_pai", formData.ide_pai);
-    formDataToSend.append("ide_ciu", formData.ide_ciu);
+    formDataToSend.append("nom_cat", formData.nom_cat);
+    formDataToSend.append("nom_ciu", formData.nom_ciu);
     formDataToSend.append("fec_nac", formData.fec_nac);
     formDataToSend.append("red_soc", formData.red_soc);
     formDataToSend.append("biograf", formData.biograf);
@@ -46,7 +79,7 @@ export const AddStaffDash = () => {
   const addCelebrity = () => { alert('Señor Administrador, Celebridad agregada exitosamente'); }
 
   return (
-    <div className="container">
+    <div className="container-st">
       <h2>Ingresar Celebridad</h2>
       <div className="row">
         <div className="col-md-6">
@@ -81,40 +114,43 @@ export const AddStaffDash = () => {
               <label htmlFor="categoria" className="form-label">
                 Categoría
               </label>
-              <input
-                type="text"
-                className="form-control"
-                id="ide_cat"
-                name="ide_cat"
-                value={formData.ide_cat}
+              <select
+                className="form-select"
+                id="nom_cat"
+                name="nom_cat"
+                value={formData.nom_cat}
                 onChange={handleChange}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="pais" className="form-label">
-                País
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="ide_pai"
-                name="ide_pai"
-                value={formData.ide_pai}
-                onChange={handleChange}
-              />
+              >
+                <option value="" disabled>
+                  Selecciona una categoría
+                </option>
+                {categorias.map((categoria) => (
+                  <option key={categoria.ide_cat} value={categoria.nom_cat}>
+                    {categoria.nom_cat}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="mb-3">
               <label htmlFor="ciudad" className="form-label">
                 Ciudad
               </label>
-              <input
-                type="text"
-                className="form-control"
-                id="ide_ciu"
-                name="ide_ciu"
-                value={formData.ide_ciu}
+              <select
+                className="form-select"
+                id="nom_ciu"
+                name="nom_ciu"
+                value={formData.nom_ciu}
                 onChange={handleChange}
-              />
+              >
+                <option value="" disabled>
+                  Selecciona una ciudad
+                </option>
+                {ciudades.map((ciudad) => (
+                  <option key={ciudad.ide_ciu} value={ciudad.nom_ciu}>
+                    {ciudad.nom_ciu}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="mb-3">
               <label htmlFor="fechaNacimiento" className="form-label">

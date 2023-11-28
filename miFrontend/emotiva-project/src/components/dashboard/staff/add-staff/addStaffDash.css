@@ -1,15 +1,15 @@
 /* AddStaffDash.css */
 
-.container {
+.container-st {
   padding-top: 5%;
   padding-left: 5%;
   padding-right: 5%;
   padding-bottom: 5%;
 }
 
-h2 {
+.container-st h2 {
   color: rgba(117, 41, 149, 0.9);
-  font-family: Proxima Nova Regular, sans-serif;
+  font-family: Proxima Nova Bold, sans-serif;
   font-size: 40px;
   font-weight: bold;
   margin-bottom: 20px;
@@ -54,4 +54,25 @@ h2 {
 #foto {
   display: block;
   margin-bottom: 20px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .container-st {
+    padding: 5%;
+  }
+
+  .container-st h2 {
+    font-size: 32px;
+  }
+
+  .col-md-6 {
+    width: 100%;
+    float: none;
+  }
+  
+  .btn-add-cel {
+    position: absolute;
+    margin-top: 20%;
+  }
 }

@@ -41,3 +41,92 @@ p {
   padding: 4%;
   margin-left: 2%;
 }
+
+.edit-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.edit-form h3 {
+  text-align: center;
+  color: #333;
+}
+
+.edit-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-form input {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.edit-form img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.edit-form button {
+  margin-top: 10px;
+  padding: 8px 15px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.edit-form button:hover {
+  background-color: #45a049;
+}
+
+.edit-form button:first-child {
+  background-color: #d9534f;
+  margin-right: 10px;
+}
+
+.edit-form button:first-child:hover {
+  background-color: #c9302c;
+}
+
+@media only screen and (max-width: 600px) {
+  .st-tab-cont {
+    padding-left: 2%;
+    padding-right: 1%;
+    padding-top: 2%;
+  }
+
+  .st-tab-cont h2 {
+    font-size: 1.5em;
+  }
+
+  table {
+    margin-top: 10px;
+  }
+
+  th,
+  td {
+    padding: 6px;
+  }
+
+  .edit-form {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .edit-form button {
+    margin-top: 8px;
+    padding: 8px 12px;
+  }
+}

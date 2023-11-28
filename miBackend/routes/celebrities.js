@@ -49,21 +49,15 @@ router.get("/:id", async (req, res) => {
 
 router.post('/personas', upload.single('foto'), async (req, res) => {
   try {
-    const { nombre, apellido, ide_cat, ide_pai, ide_ciu, fec_nac, biograf, red_soc } = req.body;
+    const { nombre, apellido, nom_cat, nom_ciu, fec_nac, biograf, red_soc } = req.body;
     const fotoFilePath = req.file.path;
     const sqlFilePath = path.join(__dirname, 'insertCelebrities.sql');
     const query = await fileRead(sqlFilePath)
-
-    const sqlT = query.replace("{nombre}", req.body.nombre) .replace("{apellido}", req.body.apellido)
-                      .replace("{ide_cat}", req.body.ide_cat) .replace("{ide_pai}", req.body.ide_pai)
-                      .replace("{ide_ciu}", req.body.ide_ciu) .replace("{fec_nac}", req.body.fec_nac)
-                      .replace("{biograf}", req.body.biograf) .replace("{red_soc}", req.body.red_soc)
-                      .replace("{fotoFilePath}", req.file.path)
-
-    const params = { nombre, apellido, ide_cat: parseInt(ide_cat), ide_pai: parseInt(ide_pai),
-                     ide_ciu: parseInt(ide_ciu), fec_nac: new Date(fec_nac), biograf, red_soc,
-                     fotoFilePath,
-                   };   
+    const sqlT = query.replace("{nombre}", req.body.nombre).replace("{apellido}", req.body.apellido)
+      .replace("{nom_cat}", req.body.nom_cat).replace("{nom_ciu}", req.body.nom_ciu)
+      .replace("{fec_nac}", req.body.fec_nac).replace("{biograf}", req.body.biograf)
+      .replace("{red_soc}", req.body.red_soc).replace("{fotoFilePath}", req.file.path)
+    const params = { nombre, apellido, nom_cat, nom_ciu, fec_nac: new Date(fec_nac), biograf, red_soc, fotoFilePath };
     const result = await execSQL(sqlT, params);
     res.json({ message: 'Persona guardada exitosamente' });
   } catch (error) {
@@ -74,19 +68,19 @@ router.post('/personas', upload.single('foto'), async (req, res) => {
 
 router.put("/updatePersonas", upload.single("foto"), async (req, res) => {
   try {
-    const { identi, nombre, apellido, ide_cat, ide_pai, ide_ciu, fec_nac, biograf, red_soc } = req.body;
+    const { identi, nombre, apellido, nom_cat, nom_ciu, fec_nac, biograf, red_soc } = req.body;
     const fotoFilePath = req.file ? req.file.path : null;
     const sqlFilePath = path.join(__dirname, "updateCelebrities.sql");
     const query = await fileRead(sqlFilePath);
-    const sqlT = query.replace("{nombre}", nombre) .replace("{apellido}", apellido) 
-                      .replace("{ide_cat}", ide_cat) .replace("{ide_pai}", ide_pai)
-                      .replace("{ide_ciu}", ide_ciu) .replace("{fec_nac}", fec_nac)
-                      .replace("{biograf}", biograf) .replace("{red_soc}", red_soc)
-                      .replace("{fotoFilePath}", fotoFilePath) .replace("{identi}", identi); 
-    const params = { nombre, apellido, ide_cat: parseInt(ide_cat), ide_pai: parseInt(ide_pai),
-                     ide_ciu: parseInt(ide_ciu), fec_nac: new Date(fec_nac), biograf, red_soc,
-                     fotoFilePath, identi: parseInt(identi), 
-                   };
+    const sqlT = query.replace("{nombre}", nombre).replace("{apellido}", apellido)
+      .replace("{nom_cat}", nom_cat).replace("{nom_ciu}", nom_ciu)
+      .replace("{fec_nac}", fec_nac).replace("{biograf}", biograf)
+      .replace("{red_soc}", red_soc).replace("{fotoFilePath}", fotoFilePath)
+      .replace("{identi}", identi);
+    const params = {
+      nombre, apellido, nom_cat, nom_ciu, fec_nac: new Date(fec_nac), biograf, red_soc,
+      fotoFilePath, identi: parseInt(identi),
+    };
     const result = await execSQL(sqlT, params);
     res.json({ message: "Persona actualizada exitosamente" });
   } catch (error) {
@@ -100,7 +94,7 @@ router.delete("/deletePersonas/:identi", async (req, res) => {
     const identi = req.params.identi;
     const sqlFilePath = path.join(__dirname, "deleteCelebrities.sql");
     const query = await fileRead(sqlFilePath);
-    const sqlT = query .replace("{identi}", identi);
+    const sqlT = query.replace("{identi}", identi);
     const params = { identi: parseInt(identi) };
     const result = await execSQL(sqlT, params);
     if (result.affectedRows === 0) res.status(HTTP_NOT_FOUND).json({ message: "La persona no existe" });

@@ -1,0 +1,35 @@
+.st-tab-sli {
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 5%;
+}
+
+.st-tab-sli h2 {
+  font-family: Proxima Nova Bold, sans-serif;
+  font-weight: bold;
+  color: #833e9f;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .st-tab-sli {
+    padding-left: 2%;
+    padding-right: 1%;
+    padding-top: 2%;
+  }
+
+  .st-tab-sli h2 {
+    font-size: 1.5em;
+  }
+
+  table {
+    margin-top: 10px;
+  }
+
+}

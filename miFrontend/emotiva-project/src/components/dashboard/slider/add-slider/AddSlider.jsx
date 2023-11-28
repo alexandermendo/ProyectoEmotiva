@@ -33,7 +33,7 @@ export const AddSlider = () => {
   const addSlider = () => { alert('Señor Administrador, Contenido agregado exitosamente'); }
 
   return (
-    <div className="container">
+    <div className="container-sl">
       <h2>Ingresar Contenido</h2>
       <div className="row">
         <div className="col-md-6">
