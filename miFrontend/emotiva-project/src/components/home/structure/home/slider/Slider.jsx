@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { url } from '../../../../../../../common/utils';
 import './slider.css';
 
@@ -10,14 +10,19 @@ export const Slider = () => {
   useEffect(() => {
     async function fetchSliderData() {
       try {
-        const response = await fetch(`${url}/slider/getSlider`); // Reemplaza la URL con la correcta si es diferente
+        const response = await fetch(`${url}/slider/getSlider`);
         if (!response.ok) {
           throw new Error('No se pudo obtener el slider');
         }
         const data = await response.json();
-        setSliderData(data.data);
+        if (data) {
+          setSliderData(data);
+        } else {
+          throw new Error('Datos de slider no válidos');
+        }
       } catch (err) {
-        setError(err.message);
+        console.error('Error al obtener datos del slider:', err);
+        setError('No se pudo obtener el slider. Consulta la consola para más detalles.');
       }
     }
     fetchSliderData();
@@ -25,21 +30,24 @@ export const Slider = () => {
 
   return (
     <div className="slider-test">
-      {error ? (
-        <div>Error: {error}</div>
-      ) : (
+      {sliderData && sliderData.length > 0 ? (
         <div id="carouselExampleFade" className="carousel slide carousel-fade">
           <div className="carousel-inner">
             {sliderData.map((slide, index) => (
               <Link to={`/news/${slide._id}`} key={index} className="slider-card">
                 <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
-                  <img src={`${url}/${slide.fotoFilePath}`} className="d-block w-100" alt={slide.title} style={{ width: '600px', height: '700px' }} />
+                  <img
+                    src={`${url}/${slide.fotoFilePath}`}
+                    className="d-block w-100"
+                    alt={slide.title}
+                    style={{ width: '600px', height: '700px' }}
+                  />
                   <div className="carousel-caption d-none d-md-block">
                     <div className="text-slider">
                       <h3>{slide.title}</h3>
                       <p>{slide.subtitle}</p>
-                      <h1 className='text-sl'>{slide.description}</h1>
-                      <h1 className='text-sl'>Haz clic sobre la imágen para ver más información</h1>
+                      <h1 className="text-sl">{slide.description}</h1>
+                      <h1 className="text-sl">Haz clic sobre la imágen para ver más información</h1>
                     </div>
                   </div>
                 </div>
@@ -65,6 +73,8 @@ export const Slider = () => {
             <span className="visually-hidden">Next</span>
           </button>
         </div>
+      ) : (
+        <div>{error ? `Error: ${error}` : 'Cargando datos...'}</div>
       )}
     </div>
   );

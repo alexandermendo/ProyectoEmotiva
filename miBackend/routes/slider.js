@@ -17,7 +17,7 @@ router.get("/getSlider", async (req, res, next) => {
   try {
     const slidersCollection = dba.collection("slider");
     const slider = await slidersCollection.find().toArray();
-    res.json(slider);
+    res.json({slider});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error al obtener el slider" });
