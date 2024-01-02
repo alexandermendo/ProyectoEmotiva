@@ -37,7 +37,7 @@ export const Slider = () => {
               <Link to={`/news/${slide._id}`} key={index} className="slider-card">
                 <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
                   <img
-                    src={`${url}/${slide.fotoFilePath}`}
+                    src={`${url}/${slide.image}`}
                     className="d-block w-100"
                     alt={slide.title}
                     style={{ width: '600px', height: '700px' }}

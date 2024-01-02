@@ -70,7 +70,7 @@ export const News = () => {
       </div>
 
       <div className='cont-img'>
-        <img src={`${url}/${sliderDetails.data.fotoFilePath}`} alt="Foto 1" style={{ width: '1250px', height: '700px' }} />
+        <img src={`${url}/${sliderDetails.data.image}`} alt="Foto 1" style={{ width: '1250px', height: '700px' }} />
       </div>
 
       <div className='cont-texto'>

@@ -110,11 +110,25 @@ const createNewsMiddleware = [
   body('fotoFileNewsPath').trim().notEmpty().withMessage('El campo image es requerido'),
 ];
 
+const createSlider = async (req, res) => {
+  try {
+    const { title, subtitle, description } = req.body;
+    const fotoFileNewsPath = req.file?.path;
+    if (!title || !subtitle || !description || !fotoFileNewsPath) return res.status(400).json({ error: 'Faltan datos requeridos' });
+    const sliderItem = { title, subtitle, description, image: fotoFileNewsPath };
+    await dba.collection('slider').insertOne(sliderItem);
+    res.json({ message: 'Contenido agregado al slider exitosamente' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send();
+  }
+}
+
 const createNews = async (req, res) => {
   try {
     const { title, subtitle, description } = req.body;
-    const fotoFileNewsPath = req.file?.path; 
-    if (!title || !subtitle || !description || !fotoFileNewsPath)  return res.status(400).json({ error: 'Faltan datos requeridos' });
+    const fotoFileNewsPath = req.file?.path;
+    if (!title || !subtitle || !description || !fotoFileNewsPath) return res.status(400).json({ error: 'Faltan datos requeridos' });
     const nuevaNoticia = { title, subtitle, description, image: fotoFileNewsPath };
     await dba.collection("news").insertOne(nuevaNoticia);
     res.json({ message: 'Noticia creada con éxito.' });
@@ -127,8 +141,8 @@ const createNews = async (req, res) => {
 const createLifestyle = async (req, res) => {
   try {
     const { title, subtitle, description } = req.body;
-    const fotoFileNewsPath = req.file?.path; 
-    if (!title || !subtitle || !description || !fotoFileNewsPath)  return res.status(400).json({ error: 'Faltan datos requeridos' });
+    const fotoFileNewsPath = req.file?.path;
+    if (!title || !subtitle || !description || !fotoFileNewsPath) return res.status(400).json({ error: 'Faltan datos requeridos' });
     const nuevaNoticia = { title, subtitle, description, image: fotoFileNewsPath };
     await dba.collection("lifestyle").insertOne(nuevaNoticia);
     res.json({ message: 'Noticia de Estilo de Vida creada con éxito.' });
@@ -141,8 +155,8 @@ const createLifestyle = async (req, res) => {
 const createSports = async (req, res) => {
   try {
     const { title, subtitle, description } = req.body;
-    const fotoFileNewsPath = req.file?.path; 
-    if (!title || !subtitle || !description || !fotoFileNewsPath)  return res.status(400).json({ error: 'Faltan datos requeridos' });
+    const fotoFileNewsPath = req.file?.path;
+    if (!title || !subtitle || !description || !fotoFileNewsPath) return res.status(400).json({ error: 'Faltan datos requeridos' });
     const nuevaNoticia = { title, subtitle, description, image: fotoFileNewsPath };
     await dba.collection("sports").insertOne(nuevaNoticia);
     res.json({ message: 'Noticia de Deportes creada con éxito.' });
@@ -155,8 +169,8 @@ const createSports = async (req, res) => {
 const createEntertainment = async (req, res) => {
   try {
     const { title, subtitle, description } = req.body;
-    const fotoFileNewsPath = req.file?.path; 
-    if (!title || !subtitle || !description || !fotoFileNewsPath)  return res.status(400).json({ error: 'Faltan datos requeridos' });
+    const fotoFileNewsPath = req.file?.path;
+    if (!title || !subtitle || !description || !fotoFileNewsPath) return res.status(400).json({ error: 'Faltan datos requeridos' });
     const nuevaNoticia = { title, subtitle, description, image: fotoFileNewsPath };
     await dba.collection("entertainment").insertOne(nuevaNoticia);
     res.json({ message: 'Noticia de Entretenimiento creada con éxito.' });
@@ -177,6 +191,7 @@ module.exports = {
   handleValidationErrors,
   authenticateUser,
   createNewsMiddleware,
+  createSlider,
   createNews,
   createLifestyle,
   createSports,

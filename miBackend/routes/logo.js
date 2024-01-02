@@ -37,3 +37,5 @@ router.post('/addLogoItem', upload.single('image-logo'), async (req, res, next) 
 });
 
 module.exports = router;
+
+//FALTA PUT Y DELETE

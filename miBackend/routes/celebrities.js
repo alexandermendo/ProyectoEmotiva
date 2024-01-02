@@ -69,17 +69,17 @@ router.post('/personas', upload.single('foto'), async (req, res) => {
 router.put("/updatePersonas", upload.single("foto"), async (req, res) => {
   try {
     const { identi, nombre, apellido, nom_cat, nom_ciu, fec_nac, biograf, red_soc } = req.body;
-    const fotoFilePath = req.file ? req.file.path : null;
+    // const fotoFilePath = req.file ? req.file.path : null;
     const sqlFilePath = path.join(__dirname, "updateCelebrities.sql");
     const query = await fileRead(sqlFilePath);
     const sqlT = query.replace("{nombre}", nombre).replace("{apellido}", apellido)
       .replace("{nom_cat}", nom_cat).replace("{nom_ciu}", nom_ciu)
       .replace("{fec_nac}", fec_nac).replace("{biograf}", biograf)
-      .replace("{red_soc}", red_soc).replace("{fotoFilePath}", fotoFilePath)
+      .replace("{red_soc}", red_soc)
       .replace("{identi}", identi);
     const params = {
       nombre, apellido, nom_cat, nom_ciu, fec_nac: new Date(fec_nac), biograf, red_soc,
-      fotoFilePath, identi: parseInt(identi),
+      // fotoFilePath, identi: parseInt(identi),
     };
     const result = await execSQL(sqlT, params);
     res.json({ message: "Persona actualizada exitosamente" });

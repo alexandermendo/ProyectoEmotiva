@@ -6,7 +6,8 @@ import './slider.css';
 export const Slider = () => {
   const [slider, setSlider] = useState([]);
   const [error, setError] = useState(null);
-  const [setSliderEditing] = useState(null);
+  const [sliderEditing, setSliderEditing] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,9 +27,54 @@ export const Slider = () => {
     setSliderEditing(sli);
   };
 
-  // const handleCancelUpdate = () => {
-  //   setSliderEditing(null);
-  // };
+  const handleCancelUpdate = () => {
+    setSliderEditing(null);
+    setImageFile(null);
+  };
+
+  const handleSaveUpdate = async () => {
+    try {
+      const updatedNews = {
+        _id: sliderEditing._id,
+        title: sliderEditing.title,
+        subtitle: sliderEditing.subtitle,
+        description: sliderEditing.description,
+      };
+
+      const formData = new FormData();
+      formData.append('data', JSON.stringify(updatedNews));
+      if (imageFile) {
+        formData.append('image', imageFile);
+      }
+      
+      const response = await fetch(`http://localhost:3000/slider/${sliderEditing._id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(sliderEditing),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Error al actualizar los datos');
+      }
+  
+      // Actualizar el estado del slider después de la edición
+      setSlider((prevSlider) =>
+        prevSlider.map((sli) =>
+          sli._id === sliderEditing._id ? { ...sli, ...sliderEditing } : sli
+        )
+      );
+  
+      // Limpiar el estado de edición
+      setSliderEditing(null);
+      setImageFile(null);
+    } catch (error) {
+      // Manejar errores
+      console.error('Error al guardar los cambios:', error.message);
+    }
+  };
+  
 
   return (
     <div className='st-tab-sli'>
@@ -62,24 +108,24 @@ export const Slider = () => {
         </table>
       )}
 
-      {/* {sliderEditing && (
+      {sliderEditing && (
         <div className="edit-form">
-          <h3>Editar Celebridad</h3>
+          <h3>Editar Noticia</h3>
           <form>
-            <input type="text" value={sliderEditing.identi} onChange={(e) => setSliderEditing({ ...sliderEditing, _id: e.target.value })}
+            <input type="text" value={sliderEditing._id} onChange={(e) => setSliderEditing({ ...sliderEditing, _id: e.target.value })}
               disabled
             />
-            <input type="text" value={sliderEditing.nombre} onChange={(e) => setSliderEditing({ ...sliderEditing, title: e.target.value })} />
-            <input type="text" value={sliderEditing.apelli} onChange={(e) => setSliderEditing({ ...sliderEditing, subtitle: e.target.value })} />
-            <input type="text" value={sliderEditing.nom_cat} onChange={(e) => setSliderEditing({ ...sliderEditing, description: e.target.value })} />
+            <input type="text" value={sliderEditing.title} onChange={(e) => setSliderEditing({ ...sliderEditing, title: e.target.value })} />
+            <input type="text" value={sliderEditing.subtitle} onChange={(e) => setSliderEditing({ ...sliderEditing, subtitle: e.target.value })} />
+            <input type="text" value={sliderEditing.description} onChange={(e) => setSliderEditing({ ...sliderEditing, description: e.target.value })} />
+            <input type="file" onChange={(e) => setImageFile(e.target.files[0])} />
             <div>
               <button type="button" onClick={handleCancelUpdate}> Cancelar </button>
               <button type="button" onClick={handleSaveUpdate}> Guardar Cambios </button>
             </div>
-
           </form>
         </div>
-      )} */}
+      )}
     </div>
   );
 };

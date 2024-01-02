@@ -5,6 +5,7 @@ const { ObjectId } = require('mongodb');
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
+const { createSlider, createNewsMiddleware } = require("../common/utils");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => { cb(null, './upload-slider/'); },
@@ -17,13 +18,12 @@ router.get("/getSlider", async (req, res, next) => {
   try {
     const slidersCollection = dba.collection("slider");
     const slider = await slidersCollection.find().toArray();
-    res.json({slider});
+    res.json(slider); //Pilas con esa respuesta JSON
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error al obtener el slider" });
   }
 });
-
 
 router.get("/:id", async (req, res) => {
   try {
@@ -38,20 +38,42 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-
-router.post('/addSliderItem', upload.single('image'), async (req, res, next) => {
+router.post('/addSliderItem', upload.single('image'), createNewsMiddleware, async (req, res, next) => {
   try { 
-    const { title, subtitle, description } = req.body;
-    const fotoFilePath = req.file?.path;
-    if (!title || !subtitle || !description || !fotoFilePath) return res.status(400).json({ error: 'Faltan datos requeridos' });
-    const sliderItem = { title, subtitle, description, fotoFilePath };
-    await dba.collection('slider').insertOne(sliderItem);
-    res.json({ message: 'Contenido agregado al slider exitosamente' });
+    await createSlider(req, res);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Error al procesar la solicitud' });
   }
 });
+
+// Endpoint para utils.js---
+router.put("/:id", upload.single('image'), createNewsMiddleware, async (req, res, next) => {
+  try {
+    const sliderId = req.params.id;
+    const { title, subtitle, description } = req.body;
+    const fotoFileNewsPath = req.file?.path;
+    if (!title || !subtitle || !description || !fotoFileNewsPath) return res.status(400).json({ error: 'Faltan datos requeridos' });
+    const updatedNews = { title, subtitle, description, image: fotoFileNewsPath };
+    await dba.collection("slider").updateOne({ _id: new ObjectId(sliderId) }, { $set: updatedNews });
+    return res.json({ message: 'Noticia Principal actualizada con éxito.' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al actualizar la noticia" });
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const sliderId = req.params.id;
+    await dba.collection("slider").deleteOne({ _id: new ObjectId(sliderId) });
+    res.json({ message: 'Noticia Principal eliminada con éxito.' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al eliminar la noticia" });
+  }
+});
+
 
 module.exports = router;
 
