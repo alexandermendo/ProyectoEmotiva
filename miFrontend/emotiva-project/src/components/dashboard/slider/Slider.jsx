@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { url } from '../../../../../common/utils';
 import './slider.css';
@@ -55,6 +55,17 @@ export const Slider = () => {
     } catch (error) { console.error('Error al guardar los cambios:', error.message) }
   };
 
+  const handleDelete = async (_id) => {
+    try {
+      const response = await fetch(`${url}/slider/${_id}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) throw new Error('Error al eliminar la celebridad');
+      const updatedSlider = slider.filter((sliders) => sliders._id !== _id);
+      setSlider(updatedSlider);
+    } catch (error) { setError(error.message) }
+  };
+
   return (
     <div className='st-tab-sli'>
       <h2>Slider</h2>
@@ -79,9 +90,8 @@ export const Slider = () => {
                 <td>{sli.subtitle}</td>
                 <td>{sli.description}</td>
                 <td>
-                  <button className="edit" onClick={() => handleUpdate(sli)}>
-                    <FontAwesomeIcon icon={faEdit} size="1x" />
-                  </button>
+                  <button className="edit" onClick={() => handleUpdate(sli)}> <FontAwesomeIcon icon={faEdit} size="1x" /></button>
+                  <button className="trash" onClick={() => handleDelete(sli._id)}><FontAwesomeIcon icon={faTrashAlt} size="1x" /></button>
                 </td>
               </tr>
             ))}
