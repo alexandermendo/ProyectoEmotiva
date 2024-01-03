@@ -52,7 +52,7 @@ router.put("/:id", upload.single('image'), createNewsMiddleware, async (req, res
   try {
     const sliderId = req.params.id;
     const { title, subtitle, description } = req.body;
-    const fotoFileNewsPath = req.file?.path;
+    const fotoFileNewsPath = req.file?.path; // Cambiar de 'path' a 'filename'
     if (!title || !subtitle || !description || !fotoFileNewsPath) return res.status(400).json({ error: 'Faltan datos requeridos' });
     const updatedNews = { title, subtitle, description, image: fotoFileNewsPath };
     await dba.collection("slider").updateOne({ _id: new ObjectId(sliderId) }, { $set: updatedNews });
@@ -62,6 +62,7 @@ router.put("/:id", upload.single('image'), createNewsMiddleware, async (req, res
     res.status(500).json({ error: "Error al actualizar la noticia" });
   }
 });
+
 
 router.delete("/:id", async (req, res) => {
   try {

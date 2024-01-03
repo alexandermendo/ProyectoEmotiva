@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { url } from '../../../../../common/utils';
 import './staffDash.css';
 
 export const StaffDash = () => {
@@ -11,7 +12,7 @@ export const StaffDash = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/celebrities/consulta');
+        const response = await fetch(`${url}/celebrities/consulta`);
         if (!response.ok) throw new Error('Error al obtener los datos');
         const data = await response.json();
         setCelebrities(data);
@@ -32,8 +33,6 @@ export const StaffDash = () => {
 
   const handleSaveUpdate = async () => {
     try {
-      console.log('Antes de la actualización:', editingCelebrity);
-
       const formData = new FormData();
       formData.append('identi', editingCelebrity.identi);
       formData.append('nombre', editingCelebrity.nombre);
@@ -49,39 +48,27 @@ export const StaffDash = () => {
       //   formData.append('foto', editingCelebrity.fot_fam);
       // }
 
-      const response = await fetch('http://localhost:3000/celebrities/updatePersonas', {
-        method: 'PUT',
-        body: formData,
-      });
-
+      const response = await fetch(`${url}/celebrities/updatePersonas`, { method: 'PUT', body: formData });
       if (!response.ok) throw new Error('Error al actualizar la celebridad');
-
       const updatedCelebrityData = await response.json();
 
       // Actualiza el estado con los datos actualizados del servidor
-      const updatedCelebrities = celebrities.map((celebrity) =>
-        celebrity.identi === updatedCelebrityData.identi ? updatedCelebrityData : celebrity
-      );
-
-      console.log('Después de la actualización:', updatedCelebrityData);
+      const updatedCelebrities = celebrities.map((celebrity) => celebrity.identi === updatedCelebrityData.identi ? 
+                                 updatedCelebrityData : celebrity );
       setCelebrities(updatedCelebrities);
       setEditingCelebrity(null);
-    } catch (error) {
-      console.error('Error al actualizar la celebridad:', error);
-    }
+    } catch (error) { console.error('Error al actualizar la celebridad:', error) }
   };
 
   const handleDelete = async (identi) => {
     try {
-      const response = await fetch(`http://localhost:3000/celebrities/deletePersonas/${identi}`, {
+      const response = await fetch(`${url}/celebrities/deletePersonas/${identi}`, {
         method: 'DELETE',
       });
       if (!response.ok) throw new Error('Error al eliminar la celebridad');
       const updatedCelebrities = celebrities.filter((celebrity) => celebrity.identi !== identi);
       setCelebrities(updatedCelebrities);
-    } catch (error) {
-      setError(error.message);
-    }
+    } catch (error) { setError(error.message) }
   };
 
   return (
