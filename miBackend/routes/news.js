@@ -26,7 +26,7 @@ router.get("/getNews", async (req, res, next) => {
   try {
     const newsCollection = dba.collection("news");
     const news = await newsCollection.find().toArray();
-    res.json({ data: news });
+    res.json(news);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error al obtener las noticias" });

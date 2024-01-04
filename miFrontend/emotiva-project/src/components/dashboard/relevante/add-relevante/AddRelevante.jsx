@@ -35,6 +35,7 @@ export const AddRelevante = () => {
   return (
     <div className="container">
       <h2>Ingresar Contenido</h2>
+      <p>Lo + Relevante</p>
       <div className="row">
         <div className="col-md-6">
           <form onSubmit={handleSubmit}>
