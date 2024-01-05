@@ -5,7 +5,8 @@ import "react-quill/dist/quill.snow.css";
 import './addStaffDash.css';
 
 export const AddStaffDash = () => {
-  const [formData, setFormData] = useState({ nombre: "", apellido: "", nom_cat: "", nom_ciu: "", fec_nac: "", red_soc: "", biograf: "",
+  const [formData, setFormData] = useState({
+    nombre: "", apellido: "", nom_cat: "", nom_ciu: "", fec_nac: "", red_soc: "", biograf: "",
     foto: null,
   });
 
@@ -26,7 +27,7 @@ export const AddStaffDash = () => {
       }
     };
     fetchCategories();
-  }, []); 
+  }, []);
 
   useEffect(() => {
     const fetchCities = async () => {
@@ -42,7 +43,7 @@ export const AddStaffDash = () => {
       }
     };
     fetchCities();
-  }, []); 
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -80,7 +81,8 @@ export const AddStaffDash = () => {
 
   return (
     <div className="container-st">
-      <h2>Ingresar Celebridad</h2>
+      <h2>Staff EMOTIVA 2024</h2>
+      <p>Ingresar Celebridad</p>
       <div className="row">
         <div className="col-md-6">
           <form onSubmit={handleSubmit}>

@@ -11,7 +11,7 @@ export const StyleTop = () => {
       try {
         const response = await fetch(`${url}/lifestyle/getLifeStyle`); 
         const data = await response.json();
-        setLifestyleData(data.data);
+        setLifestyleData(data);
       } catch (error) {
         console.error('Error al obtener datos de estilo de vida:', error);
       }

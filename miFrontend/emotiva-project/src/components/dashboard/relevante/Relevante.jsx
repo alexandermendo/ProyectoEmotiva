@@ -68,7 +68,7 @@ export const RelevanteDash = () => {
 
   return (
     <div className='st-tab-sli'>
-      <h2>Slider</h2>
+      <h2>Lo + Relevante</h2>
       {error ? (
         <p>Error: {error}</p>
       ) : (

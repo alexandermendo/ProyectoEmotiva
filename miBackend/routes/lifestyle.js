@@ -26,7 +26,7 @@ router.get("/getLifeStyle", async (req, res, next) => {
   try {
     const lifeCollection = dba.collection("lifestyle");
     const life = await lifeCollection.find().toArray();
-    res.json({ data: life });
+    res.json(life);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error al obtener las noticias" });

@@ -73,7 +73,7 @@ export const StaffDash = () => {
 
   return (
     <div className='st-tab-cont'>
-      <h2>Celebridades</h2>
+      <h2>Staff EMOTIVA 2024</h2>
       {error ? (
         <p>Error: {error}</p>
       ) : (

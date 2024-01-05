@@ -15,7 +15,7 @@ export const SportEnt = () => {
           throw new Error("No se pudo obtener la lista de deportes");
         }
         const sportsData = await response.json();
-        setSports(sportsData.data);
+        setSports(sportsData);
       } catch (error) {
         console.error(error);
       }

@@ -35,12 +35,13 @@ export const AddEntertainment = () => {
   return (
     <div className="container">
       <h2>Ingresar Contenido</h2>
+      <p>Entretenimiento</p>
       <div className="row">
         <div className="col-md-6">
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label htmlFor="nombre" className="form-label">
-                Título 
+                Título
               </label>
               <input
                 type="text"
@@ -53,7 +54,7 @@ export const AddEntertainment = () => {
             </div>
             <div className="mb-3">
               <label htmlFor="apellido" className="form-label">
-                Subtítulo 
+                Subtítulo
               </label>
               <input
                 type="text"

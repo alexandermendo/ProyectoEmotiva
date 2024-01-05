@@ -26,7 +26,7 @@ router.get("/getEntertainment", async (req, res, next) => {
   try {
     const entCollection = dba.collection("entertainment");
     const entertainment = await entCollection.find().toArray();
-    res.json({ data: entertainment });
+    res.json(entertainment);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error al obtener las noticias" });

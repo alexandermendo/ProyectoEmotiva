@@ -15,7 +15,7 @@ export const Entertainment = () => {
           throw new Error("Error al obtener los datos de entretenimiento");
         }
         const data = await response.json();
-        setEntertainmentData(data.data);
+        setEntertainmentData(data);
       } catch (error) {
         console.error(error);
       }
