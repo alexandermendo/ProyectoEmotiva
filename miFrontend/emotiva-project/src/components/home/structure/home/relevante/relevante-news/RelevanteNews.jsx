@@ -76,7 +76,6 @@ export const RelevanteNews = () => {
       <div className='cont-texto'>
         <p>
           {relevanteDetails.data.description}
-          Descripción
         </p>
       </div>
     </>

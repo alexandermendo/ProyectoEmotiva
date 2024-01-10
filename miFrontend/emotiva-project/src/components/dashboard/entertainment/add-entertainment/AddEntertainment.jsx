@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { url } from '../../../../../../common/utils';
+import ReactQuill from 'react-quill';
+import "react-quill/dist/quill.snow.css";
 import './addEntertainment.css';
 
 export const AddEntertainment = () => {
@@ -69,13 +71,13 @@ export const AddEntertainment = () => {
               <label htmlFor="categoria" className="form-label">
                 Descripción
               </label>
-              <input
+              <ReactQuill
                 type="text"
-                className="form-control"
+                className="quill-editor"
                 id="description"
                 name="description"
                 value={formData.description}
-                onChange={handleChange}
+                onChange={(value) => setFormData({ ...formData, description: value })}
               />
             </div>
             <button type="submit" onClick={addSlider} className="btn-add-cel">

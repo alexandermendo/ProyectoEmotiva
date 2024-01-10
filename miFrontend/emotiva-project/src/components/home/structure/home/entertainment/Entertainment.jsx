@@ -34,7 +34,7 @@ export const Entertainment = () => {
   };
 
   // Divide los datos en grupos de 3 (filas)
-  const rows = chunk(entertainmentData, 3);
+  const rows = chunk(entertainmentData, 3).slice(0, 3);
 
   return (
     <div ref={entertainmentRef} id="entretenimiento">

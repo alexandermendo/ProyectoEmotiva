@@ -45,7 +45,7 @@ export const Relevante = () => {
         <div className="col-md-12">
           <div className="row">
             {noticias && noticias.length > 0 ? (
-              noticias.map((noticia, index) => (
+              noticias.slice(0, 3).map((noticia, index) => (
                 <Link to={`/relevante/${noticia._id}`} key={index} className="col-md-4">
                   <div className="card">
                     <img
@@ -55,7 +55,7 @@ export const Relevante = () => {
                     />
                     <div className="card-body-rel">
                       <h5 className="card-title-rel">{noticia.title}</h5>
-                      <p className="card-text-rel">{noticia.description}</p>
+                      <p className="card-text-rel">{noticia.subtitle}</p>
                     </div>
                   </div>
                 </Link>

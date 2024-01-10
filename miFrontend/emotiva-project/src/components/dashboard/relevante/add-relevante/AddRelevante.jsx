@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { url } from '../../../../../../common/utils';
+import ReactQuill from 'react-quill';
+import "react-quill/dist/quill.snow.css";
 import './addRelevante.css';
 
 export const AddRelevante = () => {
@@ -41,7 +43,7 @@ export const AddRelevante = () => {
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label htmlFor="nombre" className="form-label">
-                Título 
+                Título
               </label>
               <input
                 type="text"
@@ -54,7 +56,7 @@ export const AddRelevante = () => {
             </div>
             <div className="mb-3">
               <label htmlFor="apellido" className="form-label">
-                Subtítulo 
+                Subtítulo
               </label>
               <input
                 type="text"
@@ -69,13 +71,12 @@ export const AddRelevante = () => {
               <label htmlFor="categoria" className="form-label">
                 Descripción
               </label>
-              <input
-                type="text"
-                className="form-control"
+              <ReactQuill
+                className="quill-editor"
                 id="description"
                 name="description"
                 value={formData.description}
-                onChange={handleChange}
+                onChange={(value) => setFormData({ ...formData, description: value })}
               />
             </div>
             <button type="submit" onClick={addSlider} className="btn-add-cel">

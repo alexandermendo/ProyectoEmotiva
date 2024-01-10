@@ -15,6 +15,11 @@
   margin-bottom: 20px;
 }
 
+.container-st p {
+  font-family: Proxima Nova Regular, sans-serif;
+  color: black;
+}
+
 .form-group {
   margin-bottom: 20px;
 }

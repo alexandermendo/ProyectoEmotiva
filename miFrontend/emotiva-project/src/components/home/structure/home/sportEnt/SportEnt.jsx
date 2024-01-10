@@ -39,12 +39,12 @@ export const SportEnt = () => {
             </div>
           </div>
 
-          {sports.map((sport, index) => (
+          {sports.slice(0, 4).map((sport, index) => (
             <Link to={`/sports/${sport._id}`} key={index} className="col-md-3">
               <div className="card sport-card">
                 <img className="card-img-top" src={`${url}/${sport.image}`} alt={sport.title} />
                 <div className="card-body">
-                  <p className="card-text">{sport.description}</p>
+                  <p className="card-text">{sport.subtitle}</p>
                   <h5 className="card-title">{sport.title}</h5>
                 </div>
               </div>

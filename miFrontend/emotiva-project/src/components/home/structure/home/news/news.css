@@ -30,6 +30,8 @@
   margin-bottom: 5%;
 }
 
-.cont-texto p{
+.cont-texto p {
+  font-family: Proxima Nova Regular, sans-serif;
   text-align: justify;
+  color: black;
 }

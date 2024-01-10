@@ -9,7 +9,7 @@ export const StyleTop = () => {
   useEffect(() => {
     const getLifestyleData = async () => {
       try {
-        const response = await fetch(`${url}/lifestyle/getLifeStyle`); 
+        const response = await fetch(`${url}/lifestyle/getLifeStyle`);
         const data = await response.json();
         setLifestyleData(data);
       } catch (error) {
@@ -34,7 +34,7 @@ export const StyleTop = () => {
           </div>
 
           <div className="row">
-            {lifestyleData.map((item, index) => (
+            {lifestyleData.slice(0, 4).map((item, index) => (
               <Link to={`/lifestyle/${item._id}`} key={index} className="col-12 col-sm-6">
                 <div className="card estilo-card">
                   <img className="foto-card-2 img-fluid" src={`${url}/${item.image}`} alt={item.title} />
@@ -97,11 +97,6 @@ export const StyleTop = () => {
               </li>
             </ol>
             <button className='btn-top-list'>Ver la Lista Completa</button>
-          </div>
-
-          <div className='spot-cls'>
-            <h1>Hola Mundo</h1>
-            <p>Hola Mundo</p>
           </div>
         </div>
       </div>
