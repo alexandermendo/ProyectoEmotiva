@@ -1,6 +1,5 @@
 import { useAuthContext } from "../../contexts/AuthContext";
 import { EmotivaHomeAdmin } from "../home/structure/home/structure/admin/EmotivaHomeAdmin";
-import { EmotivaHomeUser } from "../home/structure/home/structure/admin/EmotivaHomeUser";
 
 export const EmotivaHomeUserRouter = () => {
   const { isAuthenticated, rol} = useAuthContext();
@@ -12,11 +11,9 @@ export const EmotivaHomeUserRouter = () => {
       {isAuthenticated ? (
         rol === "Administrador" ? (
           <EmotivaHomeAdmin />
-        ) : rol === "Usuario" ? (
-          <EmotivaHomeUser />
         ) : (
           <div>
-            <p>Debe iniciar sesión para acceder a esta página.</p>
+            <p>Debe iniciar sesión como administrador para acceder a esta página.</p>
           </div>
         )
       ) : (
@@ -27,4 +24,3 @@ export const EmotivaHomeUserRouter = () => {
     </div>
   );
 };
-

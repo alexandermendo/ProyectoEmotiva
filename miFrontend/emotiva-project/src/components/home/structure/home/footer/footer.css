@@ -40,6 +40,10 @@
   color: white;
 }
 
+.icon-margin {
+  margin-right: 20%; /* Ajusta el valor según sea necesario */
+}
+
 /* Estilos para dispositivos móviles */
 @media (max-width: 768px) {
   .foo-ter {

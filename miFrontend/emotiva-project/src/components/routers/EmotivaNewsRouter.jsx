@@ -9,31 +9,15 @@ export const EmotivaNewsRouter = () => {
   console.log("Autenticado: ", isAuthenticated);
   console.log("Rol: ", rol);
 
+  const navbarComponent = isAuthenticated ? (
+    rol === "Administrador" ? <NavbarAdmin /> : <NavbarUsuario />
+  ) : <NavbarUsuario />;
+
   return (
     <div>
-      {isAuthenticated ? (
-        rol === "Administrador" ? (
-          <div>
-            <NavbarAdmin />
-            <News />
-            <Footer />
-          </div>
-        ) : rol === "Usuario" ? (
-          <div>
-            <NavbarUsuario />
-            <News />
-            <Footer />
-          </div>
-        ) : (
-          <div>
-            <p>Debe iniciar sesión para acceder a esta página.</p>
-          </div>
-        )
-      ) : (
-        <div>
-          <p>Debe iniciar sesión para acceder a esta página.</p>
-        </div>
-      )}
+      {navbarComponent}
+      <News />
+      <Footer />
     </div>
-  )
-}
+  );
+};

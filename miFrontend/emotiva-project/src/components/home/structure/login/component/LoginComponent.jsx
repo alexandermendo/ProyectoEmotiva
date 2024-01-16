@@ -101,12 +101,11 @@ export const LoginComponent = () => {
           <select value={selectedRole} onChange={handleRoleChange} className='sel-rol'>
             <option value="">-- Seleccionar Rol --</option>
             <option value="Administrador">Administrador</option>
-            <option value="Usuario">Usuario</option>
           </select>
         </div>
         <div className="form-group">
           <button type="submit" onClick={handleSubmit} className="btn-login">Continuar</button>
-          {/* <button type="submit" className="btn-login">Iniciar Sesión con Google</button> */}
+          <button type="submit" className="btn-login">Iniciar Sesión con Google</button>
         </div>
       </div>
     </div>
