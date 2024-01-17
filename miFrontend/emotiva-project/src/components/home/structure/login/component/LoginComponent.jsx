@@ -10,7 +10,7 @@ export const LoginComponent = () => {
   const [password, setPassword] = useState('');
   const [usernameError, setUsernameError] = useState('Por favor, ingresa tu nombre de usuario.');
   const [passwordError, setPasswordError] = useState('Por favor, ingresa tu contraseña.');
-  const [selectedRole, setSelectedRole] = useState('Por favor, selecciona un rol.'); 
+  const [selectedRole, setSelectedRole] = useState('Por favor, selecciona un rol.');
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -51,7 +51,7 @@ export const LoginComponent = () => {
         body: JSON.stringify({
           nombre: username,
           contraseña: password,
-          rol: selectedRole, 
+          rol: selectedRole,
         })
       });
 
@@ -60,7 +60,7 @@ export const LoginComponent = () => {
       if (response.ok) {
         localStorage.setItem('authToken', data.token);
         console.log('Token:', data.token);
-        login(selectedRole); 
+        login(selectedRole);
       } else {
         setAlert(<Alert variant="danger" style={{ width: "42rem" }}>{data.message}</Alert>);
       }
@@ -105,7 +105,7 @@ export const LoginComponent = () => {
         </div>
         <div className="form-group">
           <button type="submit" onClick={handleSubmit} className="btn-login">Continuar</button>
-          <button type="submit" className="btn-login">Iniciar Sesión con Google</button>
+          {/* <button type="submit" className="btn-login">Iniciar Sesión con Google</button> */}
         </div>
       </div>
     </div>

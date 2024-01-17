@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Modal from 'react-modal';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { url } from '../../../../../common/utils';
@@ -9,6 +10,7 @@ export const RelevanteDash = () => {
   const [error, setError] = useState(null);
   const [newsEditing, setNewsEditing] = useState(null);
   const [imageFile, setImageFile] = useState(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,11 +28,13 @@ export const RelevanteDash = () => {
 
   const handleUpdate = (n) => {
     setNewsEditing(n);
+    setIsEditModalOpen(true);
   };
 
   const handleCancelUpdate = () => {
     setNewsEditing(null);
     setImageFile(null);
+    setIsEditModalOpen(false);
   };
 
   const handleSaveUpdate = async () => {
@@ -47,11 +51,12 @@ export const RelevanteDash = () => {
       if (!response.ok) throw new Error('Error al actualizar los datos');
 
       // Actualizar el estado del slider después de la edición
-      setNews((prevNews) => prevNews.map((n) => n._id === newsEditing._id ? { ...n, ...newsEditing } : n ));
+      setNews((prevNews) => prevNews.map((n) => n._id === newsEditing._id ? { ...n, ...newsEditing } : n));
 
       // Limpiar el estado de edición
       setNewsEditing(null);
       setImageFile(null);
+      setIsEditModalOpen(false);
     } catch (error) { console.error('Error al guardar los cambios:', error.message) }
   };
 
@@ -108,55 +113,97 @@ export const RelevanteDash = () => {
           </tbody>
         </table>
       )}
+      <Modal
+        isOpen={isEditModalOpen}
+        onRequestClose={handleCancelUpdate}
+        contentLabel="Editar Noticia"
+        className="custom-modal"
+        overlayClassName="custom-overlay"
+      >
+        {newsEditing && (
+          <div className="form-slider">
+            <h3>Editar Noticia</h3>
+            <div className="col-md-12">
+              <form>
+                <div className="mb-3">
+                  <label htmlFor="_id" className="form-label">ID</label>
+                  <input
+                    type="text"
+                    id="_id"
+                    value={newsEditing._id}
+                    onChange={(e) =>
+                      setNewsEditing({ ...newsEditing, _id: e.target.value })
+                    }
+                    className="form-control"
+                    disabled
+                  />
+                </div>
 
-      {newsEditing && (
-        <div className="edit-form">
-          <h3>Editar Noticia</h3>
-          <form>
-            <input
-              type="text"
-              value={newsEditing._id}
-              onChange={(e) =>
-                setNewsEditing({ ...newsEditing, _id: e.target.value })
-              }
-              disabled
-            />
-            <input
-              type="text"
-              value={newsEditing.title}
-              onChange={(e) =>
-                setNewsEditing({ ...newsEditing, title: e.target.value })
-              }
-            />
-            <input
-              type="text"
-              value={newsEditing.subtitle}
-              onChange={(e) =>
-                setNewsEditing({ ...newsEditing, subtitle: e.target.value })
-              }
-            />
-            <input
-              type="text"
-              value={newsEditing.description}
-              onChange={(e) =>
-                setNewsEditing({
-                  ...newsEditing,
-                  description: e.target.value,
-                })
-              }
-            />
-            <input type="file" onChange={(e) => setImageFile(e.target.files[0])} />
-            <div>
-              <button type="button" onClick={handleCancelUpdate}>
-                Cancelar
-              </button>
-              <button type="button" onClick={handleSaveUpdate}>
-                Guardar Cambios
-              </button>
+                <div className="mb-3">
+                  <label htmlFor="title" className="form-label">Título</label>
+                  <input
+                    type="text"
+                    id="title"
+                    value={newsEditing.title}
+                    onChange={(e) =>
+                      setNewsEditing({ ...newsEditing, title: e.target.value })
+                    }
+                    className="form-control"
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="subtitle" className="form-label">Subtítulo</label>
+                  <input
+                    type="text"
+                    id="subtitle"
+                    value={newsEditing.subtitle}
+                    onChange={(e) =>
+                      setNewsEditing({ ...newsEditing, subtitle: e.target.value })
+                    }
+                    className="form-control"
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="description" className="form-label">Descripción</label>
+                  <input
+                    type="text"
+                    id="description"
+                    value={newsEditing.description}
+                    onChange={(e) =>
+                      setNewsEditing({
+                        ...newsEditing,
+                        description: e.target.value,
+                      })
+                    }
+                    className="form-control"
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="image" className="form-label">Imagen</label>
+                  <input 
+                    type="file" 
+                    id="image"
+                    onChange={(e) => setImageFile(e.target.files[0])}
+                    className="form-control"
+                  />
+                </div>
+
+                <div className="slide d-flex justify-content-end">
+                  <button type="button" onClick={handleCancelUpdate} className='btn-cancel-sli'>
+                    Cancelar
+                  </button>
+                  <button type="button" onClick={handleSaveUpdate} className='btn-update-sli'>
+                    Guardar Cambios
+                  </button>
+                </div>
+              </form>
             </div>
-          </form>
-        </div>
-      )}
+          </div>
+        )}
+      </Modal>
     </div>
   );
 };
