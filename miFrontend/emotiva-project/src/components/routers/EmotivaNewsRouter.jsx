@@ -1,6 +1,6 @@
 import { useAuthContext } from "../../contexts/AuthContext";
 import { NavbarAdmin } from "../home/structure/home/navbar/admin/admin/NavbarAdmin";
-import { NavbarUsuario } from "../home/structure/home/navbar/usuario/NavbarUsuario";
+import { Navbar } from "../home/structure/home/navbar/navbar/Navbar";
 import { News } from "../home/structure/home/news/News";
 import { Footer } from "../home/structure/home/footer/Footer";
 
@@ -10,8 +10,8 @@ export const EmotivaNewsRouter = () => {
   console.log("Rol: ", rol);
 
   const navbarComponent = isAuthenticated ? (
-    rol === "Administrador" ? <NavbarAdmin /> : <NavbarUsuario />
-  ) : <NavbarUsuario />;
+    rol === "Administrador" ? <NavbarAdmin /> : <Navbar />
+  ) : <Navbar />;
 
   return (
     <div>
