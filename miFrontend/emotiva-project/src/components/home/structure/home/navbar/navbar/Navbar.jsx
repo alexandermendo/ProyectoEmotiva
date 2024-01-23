@@ -50,7 +50,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav className={`navbar navbar-expand-lg ligero-container-navbar ${isScrolled ? "scrolled" : ""}`}>
+      <nav className={`navbar navbar-expand-lg ligero-container-navbar ${isScrolled ? "scrolled fixed-top" : ""}`}>
         <div className="container-fluid">
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onClick={toggleMobileMenu}>
             <div className="menu-bar"></div>

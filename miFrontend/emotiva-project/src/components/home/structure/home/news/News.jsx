@@ -74,9 +74,7 @@ export const News = () => {
       </div>
 
       <div className='cont-texto'>
-        <p>
-          {sliderDetails.data.description}
-        </p>
+        <div dangerouslySetInnerHTML={{ __html: sliderDetails.data.description }} />
       </div>
     </>
   )

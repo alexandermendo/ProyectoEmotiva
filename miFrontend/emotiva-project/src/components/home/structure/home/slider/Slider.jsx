@@ -46,7 +46,6 @@ export const Slider = () => {
                     <div className="text-slider">
                       <h3>{slide.title}</h3>
                       <p>{slide.subtitle}</p>
-                      <h1 className="text-sl">{slide.description}</h1>
                       <h1 className="text-sl">Haz clic sobre la imágen para ver más información</h1>
                     </div>
                   </div>

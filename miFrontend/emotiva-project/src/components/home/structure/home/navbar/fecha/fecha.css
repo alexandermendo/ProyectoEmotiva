@@ -1,0 +1,9 @@
+.navdate {
+  background-color: #BB025E;
+}
+
+.navdate p {
+  font-family: Proxima Nova Alt, sans-serif;
+  text-align: center;
+  color: aliceblue;
+}

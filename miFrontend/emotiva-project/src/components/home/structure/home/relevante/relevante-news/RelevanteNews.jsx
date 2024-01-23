@@ -74,9 +74,7 @@ export const RelevanteNews = () => {
       </div>
 
       <div className='cont-texto'>
-        <p>
-          {relevanteDetails.data.description}
-        </p>
+        <div dangerouslySetInnerHTML={{ __html: relevanteDetails.data.description }} />
       </div>
     </>
   )

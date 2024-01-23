@@ -71,6 +71,13 @@ export const Slider = () => {
     } catch (error) { setError(error.message) }
   };
 
+  const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return `${text.substring(0, maxLength)}...`; // Truncar el texto y agregar puntos suspensivos
+    }
+    return text;
+  };
+
   return (
     <div className='st-tab-sli'>
       <h2>Slider</h2>
@@ -93,7 +100,9 @@ export const Slider = () => {
                 <td>{sli._id}</td>
                 <td>{sli.title}</td>
                 <td>{sli.subtitle}</td>
-                <td>{sli.description}</td>
+                <td>
+                  <div dangerouslySetInnerHTML={{ __html: truncateText(sli.description, 100) }} />
+                </td>
                 <td>
                   <button className="edit" onClick={() => handleUpdate(sli)}>
                     <FontAwesomeIcon icon={faEdit} size="1x" />
@@ -156,9 +165,10 @@ export const Slider = () => {
                     className="form-control"
                   />
                 </div>
+                
                 <div className="mb-3">
                   <label htmlFor="description" className="form-label">Descripción</label>
-                  <input
+                  <textarea
                     type="text"
                     id="description"
                     value={sliderEditing.description}
@@ -171,6 +181,7 @@ export const Slider = () => {
                     className="form-control"
                   />
                 </div>
+
 
                 <div className="mb-3">
                   <label htmlFor="image" className="form-label">Imagen</label>

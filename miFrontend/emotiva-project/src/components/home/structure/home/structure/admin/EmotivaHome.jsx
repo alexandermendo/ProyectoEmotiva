@@ -1,5 +1,6 @@
 import { Entertainment } from "../../entertainment/Entertainment";
 import { Footer } from "../../footer/Footer";
+import { Fecha } from "../../navbar/fecha/Fecha";
 import { Navbar } from "../../navbar/navbar/Navbar";
 import { Relevante } from "../../relevante/Relevante";
 import { Slider } from "../../slider/Slider";
@@ -15,6 +16,7 @@ export const EmotivaHome = () => {
 
   return (
     <div>
+      <Fecha />
       <Navbar />
       <Slider />
       <Staff />

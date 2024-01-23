@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { url } from '../../../../../../../common/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faFacebookF, faInstagram, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import './footer.css';
 
 export const Footer = () => {
@@ -126,7 +126,7 @@ export const Footer = () => {
                 <FontAwesomeIcon icon={faFacebookF} size='2x' color='white'/>
               </a>
               <a href='https://twitter.com/' target='_blank' rel='noopener noreferrer' className='icon-margin'>
-                <FontAwesomeIcon icon={faTwitter} size='2x' color='white' />
+                <FontAwesomeIcon icon={faXTwitter} size='2x' color='white' />
               </a>
             </div>
           </div>

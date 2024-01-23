@@ -29,7 +29,7 @@ th {
 }
 
 /* Estilos para el mensaje de error */
-p {
+.text-err {
   color: red;
   font-weight: bold;
 }

@@ -71,6 +71,13 @@ export const RelevanteDash = () => {
     } catch (error) { setError(error.message) }
   };
 
+  const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return `${text.substring(0, maxLength)}...`; // Truncar el texto y agregar puntos suspensivos
+    }
+    return text;
+  };
+
   return (
     <div className='st-tab-sli'>
       <h2>Lo + Relevante</h2>
@@ -94,7 +101,9 @@ export const RelevanteDash = () => {
                   <td>{n._id}</td>
                   <td>{n.title}</td>
                   <td>{n.subtitle}</td>
-                  <td>{n.description}</td>
+                  <td>
+                    <div dangerouslySetInnerHTML={{ __html: truncateText(n.description, 100) }} />
+                  </td>
                   <td>
                     <button className="edit" onClick={() => handleUpdate(n)}>
                       <FontAwesomeIcon icon={faEdit} size="1x" />
@@ -167,10 +176,10 @@ export const RelevanteDash = () => {
 
                 <div className="mb-3">
                   <label htmlFor="description" className="form-label">Descripción</label>
-                  <input
+                  <textarea
                     type="text"
                     id="description"
-                    value={newsEditing.description}
+                    value={new DOMParser().parseFromString(newsEditing.description, 'text/html').body.textContent}
                     onChange={(e) =>
                       setNewsEditing({
                         ...newsEditing,
@@ -183,8 +192,8 @@ export const RelevanteDash = () => {
 
                 <div className="mb-3">
                   <label htmlFor="image" className="form-label">Imagen</label>
-                  <input 
-                    type="file" 
+                  <input
+                    type="file"
                     id="image"
                     onChange={(e) => setImageFile(e.target.files[0])}
                     className="form-control"

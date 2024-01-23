@@ -75,7 +75,7 @@ export const StaffDash = () => {
     <div className='st-tab-cont'>
       <h2>Staff EMOTIVA 2024</h2>
       {error ? (
-        <p>Error: {error}</p>
+        <p className='text-err'>Error: {error}</p>
       ) : (
         <table>
           <thead>

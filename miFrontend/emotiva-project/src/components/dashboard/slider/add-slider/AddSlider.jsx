@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { url } from '../../../../../../common/utils';
 import './addSlider.css';
+import ReactQuill from 'react-quill';
 
 export const AddSlider = () => {
   const [formData, setFormData] = useState({ title: "", subtitle: "", description: "", image: null });
@@ -68,13 +69,12 @@ export const AddSlider = () => {
               <label htmlFor="categoria" className="form-label">
                 Contenido Slider
               </label>
-              <input
-                type="text"
-                className="form-control"
+              <ReactQuill
+                className="quill-editor"
                 id="description"
                 name="description"
                 value={formData.description}
-                onChange={handleChange}
+                onChange={(value) => setFormData({ ...formData, description: value })}
               />
             </div>
             <button type="submit" onClick={addSlider} className="btn-add-cel">
