@@ -18,7 +18,7 @@
 }
 
 .name-staff {
-  font-size: 25px;
+  font-size: 15px;
   color: aliceblue;
   font-family: Proxima Nova Alt, sans-serif;
   text-transform: uppercase;
@@ -27,7 +27,7 @@
 }
 
 .lastname-staff {
-  font-size: 50px;
+  font-size: 40px;
   font-weight: bold;
   color: #f3aa21;
   font-family: Proxima Nova Alt, sans-serif;
@@ -72,8 +72,8 @@
   color: aliceblue;
   font-size: 15px;
   position: absolute;
-  top: 25.5%;
-  left: 30%;
+  top: 22%;
+  left: 35%;
 }
 
 .card-img-st {

@@ -205,7 +205,6 @@ export const Slider = () => {
             </div>
           </div>
         )}
-
       </Modal>
     </div>
   );

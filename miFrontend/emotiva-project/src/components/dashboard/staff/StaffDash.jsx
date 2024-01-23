@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { url } from '../../../../../common/utils';
@@ -8,6 +9,7 @@ export const StaffDash = () => {
   const [celebrities, setCelebrities] = useState([]);
   const [error, setError] = useState(null);
   const [editingCelebrity, setEditingCelebrity] = useState(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,10 +27,12 @@ export const StaffDash = () => {
 
   const handleUpdate = (celebrity) => {
     setEditingCelebrity(celebrity);
+    setIsEditModalOpen(true);
   };
 
   const handleCancelUpdate = () => {
     setEditingCelebrity(null);
+    setIsEditModalOpen(false);
   };
 
   const handleSaveUpdate = async () => {
@@ -53,10 +57,11 @@ export const StaffDash = () => {
       const updatedCelebrityData = await response.json();
 
       // Actualiza el estado con los datos actualizados del servidor
-      const updatedCelebrities = celebrities.map((celebrity) => celebrity.identi === updatedCelebrityData.identi ? 
-                                 updatedCelebrityData : celebrity );
+      const updatedCelebrities = celebrities.map((celebrity) => celebrity.identi === updatedCelebrityData.identi ?
+        updatedCelebrityData : celebrity);
       setCelebrities(updatedCelebrities);
       setEditingCelebrity(null);
+      setIsEditModalOpen(false);
     } catch (error) { console.error('Error al actualizar la celebridad:', error) }
   };
 
@@ -108,27 +113,66 @@ export const StaffDash = () => {
         </table>
       )}
 
-      {editingCelebrity && (
-        <div className="edit-form">
-          <h3>Editar Celebridad</h3>
-          <form>
-            <input type="text" value={editingCelebrity.identi} onChange={(e) => setEditingCelebrity({ ...editingCelebrity, identi: e.target.value })}
-              disabled
-            />
-            <input type="text" value={editingCelebrity.nombre} onChange={(e) => setEditingCelebrity({ ...editingCelebrity, nombre: e.target.value })} />
-            <input type="text" value={editingCelebrity.apelli} onChange={(e) => setEditingCelebrity({ ...editingCelebrity, apelli: e.target.value })} />
-            <input type="text" value={editingCelebrity.nom_cat} onChange={(e) => setEditingCelebrity({ ...editingCelebrity, nom_cat: e.target.value })} />
-            <input type="text" value={editingCelebrity.nom_ciu} onChange={(e) => setEditingCelebrity({ ...editingCelebrity, nom_ciu: e.target.value })} />
-            <input type="text" value={editingCelebrity.biograf} onChange={(e) => setEditingCelebrity({ ...editingCelebrity, biograf: e.target.value })} />
-            {/* <input type="file" onChange={(e) => { const file = e.target.files[0]; if (file) setEditingCelebrity({ ...editingCelebrity, fot_fam: file }) }} />             */}
-            <div>
-              <button type="button" onClick={handleCancelUpdate}> Cancelar </button>
-              <button type="button" onClick={handleSaveUpdate}> Guardar Cambios </button>
+      <Modal
+        isOpen={isEditModalOpen}
+        onRequestClose={handleCancelUpdate}
+        contentLabel="Editar Noticia"
+        className="custom-modal"
+        overlayClassName="custom-overlay"
+      >
+        {editingCelebrity && (
+          <div className="edit-form">
+            <h3>Editar Celebridad</h3>
+            <div className="col-md-12">
+              <form>
+                <div className="mb-3">
+                  <label htmlFor="_id" className="form-label">ID</label>
+                  <input type="text" value={editingCelebrity.identi} onChange={(e) => setEditingCelebrity({ ...editingCelebrity, identi: e.target.value })}
+                    className="form-control"
+                    disabled
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="name" className="form-label">Nombre</label>
+                  <input type="text" value={editingCelebrity.nombre} onChange={(e) => setEditingCelebrity({ ...editingCelebrity, nombre: e.target.value })}
+                    className="form-control"
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="lastname" className="form-label">Apellido</label>
+                  <input type="text" value={editingCelebrity.apelli} onChange={(e) => setEditingCelebrity({ ...editingCelebrity, apelli: e.target.value })}
+                    className="form-control"
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="category" className="form-label">Categoría</label>
+                  <input type="text" value={editingCelebrity.nom_cat} onChange={(e) => setEditingCelebrity({ ...editingCelebrity, nom_cat: e.target.value })}
+                    className="form-control"
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="city" className="form-label">Ciudad</label>
+                  <input type="text" value={editingCelebrity.nom_ciu} onChange={(e) => setEditingCelebrity({ ...editingCelebrity, nom_ciu: e.target.value })}
+                    className="form-control"
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="biography" className="form-label">Biografía</label>
+                  <textarea type="text" value={new DOMParser().parseFromString(editingCelebrity.biograf, 'text/html').body.textContent} onChange={(e) => setEditingCelebrity({ ...editingCelebrity, biograf: e.target.value })}
+                    className="form-control"
+                  />
+                </div>
+                {/* <input type="file" onChange={(e) => { const file = e.target.files[0]; if (file) setEditingCelebrity({ ...editingCelebrity, fot_fam: file }) }} />             */}
+                <div className="slide d-flex justify-content-end">
+                  <button type="button" onClick={handleCancelUpdate} className="btn-cancel-st"> Cancelar </button>
+                  <button type="button" onClick={handleSaveUpdate} className="btn-update-st"> Guardar Cambios </button>
+                </div>
+              </form>
             </div>
 
-          </form>
-        </div>
-      )}
+          </div>
+        )}
+      </Modal>
     </div>
   );
 };
