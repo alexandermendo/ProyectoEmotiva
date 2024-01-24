@@ -74,10 +74,7 @@ export const StyleTopNews = () => {
       </div>
 
       <div className='cont-texto'>
-        <p>
-          {styleDetails.data.description}
-          Descripción
-        </p>
+        <div dangerouslySetInnerHTML={{ __html: styleDetails.data.description }} />
       </div>
     </>
   )
