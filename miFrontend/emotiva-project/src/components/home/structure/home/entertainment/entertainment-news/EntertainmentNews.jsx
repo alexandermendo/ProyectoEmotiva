@@ -75,10 +75,7 @@ export const EntertainmentNews = () => {
       </div>
 
       <div className='cont-texto'>
-        <p>
-          {entertainmentDetails.data.description}
-          Descripción
-        </p>
+        <div dangerouslySetInnerHTML={{ __html: entertainmentDetails.data.description }} />
       </div>
     </>
   )
