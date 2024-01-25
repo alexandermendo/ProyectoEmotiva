@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { url } from "../../../../../../../../common/utils";
+import { fetchEntertainmentDetails, fetchUsuarios, formatFechaHora, url } from "../../../../../../../../common/utils";
 import './entertainmentNews.css';
-
 
 export const EntertainmentNews = () => {
   const { id } = useParams();
@@ -11,51 +10,16 @@ export const EntertainmentNews = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchUsuario = async () => {
-      try {
-        const response = await fetch(`${url}/users/listaUsuarios`, {
-          method: "GET",
-          headers: {
-            "Authorization": `Bearer ${localStorage.getItem("token")}`, // Asegúrate de enviar el token de autenticación si es necesario
-          },
-        });
-
-        if (response.status === 200) {
-          const data = await response.json();
-          setUsuario(data.data); // Establece los datos del usuario en el estado
-        } else {
-          console.error("Error al obtener los datos del usuario");
-        }
-      } catch (error) {
-        console.error("Error al realizar la solicitud:", error);
-      }
+    const fetchData = async () => {
+      const usuariosData = await fetchUsuarios(localStorage.getItem("token"));
+      setUsuario(usuariosData);
+      await fetchEntertainmentDetails(id, setEntertainmentDetails, setLoading);  // Llamada a la función fetchSportsDetails desde utils.js
     };
-    fetchUsuario();
-  }, []);
+    fetchData();
+  }, [])
 
-  const fetchEntertainmentDetails = async () => {
-    try {
-      const response = await fetch(`${url}/entertainment/${id}`);
-      if (response.ok) {
-        const data = await response.json();
-        setEntertainmentDetails(data);
-      } else {
-        console.error("Error al obtener los detalles del personal.");
-      }
-    } catch (error) {
-      console.error("Error al realizar la solicitud:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchEntertainmentDetails();
-  }, [id]);
-
-  if (loading) {
-    return <p>Cargando datos...</p>;
-  }
+  if (loading) return <p>Cargando datos...</p>;
+  const formatDate = formatFechaHora(entertainmentDetails.data.publishDate);
 
   return (
     <>
@@ -66,7 +30,7 @@ export const EntertainmentNews = () => {
 
       <div className='cont-pub'>
         {usuario && usuario.length > 0 && (
-          <p>Publicado por: {usuario[0].nombre} </p>
+          <div className="pub-dat"><p>Publicado por: {usuario[0].nombre}{' '} - {formatDate}</p></div>
         )}
       </div>
 
