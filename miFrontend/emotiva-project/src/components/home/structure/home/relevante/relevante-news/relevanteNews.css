@@ -19,6 +19,15 @@
   margin-bottom: 2%;
 }
 
+.pub-dat {
+  display: flex;
+}
+
+.pub-dat p {
+  font-family: Proxima Nova Alt, sans-serif;
+  text-transform: capitalize;
+}
+
 .cont-img {
   margin-left: 10%;
   margin-bottom: 5%;
@@ -30,6 +39,6 @@
   margin-bottom: 5%;
 }
 
-.cont-texto p{
+.cont-texto p {
   text-align: justify;
 }
