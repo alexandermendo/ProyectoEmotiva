@@ -45,6 +45,23 @@ export const fetchRelevanteDetails = async (id, setRelevanteDetails, setLoading)
   }
 };
 
+
+export const fetchSportsDetails = async (id, setSportsDetails, setLoading) => {
+  try {
+    const response = await fetch(`${url}/sports/${id}`);
+    if (response.ok) {
+      const data = await response.json();
+      setSportsDetails(data);
+    } else {
+      console.error("Error al obtener los detalles del personal.");
+    }
+  } catch (error) {
+    console.error("Error al realizar la solicitud:", error);
+  } finally {
+    setLoading(false);
+  }
+};
+
 export const formatFechaHora = (fecha) => {
   const publishDateTime = moment(fecha);
   return publishDateTime.format('DD MMMM YYYY - h:mm a');

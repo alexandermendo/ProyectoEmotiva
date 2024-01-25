@@ -18,10 +18,7 @@ export const RelevanteNews = () => {
     fetchData();
   }, []);
 
-  if (loading) {
-    return <p>Cargando datos...</p>;
-  }
-
+  if (loading) return <p>Cargando datos...</p>;
   const formatDate = formatFechaHora(relevanteDetails.data.publishDate);
 
   return (
