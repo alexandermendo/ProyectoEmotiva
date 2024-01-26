@@ -136,14 +136,110 @@ export const fetchSliderDetails = async (id, setSliderDetails, setLoading) => {
     if (response.ok) {
       const data = await response.json();
       setSliderDetails(data);
-    } else {
-      console.error("Error al obtener los detalles del personal.");
-    }
-  } catch (error) {
-    console.error("Error al realizar la solicitud:", error);
-  } finally {
-    setLoading(false);
+    } else console.error("Error al obtener los detalles del personal.");
+  } catch (error) { console.error("Error al realizar la solicitud:", error) } 
+  finally { setLoading(false) }
+};
+
+/**
+ * Función asíncrona para obtener noticias desde el servidor.
+ *
+ * @param {function} setNoticias - Función para establecer el estado de las noticias.
+ * @param {function} setError - Función para establecer el estado de error en caso de fallo.
+ *
+ * @throws {Error} Lanza un error si la respuesta del servidor no es exitosa o no tiene la estructura esperada.
+ *
+ * @returns {Promise<void>} Una Promesa que se resuelve una vez que las noticias se han obtenido y establecido correctamente.
+ */
+export const obtenerNoticias = async ( setNoticias, setError ) => {
+  try {
+    const response = await fetch(`${url}/news/getNews`);
+    if (!response.ok) throw new Error('Error al obtener las noticias');
+    const data = await response.json();
+    console.log(data);
+    // Verificar si la propiedad 'data' está presente en la respuesta
+    if (!data || !data.length) throw new Error('La respuesta del servidor no tiene la estructura esperada.');
+    setNoticias(data);
+  } catch (error) { console.error(error);
+    setError(error.message);
   }
+};
+
+/**
+ * Función asíncrona para obtener noticias desde el servidor.
+ *
+ * @param {function} setSliderData - Función para establecer el estado de las noticias.
+ * @param {function} setError - Función para establecer el estado de error en caso de fallo.
+ *
+ * @throws {Error} Lanza un error si la respuesta del servidor no es exitosa o no tiene la estructura esperada.
+ *
+ * @returns {Promise<void>} Una Promesa que se resuelve una vez que las noticias se han obtenido y establecido correctamente.
+ */
+export const fetchSliderData = async( setSliderData, setError ) => {
+  try {
+    const response = await fetch(`${url}/slider/getSlider`);
+    if (!response.ok) throw new Error('No se pudo obtener el slider');
+    const data = await response.json();
+    if (data) setSliderData(data);
+    else throw new Error('Datos de slider no válidos');
+  } catch (err) { console.error('Error al obtener datos del slider:', err);
+    setError('No se pudo obtener el slider. Consulta la consola para más detalles.');
+  }
+}
+
+/**
+ * Función asíncrona para obtener noticias desde el servidor.
+ *
+ * @param {function} setSports - Función para establecer el estado de las noticias.
+ *
+ * @throws {Error} Lanza un error si la respuesta del servidor no es exitosa o no tiene la estructura esperada.
+ *
+ * @returns {Promise<void>} Una Promesa que se resuelve una vez que las noticias se han obtenido y establecido correctamente.
+ */
+export const getSportsData = async ( setSports ) => {
+  try {
+    const response = await fetch(`${url}/sports/getSports`);
+    if (!response.ok) throw new Error("No se pudo obtener la lista de deportes");
+    const sportsData = await response.json();
+    setSports(sportsData);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+/**
+ * Realiza una solicitud para obtener datos del servidor sobre celebridades.
+ * @param {Function} setStaffData - La función para establecer los datos del personal obtenidos.
+ * @param {Function} setLoading - La función para establecer el estado de carga durante la solicitud.
+ * @returns {Promise<void>} - Una promesa que se resuelve después de procesar la solicitud y actualizar los datos.
+ */
+export const fetchStaffData = async (setStaffData, setLoading) => {
+  try {
+    const response = await fetch(`${url}/celebrities/consulta`);
+    if (response.ok) { const data = await response.json();
+      setStaffData(data);
+    } else console.error("Error al obtener los datos del servidor.");
+  } catch (error) { console.error("Error al realizar la solicitud:", error) } 
+  finally { setLoading(false)}
+}
+
+/**
+ * Realiza una solicitud para obtener los detalles de un miembro del personal.
+ *
+ * @param {string} id - El identificador único del miembro del personal.
+ * @param {function} setStaffDetails - Función para actualizar el estado con los detalles del personal.
+ * @param {function} setLoading - Función para actualizar el estado de carga.
+ * @returns {void}
+ * @throws {Error} Si hay un error al realizar la solicitud o al obtener los detalles del personal.
+ */
+export const fetchStaffDetails = async (id, setStaffDetails, setLoading) => {
+  try {
+    const response = await fetch(`${url}/celebrities/${id}`);
+    if (response.ok) { const data = await response.json();
+      setStaffDetails(data);
+    } else console.error("Error al obtener los detalles del personal.");
+  } catch (error) { console.error("Error al realizar la solicitud:", error) } 
+  finally { setLoading(false) }
 };
 
 /**
@@ -177,3 +273,35 @@ export const chunk = (array, size) => {
   for (let i = 0; i < array.length; i += size) { result.push(array.slice(i, i + size)) }
   return result;
 };
+
+/**
+ * Configuración del slider para el personal.
+ * @typedef {Object} SettingsStaff
+ * @property {boolean} dots - Indica si se deben mostrar puntos de navegación en el slider.
+ * @property {boolean} infinite - Indica si el slider debe ser infinito (bucle) o no.
+ * @property {number} speed - Velocidad de transición en milisegundos entre diapositivas.
+ * @property {number} slidesToShow - Número de diapositivas que se mostrarán a la vez.
+ * @property {number} slidesToScroll - Número de diapositivas que se desplazarán en cada transición.
+ * @property {number} initialSlide - Índice de la diapositiva inicial al cargar el slider.
+ * @property {string} centerPadding - Espaciado adicional en los lados de las diapositivas centrales.
+ * @property {Object[]} responsive - Configuración responsive para diferentes tamaños de pantalla.
+ * @property {number} responsive[].breakpoint - Punto de quiebre en el que se aplicarán las configuraciones.
+ * @property {Object} responsive[].settings - Configuración específica para el punto de quiebre.
+ * @property {number} responsive[].settings.slidesToShow - Número de diapositivas a mostrar en este punto de quiebre.
+ * @property {number} responsive[].settings.slidesToScroll - Número de diapositivas a desplazar en cada transición en este punto de quiebre.
+ * @property {boolean} responsive[].settings.infinite - Indica si el slider debe ser infinito en este punto de quiebre.
+ * @property {boolean} responsive[].settings.dots - Indica si se deben mostrar puntos de navegación en este punto de quiebre.
+ */
+
+/**
+ * Configuración predeterminada para el slider del personal.
+ * @type {SettingsStaff}
+ * @constant
+ */
+export const settingsStaff = { dots: true, infinite: false, speed: 500, slidesToShow: 6,
+  slidesToScroll: 4, initialSlide: 0, centerPadding: '50px', 
+  responsive: [{ breakpoint: 1024, settings: { slidesToShow: 3, slidesToScroll: 3, infinite: true, dots: true }},
+               { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 2 }},
+               { breakpoint: 480, settings: { slidesToShow: 1, slidesToScroll: 1 }}
+]};
+

@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { url } from "../../../../../../../common/utils";
+import { getSportsData, url } from "../../../../../../../common/utils";
 import './sportEnt.css';
 
 export const SportEnt = () => {
@@ -8,20 +8,8 @@ export const SportEnt = () => {
   const [sports, setSports] = useState([]);
 
   useEffect(() => {
-    const getSportsData = async () => {
-      try {
-        const response = await fetch(`${url}/sports/getSports`);
-        if (!response.ok) {
-          throw new Error("No se pudo obtener la lista de deportes");
-        }
-        const sportsData = await response.json();
-        setSports(sportsData);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getSportsData();
+    const fetchData = async () => { await getSportsData( setSports ) };
+    fetchData();
   }, []);
 
   return (
@@ -30,11 +18,7 @@ export const SportEnt = () => {
         <div className="row">
           <div className="col-md-12">
             <div className="header">
-              <img
-                src="../assets/Icono.png"
-                alt="Logo de la empresa"
-                className="logo"
-              />
+              <img src="../assets/Icono.png" alt="Logo de la empresa" className="logo" />
               <h2>Deportes</h2>
             </div>
           </div>

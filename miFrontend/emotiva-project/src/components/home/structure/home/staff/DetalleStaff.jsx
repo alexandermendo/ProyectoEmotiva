@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { url } from "../../../../../../../common/utils";
+import { fetchStaffDetails, url } from "../../../../../../../common/utils";
 import './detalleStaff.css';
 
 export const DetalleStaff = () => {
@@ -10,35 +10,14 @@ export const DetalleStaff = () => {
   const [staffDetails, setStaffDetails] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Supongamos que tienes una función para cargar los detalles del personal por su ID
-  const fetchStaffDetails = async () => {
-    try {
-      const response = await fetch(`${url}/celebrities/${id}`);
-      if (response.ok) {
-        const data = await response.json();
-        setStaffDetails(data);
-      } else {
-        console.error("Error al obtener los detalles del personal.");
-      }
-    } catch (error) {
-      console.error("Error al realizar la solicitud:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    fetchStaffDetails();
-  }, [id]);
+    const fetchData = async () => { await fetchStaffDetails(id, setStaffDetails, setLoading) };
+    fetchData();
+  }, []);
 
-  if (loading) {
-    return <p>Cargando detalles del personal...</p>;
-  }
-
-  if (!staffDetails) {
-    return <p>No se encontraron detalles para el personal con ID {id}</p>;
-  }
-
+  if (loading) return <p>Cargando detalles del personal...</p>;
+  if (!staffDetails) return <p>No se encontraron detalles para el personal con ID {id}</p>;
+  
   return (
     <div className="cont-staff-1">
       <div className="row">

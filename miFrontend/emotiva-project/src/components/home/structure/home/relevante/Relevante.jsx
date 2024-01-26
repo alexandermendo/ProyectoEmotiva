@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { url } from "../../../../../../../common/utils";
+import { obtenerNoticias, url } from "../../../../../../../common/utils";
 import './relevante.css';
 
 export const Relevante = () => {
@@ -9,25 +9,8 @@ export const Relevante = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const obtenerNoticias = async () => {
-      try {
-        const response = await fetch(`${url}/news/getNews`);
-        if (!response.ok) {
-          throw new Error('Error al obtener las noticias');
-        }
-        const data = await response.json();
-        console.log(data);
-        // Verificar si la propiedad 'data' está presente en la respuesta
-        if (!data || !data.length) {
-          throw new Error('La respuesta del servidor no tiene la estructura esperada.');
-        }
-        setNoticias(data);
-      } catch (error) {
-        console.error(error);
-        setError(error.message);
-      }
-    };
-    obtenerNoticias();
+    const fetchNews = async () => { await obtenerNoticias(setNoticias, setError)};
+    fetchNews();
   }, []);
 
   return (

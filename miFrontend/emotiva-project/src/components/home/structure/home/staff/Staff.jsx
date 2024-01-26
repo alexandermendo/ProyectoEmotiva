@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
-import { url } from "../../../../../../../common/utils";
+import { fetchStaffData, settingsStaff, url } from "../../../../../../../common/utils";
 import './staff.css';
 
 export const Staff = () => {
@@ -9,58 +9,11 @@ export const Staff = () => {
   const [staffData, setStaffData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 6,
-    slidesToScroll: 4,
-    initialSlide: 0,
-    centerPadding: '50px', // Ajusta el valor de margen según tus necesidades
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+  const settings = settingsStaff;
 
   useEffect(() => {
-    async function fetchStaffData() {
-      try {
-        const response = await fetch(`${url}/celebrities/consulta`);
-        if (response.ok) {
-          const data = await response.json();
-          setStaffData(data);
-        } else {
-          console.error("Error al obtener los datos del servidor.");
-        }
-      } catch (error) {
-        console.error("Error al realizar la solicitud:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchStaffData();
+    const fetchData = async () => { await fetchStaffData(setStaffData, setLoading) };
+    fetchData();
   }, []);
 
   const items = staffData.map((staffMember, index) => (
@@ -78,20 +31,13 @@ export const Staff = () => {
     </Link>
   ));
 
-
-  if (loading) {
-    return <p>Cargando datos...</p>;
-  }
+  if (loading) return <p>Cargando datos...</p>;
 
   return (
     <div ref={staffRef} id="staff">
       <div className="slider-container staff-cont">
         <div className="header">
-          <img
-            src="../assets/Icono.png"
-            alt="Logo de la empresa"
-            className="logo"
-          />
+          <img src="../assets/Icono.png" alt="Logo de la empresa" className="logo" />
           <h2>Nuestro Staff</h2>
         </div>
         <Slider {...settings} className="slider">

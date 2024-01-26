@@ -1,7 +1,7 @@
 import { useAuthContext } from "../../../../../../contexts/AuthContext";
 import { Footer } from "../../footer/Footer";
-import { NavbarAdmin } from "../../navbar/admin/admin/NavbarAdmin";
-import { NavbarUsuario } from "../../navbar/usuario/NavbarUsuario";
+import { NavbarFijoAdmin } from "../../navbar/admin/fijo-admin/NavbarFijoAdmin";
+import { NavbarFijo } from "../../navbar/navbar/fijo/NavbarFijo";
 import { DetalleStaff } from "../../staff/DetalleStaff";
 
 
@@ -12,8 +12,8 @@ export const EmotivaStaff = () => {
 
 
   const navbarComponent = isAuthenticated ? (
-    rol === "Administrador" ? <NavbarAdmin /> : <NavbarUsuario />
-  ) : <NavbarUsuario />;
+    rol === "Administrador" ? <NavbarFijoAdmin /> : <NavbarFijo />
+  ) : <NavbarFijo />;
 
   return (
     <div>

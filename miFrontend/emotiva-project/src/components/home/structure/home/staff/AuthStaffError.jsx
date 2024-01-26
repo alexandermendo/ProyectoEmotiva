@@ -6,9 +6,7 @@ import './authStaffError.css';
 export const AuthStaffError = () => {
   const navigate = useNavigate();
 
-  const goToHomeBack = () => {
-    navigate("/");
-  }
+  const goToHomeBack = () => { navigate("/") }
 
   return (
     <div className="auth-error-container">
