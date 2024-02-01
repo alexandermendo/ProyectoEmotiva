@@ -16,7 +16,7 @@ router.get("/listaUsuarios", async (req, res, next) => {
   try {
     const usersCollection = dba.collection("users"); // Cambia "usuarios" al nombre de tu colección
     const users = await usersCollection.find().toArray();
-    res.json({ data: users });
+    res.json(users);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error al obtener la lista de usuarios" });

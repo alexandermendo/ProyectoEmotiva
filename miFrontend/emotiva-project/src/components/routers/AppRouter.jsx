@@ -28,6 +28,7 @@ import { SportsDash } from "../dashboard/sports/SportsDash";
 import { AddSports } from "../dashboard/sports/add-sports/AddSports";
 import { EntertainmentfDash } from "../dashboard/entertainment/EntertainmentDash";
 import { AddEntertainment } from "../dashboard/entertainment/add-entertainment/AddEntertainment";
+import { Users } from "../dashboard/users/Users";
 
 export const AppRouter = () => {
   return (
@@ -54,6 +55,7 @@ export const AppRouter = () => {
 
         <Route path="/dashboard" element={<Dashboard />}>
           <Route path="resumen" element={<Slider />} />
+          <Route path="users" element={<Users />} /> 
           <Route path="staff" element={<StaffDash />} />
           <Route path="add-staff" element={<AddStaffDash />} />
           <Route path="usuarios" element={<Usuarios />} /> 

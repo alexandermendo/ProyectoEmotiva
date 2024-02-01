@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { formatFechaHora, obtenerNoticias, url } from "../../../../../../../../common/utils";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './relevanteView.css';
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
 
 // Componente RelevanteView con varias tarjetas de noticias
 export const RelevanteView = () => {
+  const navigate = useNavigate();
   const noticiasRef = useRef();
   const [noticias, setNoticias] = useState([]);
   const [error, setError] = useState(null);
@@ -13,6 +16,8 @@ export const RelevanteView = () => {
     const fetchNews = async () => { await obtenerNoticias(setNoticias, setError) };
     fetchNews();
   }, []);
+
+  const goToHome = () => { navigate("/"); }
 
   return (
     <div ref={noticiasRef} id="noticias">
@@ -46,6 +51,9 @@ export const RelevanteView = () => {
             <p>{error && <p>Error: {error}</p>}</p>
           )}
         </div>
+        <button className="btn-ver-mas" onClick={goToHome}>
+            Volver al Inicio <FontAwesomeIcon icon={faHouse} />
+          </button>
       </div>
     </div>
   );

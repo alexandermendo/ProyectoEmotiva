@@ -18,7 +18,7 @@ export const SidebarDash = () => {
               className="logo-dash"
             />
             <div className="text-side">
-              <Link to="/dashboard/resumen" className="title-text">Inicio</Link>
+              <Link to="/dashboard/users" className="title-text">Usuarios</Link>
             </div>
           </li>
 
