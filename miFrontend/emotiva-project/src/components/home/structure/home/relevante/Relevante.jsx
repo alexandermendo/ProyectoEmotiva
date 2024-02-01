@@ -1,17 +1,22 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { obtenerNoticias, url } from "../../../../../../../common/utils";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import './relevante.css';
 
 export const Relevante = () => {
+  const navigate = useNavigate();
   const noticiasRef = useRef();
   const [noticias, setNoticias] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchNews = async () => { await obtenerNoticias(setNoticias, setError)};
+    const fetchNews = async () => { await obtenerNoticias(setNoticias, setError) };
     fetchNews();
   }, []);
+
+  const goToNews = () => { navigate("/news"); }
 
   return (
     <div ref={noticiasRef} id="noticias">
@@ -39,6 +44,9 @@ export const Relevante = () => {
               <p>{error && <p>Error: {error}</p>}</p>
             )}
           </div>
+          <button className="btn-ver-mas" onClick={goToNews}>
+            Ver Más <FontAwesomeIcon icon={faPlus} />
+          </button>
         </div>
       </div>
     </div>

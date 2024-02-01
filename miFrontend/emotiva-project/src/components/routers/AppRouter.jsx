@@ -16,6 +16,7 @@ import { EmotivaLogoutRouter } from "./EmotivaLogoutRouter";
 import { EmotivaHomeUserRouter } from "./EmotivaHomeUserRouter";
 import { EmotivaNewsRouter } from "./EmotivaNewsRouter";
 import { EmotivaRelevanteRouter } from "./EmotivaRelevanteRouter";
+import { EmotivaRelevanteNewsRouter } from "./EmotivaRelevanteNewsRouter";
 import { EmotivaLifeStyleRouter } from "./EmotivaLifeStyleRouter";
 import { EmotivaSportsRouter } from "./EmotivaSportsRouter";
 import { EmotivaEntertainmentRouter } from "./EmotivaEntertainmentRouter";
@@ -45,6 +46,7 @@ export const AppRouter = () => {
 
         <Route path="/staff/detalle/:id" element={<EmotivaStaff />} />
         <Route path="/news/:id" element={<EmotivaNewsRouter />} />
+        <Route path="/news" element={<EmotivaRelevanteNewsRouter />} />
         <Route path="/relevante/:id" element={<EmotivaRelevanteRouter />} />
         <Route path="/lifestyle/:id" element={<EmotivaLifeStyleRouter />} />
         <Route path="/sports/:id" element={<EmotivaSportsRouter />} />

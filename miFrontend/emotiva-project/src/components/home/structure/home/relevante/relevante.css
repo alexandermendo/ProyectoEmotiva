@@ -71,6 +71,16 @@
   color: #0091d1;
 }
 
+.btn-ver-mas {
+  background-color: #315c91;
+  color: white;
+  font-family: 'Proxima Nova Thin', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: block;
+  margin: 0 auto;
+}
+
 @media (max-width: 768px) {
   .relevante-container {
     background-color: #315c91;

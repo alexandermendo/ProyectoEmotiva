@@ -41,7 +41,7 @@ export const Footer = () => {
               <h1>Navegación</h1>
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item-1"><a className="nav-link-1" href="/">Inicio</a></li>
-                <li className="nav-item-1"><a className="nav-link-1" href="#noticias" onClick={goToNews}>Noticias</a></li>
+                <li className="nav-item-1"><a className="nav-link-1" href="/news" onClick={goToNews}>Noticias</a></li>
                 <li className="nav-item-1"><a className="nav-link-1" href="#deportes" onClick={goToSports}>Deportes</a></li>
                 <li className="nav-item-1"><a className="nav-link-1" href="#entretenimiento" onClick={goToEntertainment}>Entretenimiento</a></li>
                 <li className="nav-item-1"><a className="nav-link-1" href="#lifestyle" onClick={goToLifeStyle}>Estilo de Vida</a></li>
