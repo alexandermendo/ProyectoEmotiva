@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router";
 import { NavbarAccount } from '../navbar/admin/account/NavbarAccount';
+import { url } from '../../../../../../../common/utils';
 import './formAccount.css';
 
 export const FormAccount = () => {
@@ -114,7 +115,7 @@ export const FormAccount = () => {
 
     // Realizar la solicitud POST a la API
     try {
-      const response = await fetch('http://localhost:3000/users/agregarUsuario', {
+      const response = await fetch(`${url}/users/agregarUsuario`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData),
@@ -141,27 +142,16 @@ export const FormAccount = () => {
             <div className='row'>
               <div className='col-md-6'>
                 <div className="form-group">
-                  <input
-                    type="text"
-                    id="name"
-                    value={nombre}
-                    onChange={handleUsernameChange}
-                    className="form-control"
-                    placeholder='Nombre completo'
-                  />
+                  <input type="text" id="name" value={nombre} onChange={handleUsernameChange} className="form-control"
+                    placeholder='Nombre completo'/>
                   {nombreError && <p className="error-message">{nombreError}</p>}
                 </div>
               </div>
+
               <div className='col-md-6'>
                 <div className="form-group">
-                  <input
-                    type="email"
-                    id="email"
-                    value={email}
-                    onChange={handleEmailChange}
-                    className="form-control"
-                    placeholder='Email'
-                  />
+                  <input type="email" id="email" value={email} onChange={handleEmailChange} className="form-control"
+                    placeholder='Email' />
                   {emailError && <p className="error-message">{emailError}</p>}
                 </div>
               </div>
@@ -170,27 +160,16 @@ export const FormAccount = () => {
             <div className='row'>
               <div className='col-md-6'>
                 <div className="form-group">
-                  <input
-                    type="text"
-                    id="pais"
-                    value={pais}
-                    onChange={handleCountryChange}
-                    className="form-control"
-                    placeholder='País'
-                  />
+                  <input type="text" id="pais" value={pais} onChange={handleCountryChange} className="form-control"
+                    placeholder='País'/>
                   {paisError && <p className="error-message">{paisError}</p>}
                 </div>
               </div>
+
               <div className='col-md-6'>
                 <div className="form-group">
-                  <input
-                    type="text"
-                    id="estado"
-                    value={departamento}
-                    onChange={handleDepartmentChange}
-                    className="form-control"
-                    placeholder='Departamento/Estado'
-                  />
+                  <input type="text" id="estado" value={departamento} onChange={handleDepartmentChange}
+                    className="form-control" placeholder='Departamento/Estado'/>
                   {departamentoError && <p className="error-message">{departamentoError}</p>}
                 </div>
               </div>
@@ -199,27 +178,16 @@ export const FormAccount = () => {
             <div className='row'>
               <div className='col-md-6'>
                 <div className="form-group">
-                  <input
-                    type="text"
-                    id="ciudad"
-                    value={ciudad}
-                    onChange={handleCityChange}
-                    className="form-control"
-                    placeholder='Ciudad'
-                  />
+                  <input type="text" id="ciudad" value={ciudad} onChange={handleCityChange} className="form-control"
+                    placeholder='Ciudad'/>
                   {ciudadError && <p className="error-message">{ciudadError}</p>}
                 </div>
               </div>
+
               <div className='col-md-6'>
                 <div className="form-group">
-                  <input
-                    type="password"
-                    id="password"
-                    value={contraseña}
-                    onChange={handlePasswordChange}
-                    className="form-control"
-                    placeholder='Password'
-                  />
+                  <input type="password" id="password" value={contraseña}onChange={handlePasswordChange} className="form-control"
+                    placeholder='Password'/>
                   {contraseñaError && <p className="error-message">{contraseñaError}</p>}
                 </div>
               </div>
@@ -228,14 +196,7 @@ export const FormAccount = () => {
             <div className='row'>
               <div className='col-md-6'>
                 <div className="form-group">
-                  <input
-                    type="text"
-                    id="rol"
-                    value={rol}
-                    onChange={handleRoleChange}
-                    className="form-control"
-                    placeholder='Rol'
-                  />
+                  <input type="text" id="rol" value={rol} onChange={handleRoleChange} className="form-control" placeholder='Rol'/>
                   {rolError && <p className="error-message">{rolError}</p>}
                 </div>
               </div>
@@ -245,17 +206,9 @@ export const FormAccount = () => {
               <input type="checkbox" id="cbox1" value="first_checkbox" onChange={(e) => setIsChecked(e.target.checked)} />
               Al proceder, aceptas nuestros Términos y Condiciones. Tu conformidad es esencial para usar nuestros servicios.
             </label>
-
-            {/* Mostrar el mensaje de error si no se ha marcado el checkbox */}
-            {formSubmitted && !isChecked && (
-              <div className="error-message">Debe aceptar términos y condiciones</div>
-            )}
-
-
+            {formSubmitted && !isChecked && ( <div className="error-message">Debe aceptar términos y condiciones</div>)}
             <div className="form-group">
-              <button type="submit" className="btn-login" onClick={addUser}>
-                Continuar
-              </button>
+              <button type="submit" className="btn-login" onClick={addUser}> Continuar </button>
             </div>
           </div>
         </div>

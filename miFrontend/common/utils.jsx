@@ -132,7 +132,7 @@ export const fetchEntertainmentData = async (setEntertainmentData) => {
  */
 export const fetchSliderDetails = async (id, setSliderDetails, setLoading) => {
   try {
-    const response = await fetch(`${url}/slider/${id}`);
+    const response = await fetch(`${url}/news/${id}`);
     if (response.ok) {
       const data = await response.json();
       setSliderDetails(data);
@@ -177,7 +177,7 @@ export const obtenerNoticias = async ( setNoticias, setError ) => {
  */
 export const fetchSliderData = async( setSliderData, setError ) => {
   try {
-    const response = await fetch(`${url}/slider/getSlider`);
+    const response = await fetch(`${url}/news/getNews`);
     if (!response.ok) throw new Error('No se pudo obtener el slider');
     const data = await response.json();
     if (data) setSliderData(data);
@@ -251,6 +251,62 @@ export const fetchStaffDetails = async (id, setStaffDetails, setLoading) => {
 export const formatFechaHora = (fecha) => {
   const publishDateTime = moment(fecha);
   return publishDateTime.format('DD MMMM YYYY - h:mm a');
+};
+
+/**
+ * Obtiene los datos de estilo de vida mediante una solicitud asincrónica a la API.
+ * @param {function} setLifestyleData - Función que actualiza el estado con los datos de estilo de vida obtenidos.
+ * @returns {Promise<void>} - Una promesa que se resuelve cuando se han obtenido y actualizado los datos correctamente, o se rechaza si hay un error.
+ */
+export const getLifestyleData = async ( setLifestyleData ) => {
+  try {
+    const response = await fetch(`${url}/lifestyle/getLifeStyle`);
+    const data = await response.json();
+    setLifestyleData(data);
+  } catch (error) {
+    console.error('Error al obtener datos de estilo de vida:', error);
+  }
+};
+
+/**
+ * Realiza una solicitud para obtener datos del logo desde la URL proporcionada.
+ *
+ * @param {Function} setImageData - Función que se utilizará para establecer los datos de la imagen del logo en el componente.
+ * @param {Function} setError - Función que se utilizará para establecer un mensaje de error en caso de fallo en la solicitud.
+ * @returns {Promise<void>} - Una promesa que se resuelve una vez que se han procesado los datos del logo o se ha gestionado el error.
+ * @throws {Error} - Se lanza un error si la solicitud para obtener el logo no tiene éxito.
+ */
+export const fetchLogoData = async(setImageData, setError) => {
+  try {
+    const response = await fetch(`${url}/logo/getLogo`);
+    if (!response.ok) { throw new Error('No se pudo obtener el slider'); }
+    const data = await response.json();
+    setImageData(data.data);
+  } catch (err) { setError(err.message); }
+}
+
+/**
+ * Inicia un intervalo que actualiza continuamente la fecha y hora actual y llama a la función
+ * proporcionada para actualizar el estado con la nueva fecha y hora.
+ *
+ * @param {function} setCurrentDateTime - Función para actualizar el estado con la fecha y hora actual.
+ * @returns {function} - Función de limpieza que detiene el intervalo al desmontar el componente.
+ */
+export const startDateTimeInterval = (setCurrentDateTime) => {
+  const intervalId = setInterval(() => { setCurrentDateTime(new Date())}, 1000);
+  return () => clearInterval(intervalId); // Limpieza del intervalo al desmontar el componente
+};
+
+/**
+ * Formatea la fecha y hora proporcionada según las opciones especificadas.
+ *
+ * @param {Date} date - Objeto de tipo Date que representa la fecha y hora a formatear.
+ * @returns {string} - Cadena de texto que representa la fecha y hora formateada según las opciones.
+ */
+export const formatDateTime = (date) => {
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric',
+    minute: 'numeric', second: 'numeric' };
+  return date.toLocaleDateString('es-ES', options);
 };
 
 /**

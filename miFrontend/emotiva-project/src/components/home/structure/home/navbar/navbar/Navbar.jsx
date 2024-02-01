@@ -21,33 +21,15 @@ export const Navbar = () => {
 
   const toggleMobileMenu = () => { setIsMobileMenuOpen(!isMobileMenuOpen); };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+  useEffect(() => {window.addEventListener("scroll", handleScroll);
     return () => { window.removeEventListener("scroll", handleScroll); };
   }, []);
 
-  const login = () => {
-    navigate("/login");
-  }
-
-  const goToNews = () => {
-    if (noticiasRef.current) {
-      noticiasRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const goToSports = () => {
-    if (deportesRef.current) {
-      deportesRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const goToEntertainment = () => {
-    if (entertainmentRef.current) {
-      entertainmentRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
+  const login = () => { navigate("/login")}
+  const goToNews = () => { if (noticiasRef.current) noticiasRef.current.scrollIntoView({ behavior: "smooth" })};
+  const goToSports = () => { if (deportesRef.current) { deportesRef.current.scrollIntoView({ behavior: "smooth" })}};
+  const goToEntertainment = () => { if (entertainmentRef.current) { entertainmentRef.current.scrollIntoView({ behavior: "smooth" })}};
+  
   return (
     <>
       <nav className={`navbar navbar-expand-lg ligero-container-navbar ${isScrolled ? "scrolled fixed-top" : ""}`}>
@@ -57,23 +39,13 @@ export const Navbar = () => {
             <div className="menu-bar"></div>
             <div className="menu-bar"></div>
           </button>
-          <a className="navbar-brand" href="/"><img
-            className="img-logo-emotiva"
-            src="../assets/Emotiva_Logo.png"
-            alt="Ligero"
-          /></a>
+          <a className="navbar-brand" href="/"><img className="img-logo-emotiva" src="../assets/Emotiva_Logo.png" alt="Ligero" /></a>
 
           <div className={`collapse navbar-collapse ${isMobileMenuOpen ? 'show' : ''}`} id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link" href="#noticias" onClick={goToNews}>Noticias</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#deportes" onClick={goToSports}>Deportes</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#entretenimiento" onClick={goToEntertainment}>Entretenimiento</a>
-              </li>
+              <li className="nav-item"><a className="nav-link" href="#noticias" onClick={goToNews}>Noticias</a></li>
+              <li className="nav-item"><a className="nav-link" href="#deportes" onClick={goToSports}>Deportes</a></li>
+              <li className="nav-item"><a className="nav-link" href="#entretenimiento" onClick={goToEntertainment}>Entretenimiento</a></li>
             </ul>
             <form className="d-flex" role="search">
               <h1 className="home-auth">Página de Inicio: {value.isAuthenticated ? 'SI' : 'NO'} </h1>

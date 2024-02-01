@@ -17,11 +17,7 @@ export const Relevante = () => {
     <div ref={noticiasRef} id="noticias">
       <div className="relevante-container relev-cont">
         <div className="header">
-          <img
-            src="../assets/Icono.png"
-            alt="Logo de la empresa"
-            className="logo"
-          />
+          <img src="../assets/Icono.png" alt="Logo de la empresa" className="logo" />
           <h2>Lo + Relevante</h2>
         </div>
 
@@ -31,11 +27,7 @@ export const Relevante = () => {
               noticias.slice(0, 3).map((noticia, index) => (
                 <Link to={`/relevante/${noticia._id}`} key={index} className="col-md-4">
                   <div className="card">
-                    <img
-                      className='card-img-top img-fluid'
-                      src={`${url}/${noticia.image}`}
-                      alt="Ligero"
-                    />
+                    <img className='card-img-top img-fluid' src={`${url}/${noticia.image}`} alt="Ligero" />
                     <div className="card-body-rel">
                       <h5 className="card-title-rel">{noticia.title}</h5>
                       <p className="card-text-rel">{noticia.subtitle}</p>

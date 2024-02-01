@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../../../../../../contexts/AuthContext";
-import { url } from "../../../../../../../../../common/utils";
+import { fetchLogoData, url } from "../../../../../../../../../common/utils";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./navbarAdmin.css";
 
@@ -29,15 +29,8 @@ export const NavbarAdmin = () => {
   }, []);
 
   useEffect(() => {
-    async function fetchLogoData() {
-      try {
-        const response = await fetch(`${url}/logo/getLogo`);
-        if (!response.ok) throw new Error('No se pudo obtener el slider');
-        const data = await response.json();
-        setImageData(data.data);
-      } catch (err) { setError(err.message); }
-    }
-    fetchLogoData();
+    const fetchLogo = async () => { await fetchLogoData(setImageData, setError)};
+    fetchLogo();
   }, [])
 
   const logout = () => {
@@ -48,18 +41,9 @@ export const NavbarAdmin = () => {
   }
 
   const gotoDashboard = () => { navigate("/dashboard"); }
-
-  const goToNews = () => {
-    if (noticiasRef.current) { noticiasRef.current.scrollIntoView({ behavior: "smooth" }); }
-  };
-
-  const goToSports = () => {
-    if (deportesRef.current) { deportesRef.current.scrollIntoView({ behavior: "smooth" }); }
-  };
-
-  const goToEntertainment = () => {
-    if (entertainmentRef.current) { entertainmentRef.current.scrollIntoView({ behavior: "smooth" }); }
-  };
+  const goToNews = () => { if (noticiasRef.current) { noticiasRef.current.scrollIntoView({ behavior: "smooth" })}};
+  const goToSports = () => { if (deportesRef.current) { deportesRef.current.scrollIntoView({ behavior: "smooth" })}};
+  const goToEntertainment = () => { if (entertainmentRef.current) { entertainmentRef.current.scrollIntoView({ behavior: "smooth" })}};
 
   return (
     <>
@@ -75,15 +59,9 @@ export const NavbarAdmin = () => {
             alt="Ligero"/></a>
           <div className={`collapse navbar-collapse ${isMobileMenuOpen ? 'show' : ''}`} id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link" href="#noticias" onClick={goToNews}>Noticias</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#deportes" onClick={goToSports}>Deportes</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#entretenimiento" onClick={goToEntertainment}>Entretenimiento</a>
-              </li>
+              <li className="nav-item"><a className="nav-link" href="#noticias" onClick={goToNews}>Noticias</a></li>
+              <li className="nav-item"><a className="nav-link" href="#deportes" onClick={goToSports}>Deportes</a></li>
+              <li className="nav-item"><a className="nav-link" href="#entretenimiento" onClick={goToEntertainment}>Entretenimiento</a></li>
             </ul>
             <form className="d-flex" role="search">
               <h1 className="home-auth">Página de Inicio: {value.isAuthenticated ? 'SI' : 'NO'} </h1>

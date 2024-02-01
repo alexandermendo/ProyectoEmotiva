@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from "react-router-dom";
-import { url } from '../../../../../../../common/utils';
+import { getLifestyleData, url } from '../../../../../../../common/utils';
 import './styleTop.css';
 
 export const StyleTop = () => {
@@ -8,16 +8,8 @@ export const StyleTop = () => {
   const [lifestyleData, setLifestyleData] = useState([]);
 
   useEffect(() => {
-    const getLifestyleData = async () => {
-      try {
-        const response = await fetch(`${url}/lifestyle/getLifeStyle`);
-        const data = await response.json();
-        setLifestyleData(data);
-      } catch (error) {
-        console.error('Error al obtener datos de estilo de vida:', error);
-      }
-    };
-    getLifestyleData();
+    const fetchData = async () => { await getLifestyleData(setLifestyleData) };
+    fetchData();
   }, []);
 
   return (
@@ -26,11 +18,7 @@ export const StyleTop = () => {
         <div className="row align-items-start">
           <div className="col-md-6">
             <div className="header">
-              <img
-                src="../assets/Icono.png"
-                alt="Logo de la empresa"
-                className="logo"
-              />
+              <img src="../assets/Icono.png" alt="Logo de la empresa" className="logo"/>
               <h2>Estilo de Vida</h2>
             </div>
 
@@ -52,11 +40,7 @@ export const StyleTop = () => {
           <div className="col-md-6">
             <div className='top-10'>
               <div className="header">
-                <img
-                  src="../assets/Icono.png"
-                  alt="Logo de la empresa"
-                  className="logo-e"
-                />
+                <img src="../assets/Icono.png" alt="Logo de la empresa" className="logo-e" />
                 <h1>EMOTIVA Top 10</h1>
               </div>
 

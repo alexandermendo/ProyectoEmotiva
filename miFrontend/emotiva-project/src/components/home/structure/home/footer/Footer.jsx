@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { url } from '../../../../../../../common/utils';
+import { fetchLogoData, url } from '../../../../../../../common/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faInstagram, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import './footer.css';
@@ -14,57 +14,22 @@ export const Footer = () => {
   const staffRef = useRef();
 
   useEffect(() => {
-    async function fetchLogoData() {
-      try {
-        const response = await fetch(`${url}/logo/getLogo`);
-        if (!response.ok) throw new Error('No se pudo obtener el slider');
-        const data = await response.json();
-        setImageData(data.data);
-      } catch (err) { setError(err.message); }
-    }
-    fetchLogoData();
+    const fetchLogo = async () => { await fetchLogoData(setImageData, setError)};
+    fetchLogo();
   }, [])
 
-  const goToNews = () => {
-    if (noticiasRef.current) {
-      noticiasRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-  
-  const goToLifeStyle = () => {
-    if (styleRef.current) {
-      styleRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const goToSports = () => {
-    if (deportesRef.current) {
-      deportesRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const goToEntertainment = () => {
-    if (entertainmentRef.current) {
-      entertainmentRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const goToStaff = () => {
-    if (staffRef.current) {
-      staffRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const goToNews = () => { if (noticiasRef.current) { noticiasRef.current.scrollIntoView({ behavior: "smooth" })}};
+  const goToLifeStyle = () => { if (styleRef.current) { styleRef.current.scrollIntoView({ behavior: "smooth" })}};
+  const goToSports = () => { if (deportesRef.current) { deportesRef.current.scrollIntoView({ behavior: "smooth" })}};
+  const goToEntertainment = () => { if (entertainmentRef.current) { entertainmentRef.current.scrollIntoView({ behavior: "smooth" })}};
+  const goToStaff = () => { if (staffRef.current) { staffRef.current.scrollIntoView({ behavior: "smooth" })}};
 
   return (
     <footer className="footer">
       <div className='row'>
         <div className='col-md-12'>
           <div className='foo-ter col-md-4'>
-            <a className="footer-logo" href="/"><img
-              className="img-logo-foo"
-              src={`${url}/${imageData[0].fotoFileLogoPath}`}
-              alt="Ligero"
-            /></a>
+            <a className="footer-logo" href="/"><img className="img-logo-foo" src={`${url}/${imageData[0].fotoFileLogoPath}`} alt="Ligero"/></a>
           </div>
         </div>
       </div>
@@ -75,24 +40,12 @@ export const Footer = () => {
             <div className='foo-ter-nav col-md-6'>
               <h1>Navegación</h1>
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item-1">
-                  <a className="nav-link-1" href="/">Inicio</a>
-                </li>
-                <li className="nav-item-1">
-                  <a className="nav-link-1" href="#noticias" onClick={goToNews}>Noticias</a>
-                </li>
-                <li className="nav-item-1">
-                  <a className="nav-link-1" href="#deportes" onClick={goToSports}>Deportes</a>
-                </li>
-                <li className="nav-item-1">
-                  <a className="nav-link-1" href="#entretenimiento" onClick={goToEntertainment}>Entretenimiento</a>
-                </li>
-                <li className="nav-item-1">
-                  <a className="nav-link-1" href="#lifestyle" onClick={goToLifeStyle}>Estilo de Vida</a>
-                </li>
-                <li className="nav-item-1">
-                  <a className="nav-link-1" href="#staff" onClick={goToStaff}>Staff EMOTIVA 2024</a>
-                </li>
+                <li className="nav-item-1"><a className="nav-link-1" href="/">Inicio</a></li>
+                <li className="nav-item-1"><a className="nav-link-1" href="#noticias" onClick={goToNews}>Noticias</a></li>
+                <li className="nav-item-1"><a className="nav-link-1" href="#deportes" onClick={goToSports}>Deportes</a></li>
+                <li className="nav-item-1"><a className="nav-link-1" href="#entretenimiento" onClick={goToEntertainment}>Entretenimiento</a></li>
+                <li className="nav-item-1"><a className="nav-link-1" href="#lifestyle" onClick={goToLifeStyle}>Estilo de Vida</a></li>
+                <li className="nav-item-1"><a className="nav-link-1" href="#staff" onClick={goToStaff}>Staff EMOTIVA 2024</a></li>
               </ul>
             </div>
           </div>
@@ -102,15 +55,9 @@ export const Footer = () => {
           <div className='foo-ter-nav col-md-6'>
             <h1>Términos y Condiciones</h1>
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item-1">
-                <a className="nav-link-1" href="#">Acerca de Nosotros</a>
-              </li>
-              <li className="nav-item-1">
-                <a className="nav-link-1" href="#">Contacto</a>
-              </li>
-              <li className="nav-item-1">
-                <a className="nav-link-1" href="#">Política de Privacidad</a>
-              </li>
+              <li className="nav-item-1"><a className="nav-link-1" href="#">Acerca de Nosotros</a></li>
+              <li className="nav-item-1"><a className="nav-link-1" href="#">Contacto</a></li>
+              <li className="nav-item-1"><a className="nav-link-1" href="#">Política de Privacidad</a></li>
             </ul>
           </div>
         </div>
@@ -134,7 +81,6 @@ export const Footer = () => {
       </div>
 
       <p className='p-foot'>&copy; {new Date().getFullYear()} EMOTIVA. Todos los derechos reservados.</p>
-
     </footer>
   )
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../../../../../contexts/AuthContext";
-import { url } from "../../../../../../../../common/utils";
+import { fetchLogoData, url } from "../../../../../../../../common/utils";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./navbarUsuario.css";
 
@@ -26,15 +26,8 @@ export const NavbarUsuario = () => {
   }, []);
 
   useEffect(() => {
-    async function fetchLogoData() {
-      try {
-        const response = await fetch(`${url}/logo/getLogo`);
-        if (!response.ok) { throw new Error('No se pudo obtener el slider'); }
-        const data = await response.json();
-        setImageData(data.data);
-      } catch (err) { setError(err.message); }
-    }
-    fetchLogoData();
+   const fetchData = async () => { fetchLogoData(setImageData, setError)};
+   fetchData();
   }, [])
 
   const logout = () => {

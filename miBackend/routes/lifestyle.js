@@ -25,7 +25,7 @@ const upload = multer({
 router.get("/getLifeStyle", async (req, res, next) => {
   try {
     const lifeCollection = dba.collection("lifestyle");
-    const life = await lifeCollection.find().toArray();
+    const life = await lifeCollection.find().sort({ publishDate: -1 }).toArray();
     res.json(life);
   } catch (error) {
     console.error(error);

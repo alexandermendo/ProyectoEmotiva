@@ -25,7 +25,7 @@ const upload = multer({
 router.get("/getSports", async (req, res, next) => {
   try {
     const sportsCollection = dba.collection("sports");
-    const sports = await sportsCollection.find().toArray();
+    const sports = await sportsCollection.find().sort({ publishDate: -1 }).toArray();
     res.json(sports);
   } catch (error) {
     console.error(error);
