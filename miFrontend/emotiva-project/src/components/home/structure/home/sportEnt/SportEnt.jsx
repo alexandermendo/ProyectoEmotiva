@@ -1,16 +1,21 @@
 import { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getSportsData, url } from "../../../../../../../common/utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import './sportEnt.css';
 
 export const SportEnt = () => {
+  const navigate = useNavigate();
   const deportesRef = useRef();
   const [sports, setSports] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => { await getSportsData( setSports ) };
+    const fetchData = async () => { await getSportsData(setSports) };
     fetchData();
   }, []);
+
+  const goToNews = () => { navigate("/sports"); }
 
   return (
     <div ref={deportesRef} id="deportes">
@@ -35,6 +40,9 @@ export const SportEnt = () => {
             </Link>
           ))}
         </div>
+        <button className="btn-ver-mas" onClick={goToNews}>
+          Ver Más <FontAwesomeIcon icon={faPlus} />
+        </button>
       </div>
     </div>
   );

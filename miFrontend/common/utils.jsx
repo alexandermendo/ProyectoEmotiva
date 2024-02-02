@@ -196,7 +196,7 @@ export const fetchSliderData = async( setSliderData, setError ) => {
  *
  * @returns {Promise<void>} Una Promesa que se resuelve una vez que las noticias se han obtenido y establecido correctamente.
  */
-export const getSportsData = async ( setSports ) => {
+export const getSportsData = async ( setSports, setError ) => {
   try {
     const response = await fetch(`${url}/sports/getSports`);
     if (!response.ok) throw new Error("No se pudo obtener la lista de deportes");
@@ -204,6 +204,7 @@ export const getSportsData = async ( setSports ) => {
     setSports(sportsData);
   } catch (error) {
     console.error(error);
+    setError('No se pudo obtener la noticia. Consulta la consola para más detalles.');
   }
 };
 

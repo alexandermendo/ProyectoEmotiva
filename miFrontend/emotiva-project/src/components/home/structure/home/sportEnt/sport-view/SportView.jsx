@@ -1,19 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { formatFechaHora, getLifestyleData, url } from "../../../../../../../../common/utils";
+import { formatFechaHora, getSportsData, url } from "../../../../../../../../common/utils";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
-import './styleTopView.css';
+import './sportView.css';
 
 // Componente RelevanteView con varias tarjetas de noticias
-export const StyleTopView = () => {
+export const SportView = () => {
   const navigate = useNavigate();
   const noticiasRef = useRef();
-  const [lifeStyleData, setLifestyleData] = useState([]);
+  const [sports, setSports] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchNews = async () => { await getLifestyleData(setLifestyleData) };
+    const fetchNews = async () => { await getSportsData(setSports, setError) };
     fetchNews();
   }, []);
 
@@ -28,9 +28,9 @@ export const StyleTopView = () => {
         </div>
 
         <div className="card-container">
-          {lifeStyleData && lifeStyleData.length > 0 ? (
-            lifeStyleData.map((noticia, index) => (
-              <Link to={`/lifestyle/${noticia._id}`} key={index} className="custom-link">
+          {sports && sports.length > 0 ? (
+            sports.map((noticia, index) => (
+              <Link to={`/sports/${noticia._id}`} key={index} className="custom-link">
                 <div className="card custom-card-main">
                   <div className="row no-gutters">
                     <div className="col-md-4">

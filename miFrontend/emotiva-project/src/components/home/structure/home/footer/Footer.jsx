@@ -1,14 +1,14 @@
 import { useEffect, useState, useRef } from 'react';
+import { useNavigate } from "react-router-dom";
 import { fetchLogoData, url } from '../../../../../../../common/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faInstagram, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import './footer.css';
 
 export const Footer = () => {
+  const navigate = useNavigate();
   const [imageData, setImageData] = useState([{ fotoFileLogoPath: "" }]);
   const [setError] = useState(null);
-  const noticiasRef = useRef();
-  const styleRef = useRef();
   const deportesRef = useRef();
   const entertainmentRef = useRef();
   const staffRef = useRef();
@@ -18,8 +18,8 @@ export const Footer = () => {
     fetchLogo();
   }, [])
 
-  const goToNews = () => { if (noticiasRef.current) { noticiasRef.current.scrollIntoView({ behavior: "smooth" })}};
-  const goToLifeStyle = () => { if (styleRef.current) { styleRef.current.scrollIntoView({ behavior: "smooth" })}};
+  const goToNews = () => {  navigate("/news") };
+  const goToLifeStyle = () => { navigate("/lifestyle") };
   const goToSports = () => { if (deportesRef.current) { deportesRef.current.scrollIntoView({ behavior: "smooth" })}};
   const goToEntertainment = () => { if (entertainmentRef.current) { entertainmentRef.current.scrollIntoView({ behavior: "smooth" })}};
   const goToStaff = () => { if (staffRef.current) { staffRef.current.scrollIntoView({ behavior: "smooth" })}};

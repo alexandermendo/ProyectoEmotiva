@@ -34,7 +34,7 @@ export const RelevanteView = () => {
                 <div className="card custom-card">
                   <div className="row no-gutters">
                     <div className="col-md-4">
-                      <img className="card-img custom-card-img" src={`${url}/${noticia.image}`} alt="Ligero" />
+                      <img className="card-img" src={`${url}/${noticia.image}`} alt="Ligero" />
                     </div>
                     <div className="col-md-8">
                       <div className="card-body custom-card-body">
