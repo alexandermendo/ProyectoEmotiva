@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const dba = require("../database/db_mongo");
+const { ObjectId } = require('mongodb');
 const validator = require('validator'); 
 const jwt = require('jsonwebtoken');
 
@@ -44,5 +45,55 @@ router.post('/agregarUsuario', async (req, res) => {
   }
 });
 
+/**
+ * @name updateUser
+ * @description Actualiza la información de un usuario en la base de datos
+ * @param {object} req - El objeto request de la solicitud HTTP
+ * @param {object} res - El objeto response de la solicitud HTTP
+ * @param {function} next - La siguiente función middleware en la cadena de solicitud-respuesta
+ * @returns {object} Objeto JSON con el mensaje de éxito o error
+ */
+router.put("/actualizarUsuario/:id", async (req, res, next) => {
+  try {
+    const userId = req.params.id;
+    const objectIdUserId = new ObjectId(userId);
+    const { nombre, email, país, departamento, ciudad, contraseña, rol } = req.body;
+    if (!validator.isEmail(email)) return res.status(400).json({ message: 'El correo electrónico no es válido.' });
+    const existingUser = await dba.collection('users').findOne({ _id: objectIdUserId  });
+    if (!existingUser) return res.status(404).json({ message: 'Usuario no encontrado.' });
+    const updatedUser = { nombre: nombre || existingUser.nombre, email: email || existingUser.email,
+      país: país || existingUser.país, departamento: departamento || existingUser.departamento,
+      ciudad: ciudad || existingUser.ciudad, contraseña: contraseña || existingUser.contraseña,
+      rol: rol || existingUser.rol
+    };
+    await dba.collection('users').updateOne({ _id: objectIdUserId }, { $set: updatedUser }, { upsert: true });
+    res.json({ message: 'Usuario actualizado exitosamente' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error interno del servidor' });
+  }
+});
+
+/**
+ * @name deleteUser
+ * @description Elimina un usuario de la base de datos
+ * @param {object} req - El objeto request de la solicitud HTTP
+ * @param {object} res - El objeto response de la solicitud HTTP
+ * @param {function} next - La siguiente función middleware en la cadena de solicitud-respuesta
+ * @returns {object} Objeto JSON con el mensaje de éxito o error
+ */
+router.delete("/eliminarUsuario/:id", async (req, res, next) => {
+  try {
+    const userId = req.params.id;
+    const objectIdUserId = new ObjectId(userId);
+    const existingUser = await dba.collection('users').findOne({ _id: objectIdUserId });
+    if (!existingUser) return res.status(404).json({ message: 'Usuario no encontrado.' });
+    await dba.collection('users').deleteOne({ _id: objectIdUserId });
+    res.json({ message: 'Usuario eliminado exitosamente' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error interno del servidor' });
+  }
+});
 
 module.exports = router;

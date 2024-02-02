@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { url } from '../../../../../common/utils';
 
@@ -40,45 +40,45 @@ export const Users = () => {
     setIsEditModalOpen(false);
   };
 
-  // const handleSaveUpdate = async () => {
-  //   try {
-  //     const formData = new FormData();
-  //     formData.append('_id', sliderEditing._id);
-  //     formData.append('nombre', sliderEditing.title);
-  //     formData.append('email', sliderEditing.subtitle);
+  const handleSaveUpdate = async () => {
+    try {
+      const response = await fetch(`${url}/users/actualizarUsuario/${userEditing._id}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ nombre: userEditing.nombre,  email: userEditing.email,
+          país: userEditing.país, departamento: userEditing.departamento,
+          ciudad: userEditing.ciudad, contraseña: userEditing.contraseña,
+          rol: userEditing.rol,
+        }),
+      });
+      if (!response.ok) throw new Error('Error al actualizar el usuario');
+      const updatedUsers = users.map((user) => user._id === userEditing._id ? userEditing : user );
+      setUsers(updatedUsers);
+      setIsEditModalOpen(false);
+      setUserEditing(null);
+    } catch (error) { console.error(error.message)}
+  };
 
-  //     const response = await fetch(`${url}/slider/${sliderEditing._id}`, { method: 'PUT', body: formData });
+  const handleDelete = async (userId) => {
+    try {
+      const response = await fetch(`${url}/users/eliminarUsuario/${userId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-  //     if (!response.ok) {
-  //       throw new Error('Error al actualizar los datos');
-  //     }
+      if (!response.ok) {
+        throw new Error('Error al eliminar el usuario');
+      }
 
-  //     // Actualizar el estado del slider después de la edición
-  //     setUsers((prevUsers) => prevUsers.map((user) => user._id === sliderEditing._id ? { ...user, ...sliderEditing } : user));
-
-  //     // Limpiar el estado de edición
-  //     setSliderEditing(null);
-  //     setImageFile(null);
-  //     setIsEditModalOpen(false);
-  //   } catch (error) {
-  //     console.error('Error al guardar los cambios:', error.message);
-  //   }
-  // };
-
-  // const handleDelete = async (_id) => {
-  //   try {
-  //     const response = await fetch(`${url}/slider/${_id}`, {
-  //       method: 'DELETE',
-  //     });
-  //     if (!response.ok) {
-  //       throw new Error('Error al eliminar el usuario');
-  //     }
-  //     const updatedUsers = users.filter((user) => user._id !== _id);
-  //     setUsers(updatedUsers);
-  //   } catch (error) {
-  //     setError(error.message);
-  //   }
-  // };
+      // Actualizar la lista de usuarios después de eliminar
+      const updatedUsers = users.filter((user) => user._id !== userId);
+      setUsers(updatedUsers);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
   return (
     <div className='st-tab-sli'>
@@ -115,9 +115,9 @@ export const Users = () => {
                   <button className="edit" onClick={() => handleUpdate(user)}>
                     <FontAwesomeIcon icon={faEdit} size="1x" />
                   </button>
-                  {/* <button className="trash" onClick={() => handleDelete(user._id)}>
+                  <button className="trash" onClick={() => handleDelete(user._id)}>
                     <FontAwesomeIcon icon={faTrashAlt} size="1x" />
-                  </button> */}
+                  </button>
                 </td>
               </tr>
             ))}
@@ -258,16 +258,15 @@ export const Users = () => {
                   <button type="button" onClick={handleCancelUpdate} className="btn-cancel-sli">
                     Cancelar
                   </button>
-                  {/* <button type="button" onClick={handleSaveUpdate} className="btn-update-sli">
+                  <button type="button" onClick={handleSaveUpdate} className="btn-update-sli">
                     Guardar Cambios
-                  </button> */}
+                  </button>
                 </div>
               </form>
             </div>
           </div>
         )}
       </Modal>
-
     </div>
   );
 };
