@@ -1,9 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { getLifestyleData, url } from '../../../../../../../common/utils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import './styleTop.css';
 
 export const StyleTop = () => {
+  const navigate = useNavigate();
   const styleRef = useRef();
   const [lifestyleData, setLifestyleData] = useState([]);
 
@@ -12,13 +15,15 @@ export const StyleTop = () => {
     fetchData();
   }, []);
 
+  const goToNews = () => { navigate("/lifestyle"); }
+
   return (
     <div ref={styleRef} id="lifestyle">
       <div className="styletop-container st-cont-2">
         <div className="row align-items-start">
           <div className="col-md-6">
             <div className="header">
-              <img src="../assets/Icono.png" alt="Logo de la empresa" className="logo"/>
+              <img src="../assets/Icono.png" alt="Logo de la empresa" className="logo" />
               <h2>Estilo de Vida</h2>
             </div>
 
@@ -34,6 +39,9 @@ export const StyleTop = () => {
                   </div>
                 </Link>
               ))}
+              <button className="btn-ver-mas" onClick={goToNews}>
+                Ver Más <FontAwesomeIcon icon={faPlus} />
+              </button>
             </div>
           </div>
 

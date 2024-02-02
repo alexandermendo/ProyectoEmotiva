@@ -44,7 +44,7 @@ export const Footer = () => {
                 <li className="nav-item-1"><a className="nav-link-1" href="/news" onClick={goToNews}>Noticias</a></li>
                 <li className="nav-item-1"><a className="nav-link-1" href="#deportes" onClick={goToSports}>Deportes</a></li>
                 <li className="nav-item-1"><a className="nav-link-1" href="#entretenimiento" onClick={goToEntertainment}>Entretenimiento</a></li>
-                <li className="nav-item-1"><a className="nav-link-1" href="#lifestyle" onClick={goToLifeStyle}>Estilo de Vida</a></li>
+                <li className="nav-item-1"><a className="nav-link-1" href="/lifestyle" onClick={goToLifeStyle}>Estilo de Vida</a></li>
                 <li className="nav-item-1"><a className="nav-link-1" href="#staff" onClick={goToStaff}>Staff EMOTIVA 2024</a></li>
               </ul>
             </div>

@@ -1,19 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { formatFechaHora, obtenerNoticias, url } from "../../../../../../../../common/utils";
+import { formatFechaHora, getLifestyleData, url } from "../../../../../../../../common/utils";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
-import './relevanteView.css';
+import './styleTopView.css';
 
 // Componente RelevanteView con varias tarjetas de noticias
-export const RelevanteView = () => {
+export const StyleTopView = () => {
   const navigate = useNavigate();
   const noticiasRef = useRef();
-  const [noticias, setNoticias] = useState([]);
+  const [lifeStyleData, setLifestyleData] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchNews = async () => { await obtenerNoticias(setNoticias, setError) };
+    const fetchNews = async () => { await getLifestyleData(setLifestyleData) };
     fetchNews();
   }, []);
 
@@ -24,22 +24,22 @@ export const RelevanteView = () => {
       <div className="custom-relev-container">
         <div className="relevante-title">
           <img src="../assets/Icono.png" alt="Logo de la empresa" className="logo" />
-          <h2>Lo + Relevante</h2>
+          <h2>Estilo de Vida</h2>
         </div>
 
         <div className="card-container">
-          {noticias && noticias.length > 0 ? (
-            noticias.map((noticia, index) => (
-              <Link to={`/relevante/${noticia._id}`} key={index} className="custom-link">
+          {lifeStyleData && lifeStyleData.length > 0 ? (
+            lifeStyleData.map((noticia, index) => (
+              <Link to={`/lifestyle/${noticia._id}`} key={index} className="custom-link">
                 <div className="card custom-card">
                   <div className="row no-gutters">
                     <div className="col-md-4">
                       <img className="card-img custom-card-img" src={`${url}/${noticia.image}`} alt="Ligero" />
                     </div>
                     <div className="col-md-8">
-                      <div className="card-body custom-card-body">
+                      <div className="custom-card-body">
                         <p className="card-text custom-card-date">{formatFechaHora(noticia.publishDate)}</p>
-                        <h5 className="card-title custom-card-title">{noticia.title}</h5>
+                        <h5 className="custom-card-title">{noticia.title}</h5>
                         <p className="card-text custom-card-text">{noticia.subtitle}</p>
                       </div>
                     </div>
@@ -51,9 +51,10 @@ export const RelevanteView = () => {
             <p>{error && <p>Error: {error}</p>}</p>
           )}
         </div>
+
         <button className="btn-ver-mas" onClick={goToHome}>
-            Volver al Inicio <FontAwesomeIcon icon={faHouse} />
-          </button>
+          Volver al Inicio <FontAwesomeIcon icon={faHouse} />
+        </button>
       </div>
     </div>
   );
