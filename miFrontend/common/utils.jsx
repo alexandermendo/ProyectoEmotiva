@@ -114,13 +114,15 @@ export const fetchEntertainmentDetails = async (id, setEntertainmentDetails, set
  * @throws {Error} - Lanza un error si la solicitud no es exitosa o si hay un problema al obtener los datos.
  * @returns {Promise<void>} - Una promesa que se resuelve cuando se obtienen y establecen correctamente los datos de entretenimiento.
  */
-export const fetchEntertainmentData = async (setEntertainmentData) => {
+export const fetchEntertainmentData = async (setEntertainmentData, setError) => {
   try {
     const response = await fetch(`${url}/entertainment/getEntertainment`);
     if (!response.ok) throw new Error("Error al obtener los datos de entretenimiento");
     const data = await response.json();
     setEntertainmentData(data);
-  } catch (error) { console.error(error) }
+  } catch (error) { console.error(error) 
+    setError(error.message);
+  }
 };
 
 /**

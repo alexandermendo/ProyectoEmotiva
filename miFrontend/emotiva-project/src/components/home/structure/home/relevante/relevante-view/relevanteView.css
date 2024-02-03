@@ -60,3 +60,47 @@
 .custom-btn {
   margin-top: 20px;
 }
+
+/* Estilos para dispositivos móviles */
+@media screen and (max-width: 768px) {
+  .custom-relev-container {
+    padding-top: 15%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+  }
+
+  .relevante-title {
+    text-align: center;
+  }
+
+  .relevante-title h2 {
+    margin-top: 10px;
+    /* Ajusta según sea necesario */
+  }
+
+  .card-img {
+    width: 100%;
+  }
+
+  .custom-card-body {
+    padding: 10px;
+    text-align: center;
+    /* Añadido para centrar el texto en dispositivos móviles */
+  }
+
+  .custom-card-title {
+    font-size: 20px;
+    margin-bottom: 5px;
+    /* Ajusta según sea necesario */
+  }
+
+  .custom-card-date,
+  .custom-card-text {
+    font-size: 16px;
+  }
+
+  .custom-btn {
+    margin-top: 15px;
+  }
+}

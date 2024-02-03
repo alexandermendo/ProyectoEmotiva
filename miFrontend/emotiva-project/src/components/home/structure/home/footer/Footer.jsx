@@ -9,8 +9,6 @@ export const Footer = () => {
   const navigate = useNavigate();
   const [imageData, setImageData] = useState([{ fotoFileLogoPath: "" }]);
   const [setError] = useState(null);
-  const deportesRef = useRef();
-  const entertainmentRef = useRef();
   const staffRef = useRef();
 
   useEffect(() => {
@@ -18,10 +16,11 @@ export const Footer = () => {
     fetchLogo();
   }, [])
 
+  const goToHome = () => {  navigate("/") };
   const goToNews = () => {  navigate("/news") };
   const goToLifeStyle = () => { navigate("/lifestyle") };
-  const goToSports = () => { if (deportesRef.current) { deportesRef.current.scrollIntoView({ behavior: "smooth" })}};
-  const goToEntertainment = () => { if (entertainmentRef.current) { entertainmentRef.current.scrollIntoView({ behavior: "smooth" })}};
+  const goToSports = () => { navigate("/sports") };
+  const goToEntertainment = () => { navigate("/entertainment") };
   const goToStaff = () => { if (staffRef.current) { staffRef.current.scrollIntoView({ behavior: "smooth" })}};
 
   return (
@@ -40,11 +39,11 @@ export const Footer = () => {
             <div className='foo-ter-nav col-md-6'>
               <h1>Navegación</h1>
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item-1"><a className="nav-link-1" href="/">Inicio</a></li>
-                <li className="nav-item-1"><a className="nav-link-1" href="/news" onClick={goToNews}>Noticias</a></li>
-                <li className="nav-item-1"><a className="nav-link-1" href="#deportes" onClick={goToSports}>Deportes</a></li>
-                <li className="nav-item-1"><a className="nav-link-1" href="#entretenimiento" onClick={goToEntertainment}>Entretenimiento</a></li>
-                <li className="nav-item-1"><a className="nav-link-1" href="/lifestyle" onClick={goToLifeStyle}>Estilo de Vida</a></li>
+                <li className="nav-item-1"><a className="nav-link-1" onClick={goToHome}>Inicio</a></li>
+                <li className="nav-item-1"><a className="nav-link-1" onClick={goToNews}>Noticias</a></li>
+                <li className="nav-item-1"><a className="nav-link-1" onClick={goToSports}>Deportes</a></li>
+                <li className="nav-item-1"><a className="nav-link-1" onClick={goToEntertainment}>Entretenimiento</a></li>
+                <li className="nav-item-1"><a className="nav-link-1" onClick={goToLifeStyle}>Estilo de Vida</a></li>
                 <li className="nav-item-1"><a className="nav-link-1" href="#staff" onClick={goToStaff}>Staff EMOTIVA 2024</a></li>
               </ul>
             </div>
@@ -64,7 +63,7 @@ export const Footer = () => {
 
         <div className='col-md-4'>
           <div className='foo-ter-nav col-md-6'>
-            <h1>Nuestras Redes Sociales</h1>
+            <h1>Redes Sociales</h1>
             <div className='social-icons'>
               <a href='https://www.instagram.com/' target='_blank' rel='noopener noreferrer' className='icon-margin'>
                 <FontAwesomeIcon icon={faInstagram} size='2x' color='white'/>

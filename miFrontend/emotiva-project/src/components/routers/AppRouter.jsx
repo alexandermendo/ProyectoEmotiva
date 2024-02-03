@@ -31,6 +31,7 @@ import { AddEntertainment } from "../dashboard/entertainment/add-entertainment/A
 import { Users } from "../dashboard/users/Users";
 import { EmotivaLifeStyleNewsRouter } from "./EmotivaLifeStyleNewsRouter";
 import { EmotivaSportsNewsRouter } from "./EmotivaSportsNewsRouter";
+import { EmotivaEntertainmentNewsRouter } from "./EmotivaEntertainmentNewsRouter";
 
 export const AppRouter = () => {
   return (
@@ -52,6 +53,7 @@ export const AppRouter = () => {
         <Route path="/news" element={<EmotivaRelevanteNewsRouter />} />
         <Route path="/lifestyle" element={<EmotivaLifeStyleNewsRouter />} />
         <Route path="/sports" element={<EmotivaSportsNewsRouter/>} />
+        <Route path="/entertainment" element={<EmotivaEntertainmentNewsRouter/>} />
         <Route path="/relevante/:id" element={<EmotivaRelevanteRouter />} />
         <Route path="/lifestyle/:id" element={<EmotivaLifeStyleRouter />} />
         <Route path="/sports/:id" element={<EmotivaSportsRouter />} />

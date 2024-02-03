@@ -1,19 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { formatFechaHora, getSportsData, url } from "../../../../../../../../common/utils";
+import { fetchEntertainmentData, formatFechaHora, url } from "../../../../../../../../common/utils";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
-import './sportView.css';
+import './entertainmentView.css';
 
 // Componente RelevanteView con varias tarjetas de noticias
-export const SportView = () => {
+export const EntertainmentView = () => {
   const navigate = useNavigate();
   const noticiasRef = useRef();
-  const [sports, setSports] = useState([]);
+  const [entertainmentData, setEntertainmentData] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchNews = async () => { await getSportsData(setSports, setError) };
+    const fetchNews = async () => { await fetchEntertainmentData(setEntertainmentData, setError) };
     fetchNews();
   }, []);
 
@@ -24,13 +24,13 @@ export const SportView = () => {
       <div className="custom-relev-container">
         <div className="relevante-title">
           <img src="../assets/Icono.png" alt="Logo de la empresa" className="custom-logo" />
-          <h2>Deportes</h2>
+          <h2>Cultura y Entretenimiento</h2>
         </div>
 
         <div className="card-container">
-          {sports && sports.length > 0 ? (
-            sports.map((noticia, index) => (
-              <Link to={`/sports/${noticia._id}`} key={index} className="custom-link">
+          {entertainmentData && entertainmentData.length > 0 ? (
+            entertainmentData.map((noticia, index) => (
+              <Link to={`/entertainment/${noticia._id}`} key={index} className="custom-link">
                 <div className="card custom-card-main">
                   <div className="row no-gutters">
                     <div className="col-md-4">
@@ -46,15 +46,9 @@ export const SportView = () => {
                   </div>
                 </div>
               </Link>
-            ))
-          ) : (
-            <p>{error && <p>Error: {error}</p>}</p>
-          )}
+            ))) : ( <p>{error && <p>Error: {error}</p>}</p> )}
         </div>
-
-        <button className="custom-btn-ver-mas" onClick={goToHome}>
-          Volver al Inicio <FontAwesomeIcon icon={faHouse} />
-        </button>
+        <button className="custom-btn-ver-mas" onClick={goToHome}>Volver al Inicio <FontAwesomeIcon icon={faHouse} /></button>
       </div>
     </div>
   );

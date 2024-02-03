@@ -60,23 +60,3 @@
   display: block;
   margin: 0 auto;
 }
-
-/* Estilos específicos para dispositivos móviles */
-
-@media screen and (max-width: 768px) {
-  .relevante-title {
-    justify-content: center;
-  }
-
-  .custom-card-img {
-    width: 100%; /* Ajustar el ancho para ocupar el 100% del contenedor en dispositivos móviles */
-  }
-
-  .custom-card-body {
-    position: static;
-  }
-
-  .custom-btn-ver-mas {
-    width: 100%; /* Ajustar el ancho para ocupar el 100% del contenedor en dispositivos móviles */
-  }
-}
