@@ -35,7 +35,7 @@
 }
 
 .estilo-card p {
-  color: #f3aa21;
+  color: #f4e2aa;
   font-family: Proxima Nova Thin, sans-serif;
   text-transform: uppercase;
   font-size: 14px;
@@ -202,5 +202,9 @@
   .text-top h1 {
     font-family: Proxima Nova Alt, sans-serif;
     font-size: 15px;
+  }
+
+  .estilo-card h5.card-title {
+    font-size: 20px;
   }
 }

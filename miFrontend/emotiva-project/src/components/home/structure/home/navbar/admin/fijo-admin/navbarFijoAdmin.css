@@ -1,7 +1,6 @@
-.emotiva-container-navbar {
+.emotiva-navbar {
   background-color: rgba(117, 41, 149, 0.9);
 }
-
 
 .navbar-nav .nav-link {
   color: white;
@@ -69,15 +68,14 @@
 
 /* Estilos para dispositivos móviles */
 @media (max-width: 768px) {
-  .ligero-container-navbar {
-    padding: 3% 0;
+  .emotiva-navbar {
+    padding: 1% 0;
   }
 
   .navbar-search .btn-cre-usu,
   .navbar-search .btn-cer-ses {
     display: inline-block;
     width: auto;
-    /* Restablezco el ancho automático para los botones */
   }
 
   .navbar-search {
@@ -88,18 +86,43 @@
     display: inline-block;
   }
 
-  .btn-cre-usu,
-  .btn-cer-ses {
-    width: auto;
-    /* Restablezco el ancho automático para los botones */
-  }
-
   .navbar-nav .nav-link {
     margin-top: 1%;
   }
 
   .form-inline {
     position: absolute;
-    left: 36%;
+    left: 50%;
+  }
+
+  .home-auth {
+    display: none;
+  }
+
+  .btn-fijo {
+    display: flex;
+    margin-left: 1em;
   }
 }
+
+@media only screen and (max-width: 688px) {
+  .btn-fijo {
+    display: flex;
+    margin-left: 5em;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .btn-fijo {
+    display: flex;
+    margin-left: 5em;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .btn-fijo {
+    display: flex;
+    margin-left: 4em;
+  }
+}
+

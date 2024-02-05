@@ -5,7 +5,7 @@ import { Navbar } from "../../navbar/navbar/Navbar";
 import { Relevante } from "../../relevante/Relevante";
 import { Slider } from "../../slider/Slider";
 import { SportEnt } from "../../sportEnt/SportEnt";
-import { Staff } from "../../staff/Staff";
+// import { Staff } from "../../staff/Staff";
 import { StyleTop } from "../../styletop/StyleTop";
 
 export const EmotivaHome = () => {
@@ -19,7 +19,7 @@ export const EmotivaHome = () => {
       <Fecha />
       <Navbar />
       <Slider />
-      <Staff />
+      {/* <Staff /> */}
       <hr style={hrStyle} />
       <Relevante />
       <hr style={hrStyle} />

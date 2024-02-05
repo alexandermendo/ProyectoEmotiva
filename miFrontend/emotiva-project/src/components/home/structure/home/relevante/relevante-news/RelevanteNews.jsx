@@ -35,11 +35,11 @@ export const RelevanteNews = () => {
       </div>
 
       <div className='cont-img'>
-        <img src={`${url}/${relevanteDetails.data.image}`} alt="Foto 1" style={{ width: '1250px', height: '700px' }} />
+        <img src={`${url}/${relevanteDetails.data.image}`} alt="Foto 1" className="relevante-foto"/>
       </div>
 
       <div className='cont-texto'>
-        <div dangerouslySetInnerHTML={{ __html: relevanteDetails.data.description }} />
+        <div dangerouslySetInnerHTML={{ __html: relevanteDetails.data.description }} className="cont-texto-p"/>
       </div>
     </>
   )

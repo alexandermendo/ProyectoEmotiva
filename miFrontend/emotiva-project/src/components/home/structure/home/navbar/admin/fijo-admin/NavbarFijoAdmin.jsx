@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../../../../../../contexts/AuthContext";
 import { url } from "../../../../../../../../../common/utils";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChessBoard, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./navbarFijoAdmin.css";
 
@@ -34,14 +36,16 @@ export const NavbarFijoAdmin = () => {
 
   return (
     <>
-      <nav className={`emotiva-container-navbar navbar navbar-light justify-content-between`} >
+      <nav className={`emotiva-navbar navbar navbar-light justify-content-between`} >
         <div className="container-fluid">
           <a className="navbar-brand" href="/"><img className="img-logo-emotiva" src={`${url}/${imageData[0].fotoFileLogoPath}`}
             alt="Ligero" /></a>
           <form className="form-inline d-flex">
             <h1 className="home-auth">Página de Inicio: {value.isAuthenticated ? 'SI' : 'NO'} </h1>
-            <button className="btn-cre-usu mobile-menu-btn" type="button" onClick={gotoDashboard}>Dashboard</button>
-            <button className="btn-cer-ses mobile-menu-btn" type="button" onClick={logout}>Cerrar Sesión</button>
+            <div className="btn-fijo">
+              <button className="btn-cre-usu mobile-menu-btn" type="button" onClick={gotoDashboard}><FontAwesomeIcon icon={faChessBoard} /></button>
+              <button className="btn-cer-ses mobile-menu-btn" type="button" onClick={logout}><FontAwesomeIcon icon={faRightFromBracket} /></button>
+            </div>
           </form>
         </div>
       </nav>

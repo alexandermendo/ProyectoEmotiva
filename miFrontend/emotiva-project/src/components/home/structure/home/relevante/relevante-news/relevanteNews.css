@@ -1,3 +1,4 @@
+/* Estilos generales para pantallas más grandes */
 .cont-news {
   padding-top: 10%;
   padding-left: 10%;
@@ -30,7 +31,10 @@
 
 .cont-img {
   margin-left: 10%;
-  margin-bottom: 5%;
+}
+
+.relevante-foto {
+  width: 75em;
 }
 
 .cont-texto {
@@ -39,6 +43,126 @@
   margin-bottom: 5%;
 }
 
-.cont-texto p {
+.cont-texto-p {
   text-align: justify;
+  font-family: Proxima Nova Alt, sans-serif;
+  font-size: 12px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .cont-news h1 {
+    font-family: Proxima Nova Bold, sans-serif;
+    font-weight: bold;
+    font-size: 37px;
+  }
+
+  .relevante-foto {
+    width: 52em;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .cont-news {
+    padding-top: 20%;
+    padding-left: 5%;
+  }
+
+  .cont-news p {
+    font-size: 1px;
+  }
+
+  .cont-news h1 {
+    font-family: Proxima Nova Bold, sans-serif;
+    font-weight: bold;
+    font-size: 21px;
+  }
+
+  .cont-pub {
+    margin-left: 5%;
+    margin-bottom: 1%;
+  }
+
+  .pub-dat {
+    flex-direction: column;
+  }
+
+  .pub-dat p {
+    text-align: left;
+  }
+
+  .cont-img {
+    margin-left: 5%;
+    margin-bottom: 3%;
+  }
+
+  .relevante-foto {
+    width: 21em;
+  }
+
+  .cont-texto {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 3%;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .cont-news h1 {
+    font-family: Proxima Nova Bold, sans-serif;
+    font-weight: bold;
+    font-size: 19px;
+  }
+
+  .relevante-foto {
+    width: 35em;
+  }
+}
+
+@media only screen and (max-width: 412px) {
+  .cont-texto-p {
+    text-align: justify;
+    font-family: Proxima Nova Alt, sans-serif;
+    font-size: 12px;
+  }
+
+  .relevante-foto {
+    width: 21em;
+  }
+}
+
+@media only screen and (max-width: 393px) {
+  .cont-news h1 {
+    font-family: Proxima Nova Bold, sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+  }
+
+  .relevante-foto {
+    width: 19em;
+  }
+}
+
+
+@media only screen and (max-width: 375px) {
+  .cont-news h1 {
+    font-family: Proxima Nova Bold, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .relevante-foto {
+    width: 19em;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .cont-news h1 {
+    font-family: Proxima Nova Bold, sans-serif;
+    font-weight: bold;
+    font-size: 19px;
+  }
+
+  .relevante-foto {
+    width: 18em;
+  }
 }
