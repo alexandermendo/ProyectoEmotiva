@@ -87,3 +87,9 @@
     padding: 7%;
   }
 }
+
+@media (max-width: 360px) {
+  .relev-cont h2 {
+    font-size: 38px;
+  }
+}
