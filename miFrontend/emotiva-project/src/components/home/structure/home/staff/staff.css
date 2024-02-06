@@ -23,8 +23,8 @@
 }
 
 .logo {
-  max-width: 25px; 
-  margin-right: 10px; 
+  max-width: 25px;
+  margin-right: 10px;
 }
 
 .card {
@@ -70,10 +70,32 @@
   margin-left: 2%;
 }
 
+@media (max-width: 1024px) {
+  .card-name-staff {
+    font-size: 7px;
+  }
+
+  .card-lastname-staff {
+    font-size: 20px;
+  }
+
+  .card-name-st {
+    font-size: 7px;
+  }
+}
+
 @media (max-width: 768px) {
   .slider-container {
     background-color: #315c91;
     padding: 6%;
     padding-bottom: 4%;
+  }
+
+  .card-name-staff {
+    font-size: 10px;
+  }
+
+  .card-lastname-staff {
+    font-size: 35px;
   }
 }
