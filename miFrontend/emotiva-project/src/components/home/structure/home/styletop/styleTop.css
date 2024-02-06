@@ -55,8 +55,8 @@
 }
 
 .logo-e {
-  max-width: 25px; 
-  margin-right: 10px; 
+  max-width: 25px;
+  margin-right: 10px;
 }
 
 
@@ -134,7 +134,7 @@
   background-color: #aa0436;
 }
 
-.spot-cls h1{
+.spot-cls h1 {
   background-color: #aa0436;
   font-family: Proxima Nova Thin, sans-serif;
   color: white;
@@ -142,12 +142,24 @@
   text-align: center
 }
 
-.spot-cls p{
+.spot-cls p {
   background-color: #aa0436;
   font-family: Proxima Nova Thin, sans-serif;
   color: white;
   text-transform: uppercase;
   text-align: center
+}
+
+@media (max-width: 1024px) {
+  .btn-top-list,
+  .btn-top-list:hover {
+    position: relative;
+    left: 30%;
+  }
+
+  .estilo-card h5.card-title {
+    font-size: 20px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -169,8 +181,9 @@
   .top-10 h1 {
     font-family: Proxima Nova Alt, sans-serif;
     color: #f09916;
-    font-size: 40px;
+    font-size: 28px;
     text-align: start;
+    margin-top: 3%;
     margin-bottom: 3%;
     font-weight: bold;
   }
@@ -201,10 +214,10 @@
 
   .text-top h1 {
     font-family: Proxima Nova Alt, sans-serif;
-    font-size: 15px;
+    font-size: 28px;
   }
 
   .estilo-card h5.card-title {
-    font-size: 20px;
+    font-size: 25px;
   }
 }
