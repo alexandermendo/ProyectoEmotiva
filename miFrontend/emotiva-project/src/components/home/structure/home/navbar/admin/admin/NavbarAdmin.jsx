@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../../../../../../contexts/AuthContext";
 import { fetchLogoData, url } from "../../../../../../../../../common/utils";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChessBoard, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./navbarAdmin.css";
 
@@ -65,8 +67,8 @@ export const NavbarAdmin = () => {
             </ul>
             <form className="d-flex" role="search">
               <h1 className="home-auth">Página de Inicio: {value.isAuthenticated ? 'SI' : 'NO'} </h1>
-              <button className="btn-cre-usu mobile-menu-btn" type="button" onClick={gotoDashboard}>Dashboard</button>
-              <button className="btn-cer-ses mobile-menu-btn" type="button" onClick={logout}>Cerrar Sesión</button>
+              <button className="btn-cre-usu mobile-menu-btn" type="button" onClick={gotoDashboard}><FontAwesomeIcon icon={faChessBoard} /></button>
+              <button className="btn-cer-ses mobile-menu-btn" type="button" onClick={logout}><FontAwesomeIcon icon={faRightFromBracket} /></button>
             </form>
           </div>
         </div>
