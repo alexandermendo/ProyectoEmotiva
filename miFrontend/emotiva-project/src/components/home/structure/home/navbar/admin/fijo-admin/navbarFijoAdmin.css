@@ -92,37 +92,43 @@
 
   .form-inline {
     position: absolute;
-    left: 50%;
+    left: 13em;
   }
 
   .home-auth {
     display: none;
   }
 
-  .btn-fijo {
-    display: flex;
-    margin-left: 1em;
-  }
-}
-
-@media only screen and (max-width: 688px) {
-  .btn-fijo {
-    display: flex;
-    margin-left: 5em;
+  .btn-cre-usu {
+    position: absolute;
+    left: 6em;
   }
 }
 
 @media only screen and (max-width: 414px) {
-  .btn-fijo {
+  /* .btn-fijo {
     display: flex;
     margin-left: 5em;
+  } */
+}
+
+@media only screen and (max-width: 393px) {
+  .form-inline {
+    position: absolute;
+    left: 11em;
   }
 }
 
 @media only screen and (max-width: 375px) {
-  .btn-fijo {
-    display: flex;
-    margin-left: 4em;
+  .form-inline {
+    position: absolute;
+    left: 9em;
   }
 }
 
+@media only screen and (max-width: 360px) {
+  .form-inline {
+    position: absolute;
+    left: 10em;
+  }
+}

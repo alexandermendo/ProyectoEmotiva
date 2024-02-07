@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../../../../../contexts/AuthContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./navbar.css";
 
@@ -49,7 +51,7 @@ export const Navbar = () => {
             </ul>
             <form className="d-flex" role="search">
               <h1 className="home-auth">Página de Inicio: {value.isAuthenticated ? 'SI' : 'NO'} </h1>
-              <button className="btn-cer-ses mobile-menu-btn" type="button" onClick={login}>Iniciar Sesión</button>
+              <button className="btn-cer-ses mobile-menu-btn" type="button" onClick={login}><FontAwesomeIcon icon={faRightToBracket} /></button>
             </form>
           </div>
         </div>

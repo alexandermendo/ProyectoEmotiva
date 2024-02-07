@@ -34,7 +34,7 @@ export const SportView = () => {
                 <div className="card custom-card-main">
                   <div className="row no-gutters">
                     <div className="col-md-4">
-                      <img className="custom-card-img" src={`${url}/${noticia.image}`} alt="Ligero" />
+                      <img className="custom-card-img-3" src={`${url}/${noticia.image}`} alt="Ligero" />
                     </div>
                     <div className="col-md-8">
                       <div className="custom-card-body">

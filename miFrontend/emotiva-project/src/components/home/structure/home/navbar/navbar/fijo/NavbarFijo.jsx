@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../../../../../../contexts/AuthContext";
 import { fetchLogoData, url } from "../../../../../../../../../common/utils";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./navbarFijo.css";
 
@@ -26,7 +28,7 @@ export const NavbarFijo = () => {
             alt="Ligero" /></a>
           <form className="form-inline d-flex">
             <h1 className="home-auth">Página de Inicio: {value.isAuthenticated ? 'SI' : 'NO'} </h1>
-            <button className="btn-cer-ses mobile-menu-btn" type="button" onClick={login}>Iniciar Sesión</button>
+            <button className="btn-cer-ses mobile-menu-btn" type="button" onClick={login}><FontAwesomeIcon icon={faRightToBracket} /></button>
           </form>
         </div>
       </nav>

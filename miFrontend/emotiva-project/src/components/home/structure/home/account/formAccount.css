@@ -43,3 +43,33 @@
     font-size: 14px;
   }
 }
+
+@media (max-width: 412px) {
+  .account-container {
+    height: 105vh;
+  }
+}
+
+@media (max-width: 393px) {
+  .account-container {
+    height: 115vh;
+  }
+
+  .account-form h1 {
+    font-size: 29px;
+  }
+
+  .account-form label {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .account-container {
+    height: 123vh;
+  }
+
+  .account-form h1 {
+    font-size: 28px;
+  }
+}

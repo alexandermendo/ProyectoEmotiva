@@ -61,6 +61,20 @@
   margin-top: 20px;
 }
 
+@media screen and (max-width: 1024px) {
+  .custom-card-date {
+    font-size: 10px;
+  }
+
+  .custom-card-title {
+    font-size: 17px !important;
+  }
+
+  .custom-card-text {
+    font-size: 10px !important;
+  }
+}
+
 /* Estilos para dispositivos móviles */
 @media screen and (max-width: 768px) {
   .custom-relev-container {
@@ -86,21 +100,32 @@
   .custom-card-body {
     padding: 10px;
     text-align: center;
-    /* Añadido para centrar el texto en dispositivos móviles */
+    display: contents;
   }
 
   .custom-card-title {
-    font-size: 20px;
-    margin-bottom: 5px;
-    /* Ajusta según sea necesario */
+    font-size: 17px;
   }
 
-  .custom-card-date,
+  .custom-card-date {
+    text-align: justify;
+    margin-left: 3%;
+    margin-top: 3%;
+    font-size: 13px;
+  }
+
   .custom-card-text {
-    font-size: 16px;
+    font-size: 12px;
+    margin-bottom: 3%;
   }
 
   .custom-btn {
     margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 393px) {
+  .custom-card-title {
+    font-size: 20px !important;
   }
 }

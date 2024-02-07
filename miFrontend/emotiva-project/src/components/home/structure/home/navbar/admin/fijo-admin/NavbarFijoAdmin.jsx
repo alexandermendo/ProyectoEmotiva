@@ -42,10 +42,8 @@ export const NavbarFijoAdmin = () => {
             alt="Ligero" /></a>
           <form className="form-inline d-flex">
             <h1 className="home-auth">Página de Inicio: {value.isAuthenticated ? 'SI' : 'NO'} </h1>
-            <div className="btn-fijo">
               <button className="btn-cre-usu mobile-menu-btn" type="button" onClick={gotoDashboard}><FontAwesomeIcon icon={faChessBoard} /></button>
               <button className="btn-cer-ses mobile-menu-btn" type="button" onClick={logout}><FontAwesomeIcon icon={faRightFromBracket} /></button>
-            </div>
           </form>
         </div>
       </nav>

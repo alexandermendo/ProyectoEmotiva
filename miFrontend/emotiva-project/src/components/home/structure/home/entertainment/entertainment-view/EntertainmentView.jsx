@@ -34,13 +34,13 @@ export const EntertainmentView = () => {
                 <div className="card custom-card-main">
                   <div className="row no-gutters">
                     <div className="col-md-4">
-                      <img className="custom-card-img" src={`${url}/${noticia.image}`} alt="Ligero" />
+                      <img className="custom-card-img-4" src={`${url}/${noticia.image}`} alt="Ligero" />
                     </div>
                     <div className="col-md-8">
                       <div className="custom-card-body">
                         <p className="custom-card-date">{formatFechaHora(noticia.publishDate)}</p>
-                        <h5 className="custom-card-title">{noticia.title}</h5>
-                        <p className="custom-card-text">{noticia.subtitle}</p>
+                        <h5 className="custom-card-title-ent">{noticia.title}</h5>
+                        <p className="custom-card-text-ent">{noticia.subtitle}</p>
                       </div>
                     </div>
                   </div>
