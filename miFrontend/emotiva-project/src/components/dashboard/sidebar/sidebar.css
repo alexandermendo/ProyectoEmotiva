@@ -64,3 +64,51 @@
 .text-add-note {
   font-family: Proxima Nova Thin, sans-serif;
 }
+
+/* Estilos específicos para dispositivos móviles */
+@media only screen and (max-width: 768px) {
+  .sidebar {
+    padding: 10px; /* Reducir el padding en dispositivos móviles */
+  }
+  
+  .sidebar h2 {
+    margin-bottom: 15px; /* Reducir el margen inferior de los títulos */
+    font-size: 1.2em; /* Tamaño de fuente más pequeño para títulos */
+  }
+
+  .sidebar li {
+    margin-bottom: 5px; /* Reducir el margen inferior de los elementos de la lista */
+  }
+
+  .sidebar a {
+    font-size: 0.9em; /* Tamaño de fuente más pequeño para enlaces */
+  }
+
+  .img-logo-emotiva-1 {
+    width: 100%; /* Ancho completo para el logo en dispositivos móviles */
+    height: auto; /* Altura automática para el logo */
+    margin-bottom: 15px; /* Reducir el margen inferior del logo */
+  }
+
+  .dash-item {
+    flex-direction: column; /* Cambiar la dirección de flexión en dispositivos móviles */
+    align-items: center; /* Centrar elementos en dispositivos móviles */
+  }
+
+  .logo-dash {
+    width: 15%; /* Ancho reducido para el icono del dashboard en dispositivos móviles */
+    margin-bottom: 10px; /* Reducir el margen inferior del icono */
+  }
+
+  .text-side {
+    text-align: center; /* Alinear texto al centro en dispositivos móviles */
+  }
+  
+  .title-text {
+    font-size: 1em; /* Tamaño de fuente más pequeño para títulos en dispositivos móviles */
+  }
+
+  .text-add-note {
+    font-size: 0.8em; /* Tamaño de fuente más pequeño para texto adicional en dispositivos móviles */
+  }
+}

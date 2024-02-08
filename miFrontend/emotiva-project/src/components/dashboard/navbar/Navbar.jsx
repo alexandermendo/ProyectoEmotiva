@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import './navbar.css';
 
 export const Navbar = () => {
@@ -51,7 +53,7 @@ export const Navbar = () => {
         ) : null}
 
         <li className="nav-item">
-          <button className="btn-cer-ses mobile-menu-btn" type="button" onClick={logout}>Cerrar Sesión</button>
+          <button className="btn-cer-ses mobile-menu-btn" type="button" onClick={logout}><FontAwesomeIcon icon={faRightFromBracket}/></button>
         </li>
       </ul>
     </nav>
