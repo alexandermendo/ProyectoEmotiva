@@ -23,7 +23,7 @@ export const EntertainmentNews = () => {
 
   return (
     <>
-      <div className='cont-news'>
+      <div className='cont-ent'>
         <p>Entretenimiento</p>
         <h1>{entertainmentDetails.data.title}</h1>
       </div>
@@ -35,7 +35,7 @@ export const EntertainmentNews = () => {
       </div>
 
       <div className='cont-img'>
-        <img src={`${url}/${entertainmentDetails.data.image}`} alt="Foto 1" style={{ width: '1250px', height: '700px' }} />
+        <img src={`${url}/${entertainmentDetails.data.image}`} alt="Foto 1" className="foto-sport" />
       </div>
 
       <div className='cont-texto'>

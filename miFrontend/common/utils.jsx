@@ -24,7 +24,7 @@ export const fetchUsuarios = async (token) => {
     });
     if (response.status === 200) {
       const data = await response.json();
-      return data.data;
+      return data;
     } else {
       console.error("Error al obtener los datos del usuario");
       return null;

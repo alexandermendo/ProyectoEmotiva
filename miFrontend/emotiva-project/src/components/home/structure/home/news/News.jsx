@@ -19,13 +19,13 @@ export const News = () => {
   }, [])
 
   if (loading) return <p>Cargando datos...</p>;
-  const formatDate = formatFechaHora(sliderDetails.data.publishDate);
+  const formatDate = formatFechaHora(sliderDetails.publishDate);
 
   return (
     <>
-      <div className='cont-news'>
+      <div className='cont-news-s'>
         <p>Noticias</p>
-        <h1>{sliderDetails.data.title}</h1>
+        <h1>{sliderDetails.title}</h1>
       </div>
 
       <div className='cont-pub'>
@@ -35,11 +35,11 @@ export const News = () => {
       </div>
 
       <div className='cont-img'>
-        <img src={`${url}/${sliderDetails.data.image}`} alt="Foto 1" style={{ width: '1250px', height: '700px' }} />
+        <img src={`${url}/${sliderDetails.image}`} alt="Foto 1" className="foto-news" />
       </div>
 
       <div className='cont-texto'>
-        <div dangerouslySetInnerHTML={{ __html: sliderDetails.data.description }} />
+        <div dangerouslySetInnerHTML={{ __html: sliderDetails.description }} className="cont-texto-p"/>
       </div>
     </>
   )

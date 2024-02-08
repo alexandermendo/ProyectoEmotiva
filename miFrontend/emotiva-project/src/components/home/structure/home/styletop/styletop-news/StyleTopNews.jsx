@@ -23,7 +23,7 @@ export const StyleTopNews = () => {
 
   return (
     <>
-      <div className='cont-news'>
+      <div className='cont-style'>
         <p>Estilo de Vida</p>
         <h1>{styleDetails.data.title}</h1>
       </div>
@@ -35,7 +35,7 @@ export const StyleTopNews = () => {
       </div>
 
       <div className='cont-img'>
-        <img src={`${url}/${styleDetails.data.image}`} alt="Foto 1" style={{ width: '1250px', height: '700px' }} />
+        <img src={`${url}/${styleDetails.data.image}`} alt="Foto 1" className="foto-style" />
       </div>
 
       <div className='cont-texto'>
