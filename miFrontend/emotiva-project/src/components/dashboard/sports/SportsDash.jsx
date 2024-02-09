@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,6 +7,7 @@ import { url } from '../../../../../common/utils';
 import './sportsDash.css';
 
 export const SportsDash = () => {
+  const navigate = useNavigate();
   const [news, setNews] = useState([]);
   const [error, setError] = useState(null);
   const [lifeEditing, setLifeEditing] = useState(null);
@@ -78,9 +80,14 @@ export const SportsDash = () => {
     return text;
   };
 
+  const addSportsNote = () => {
+    navigate("/dashboard/add-sports");
+  }
+
   return (
     <div className='st-tab-sli'>
       <h2>Deportes</h2>
+      <button className='btn-add-staff' onClick={addSportsNote}>Agregar Nota</button>
       {error ? (
         <p>Error: {error}</p>
       ) : (

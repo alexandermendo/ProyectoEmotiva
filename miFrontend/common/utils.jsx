@@ -1,3 +1,4 @@
+import { useAuthContext } from '../emotiva-project/src/contexts/AuthContext';
 import moment from 'moment-with-locales-es6';
 moment.locale('es');
 
@@ -9,6 +10,35 @@ export const HOME = '/';
 export const PRIVATE = '/private';
 export const LOGOUT = '/private/logout';
 export const url = "http://localhost:3000"
+
+/**
+ * Realiza una solicitud de inicio de sesión con las credenciales proporcionadas.
+ * @param {string} username - El nombre de usuario o correo electrónico del usuario.
+ * @param {string} password - La contraseña del usuario.
+ * @param {string} selectedRole - El rol seleccionado por el usuario.
+ * @returns {Promise<{success: boolean, role?: string, message?: string}>} - Un objeto que indica el éxito de la solicitud.
+ */
+export const loginRequest = async (username, password, selectedRole) => {
+  try {
+    const response = await fetch(`${url}/login/`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nombre: username, contraseña: password, rol: selectedRole })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      localStorage.setItem('authToken', data.token);
+      return { success: true, role: selectedRole };
+    } else {
+      return { success: false, message: data.message };
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    return { success: false, message: 'Error al realizar la solicitud de inicio de sesión' };
+  }
+};
 
 /**
  * Realiza una solicitud para obtener la lista de usuarios.
@@ -120,7 +150,8 @@ export const fetchEntertainmentData = async (setEntertainmentData, setError) => 
     if (!response.ok) throw new Error("Error al obtener los datos de entretenimiento");
     const data = await response.json();
     setEntertainmentData(data);
-  } catch (error) { console.error(error) 
+  } catch (error) {
+    console.error(error)
     setError(error.message);
   }
 };
@@ -139,7 +170,7 @@ export const fetchSliderDetails = async (id, setSliderDetails, setLoading) => {
       const data = await response.json();
       setSliderDetails(data);
     } else console.error("Error al obtener los detalles del personal.");
-  } catch (error) { console.error("Error al realizar la solicitud:", error) } 
+  } catch (error) { console.error("Error al realizar la solicitud:", error) }
   finally { setLoading(false) }
 };
 
@@ -153,7 +184,7 @@ export const fetchSliderDetails = async (id, setSliderDetails, setLoading) => {
  *
  * @returns {Promise<void>} Una Promesa que se resuelve una vez que las noticias se han obtenido y establecido correctamente.
  */
-export const obtenerNoticias = async ( setNoticias, setError ) => {
+export const obtenerNoticias = async (setNoticias, setError) => {
   try {
     const response = await fetch(`${url}/news/getNews`);
     if (!response.ok) throw new Error('Error al obtener las noticias');
@@ -162,7 +193,8 @@ export const obtenerNoticias = async ( setNoticias, setError ) => {
     // Verificar si la propiedad 'data' está presente en la respuesta
     if (!data || !data.length) throw new Error('La respuesta del servidor no tiene la estructura esperada.');
     setNoticias(data);
-  } catch (error) { console.error(error);
+  } catch (error) {
+    console.error(error);
     setError(error.message);
   }
 };
@@ -177,14 +209,15 @@ export const obtenerNoticias = async ( setNoticias, setError ) => {
  *
  * @returns {Promise<void>} Una Promesa que se resuelve una vez que las noticias se han obtenido y establecido correctamente.
  */
-export const fetchSliderData = async( setSliderData, setError ) => {
+export const fetchSliderData = async (setSliderData, setError) => {
   try {
     const response = await fetch(`${url}/news/getNews`);
     if (!response.ok) throw new Error('No se pudo obtener el slider');
     const data = await response.json();
     if (data) setSliderData(data);
     else throw new Error('Datos de slider no válidos');
-  } catch (err) { console.error('Error al obtener datos del slider:', err);
+  } catch (err) {
+    console.error('Error al obtener datos del slider:', err);
     setError('No se pudo obtener el slider. Consulta la consola para más detalles.');
   }
 }
@@ -198,7 +231,7 @@ export const fetchSliderData = async( setSliderData, setError ) => {
  *
  * @returns {Promise<void>} Una Promesa que se resuelve una vez que las noticias se han obtenido y establecido correctamente.
  */
-export const getSportsData = async ( setSports, setError ) => {
+export const getSportsData = async (setSports, setError) => {
   try {
     const response = await fetch(`${url}/sports/getSports`);
     if (!response.ok) throw new Error("No se pudo obtener la lista de deportes");
@@ -219,11 +252,12 @@ export const getSportsData = async ( setSports, setError ) => {
 export const fetchStaffData = async (setStaffData, setLoading) => {
   try {
     const response = await fetch(`${url}/celebrities/consulta`);
-    if (response.ok) { const data = await response.json();
+    if (response.ok) {
+      const data = await response.json();
       setStaffData(data);
     } else console.error("Error al obtener los datos del servidor.");
-  } catch (error) { console.error("Error al realizar la solicitud:", error) } 
-  finally { setLoading(false)}
+  } catch (error) { console.error("Error al realizar la solicitud:", error) }
+  finally { setLoading(false) }
 }
 
 /**
@@ -238,10 +272,11 @@ export const fetchStaffData = async (setStaffData, setLoading) => {
 export const fetchStaffDetails = async (id, setStaffDetails, setLoading) => {
   try {
     const response = await fetch(`${url}/celebrities/${id}`);
-    if (response.ok) { const data = await response.json();
+    if (response.ok) {
+      const data = await response.json();
       setStaffDetails(data);
     } else console.error("Error al obtener los detalles del personal.");
-  } catch (error) { console.error("Error al realizar la solicitud:", error) } 
+  } catch (error) { console.error("Error al realizar la solicitud:", error) }
   finally { setLoading(false) }
 };
 
@@ -261,7 +296,7 @@ export const formatFechaHora = (fecha) => {
  * @param {function} setLifestyleData - Función que actualiza el estado con los datos de estilo de vida obtenidos.
  * @returns {Promise<void>} - Una promesa que se resuelve cuando se han obtenido y actualizado los datos correctamente, o se rechaza si hay un error.
  */
-export const getLifestyleData = async ( setLifestyleData ) => {
+export const getLifestyleData = async (setLifestyleData) => {
   try {
     const response = await fetch(`${url}/lifestyle/getLifeStyle`);
     const data = await response.json();
@@ -279,7 +314,7 @@ export const getLifestyleData = async ( setLifestyleData ) => {
  * @returns {Promise<void>} - Una promesa que se resuelve una vez que se han procesado los datos del logo o se ha gestionado el error.
  * @throws {Error} - Se lanza un error si la solicitud para obtener el logo no tiene éxito.
  */
-export const fetchLogoData = async(setImageData, setError) => {
+export const fetchLogoData = async (setImageData, setError) => {
   try {
     const response = await fetch(`${url}/logo/getLogo`);
     if (!response.ok) { throw new Error('No se pudo obtener el slider'); }
@@ -296,7 +331,7 @@ export const fetchLogoData = async(setImageData, setError) => {
  * @returns {function} - Función de limpieza que detiene el intervalo al desmontar el componente.
  */
 export const startDateTimeInterval = (setCurrentDateTime) => {
-  const intervalId = setInterval(() => { setCurrentDateTime(new Date())}, 1000);
+  const intervalId = setInterval(() => { setCurrentDateTime(new Date()) }, 1000);
   return () => clearInterval(intervalId); // Limpieza del intervalo al desmontar el componente
 };
 
@@ -307,8 +342,10 @@ export const startDateTimeInterval = (setCurrentDateTime) => {
  * @returns {string} - Cadena de texto que representa la fecha y hora formateada según las opciones.
  */
 export const formatDateTime = (date) => {
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric',
-    minute: 'numeric', second: 'numeric' };
+  const options = {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric',
+    minute: 'numeric', second: 'numeric'
+  };
   return date.toLocaleDateString('es-ES', options);
 };
 
@@ -357,10 +394,12 @@ export const chunk = (array, size) => {
  * @type {SettingsStaff}
  * @constant
  */
-export const settingsStaff = { dots: true, infinite: false, speed: 500, slidesToShow: 6,
-  slidesToScroll: 4, initialSlide: 0, centerPadding: '50px', 
-  responsive: [{ breakpoint: 1024, settings: { slidesToShow: 3, slidesToScroll: 3, infinite: true, dots: true }},
-               { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 2 }},
-               { breakpoint: 480, settings: { slidesToShow: 1, slidesToScroll: 1 }}
-]};
+export const settingsStaff = {
+  dots: true, infinite: false, speed: 500, slidesToShow: 6,
+  slidesToScroll: 4, initialSlide: 0, centerPadding: '50px',
+  responsive: [{ breakpoint: 1024, settings: { slidesToShow: 3, slidesToScroll: 3, infinite: true, dots: true } },
+  { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 2 } },
+  { breakpoint: 480, settings: { slidesToShow: 1, slidesToScroll: 1 } }
+  ]
+};
 

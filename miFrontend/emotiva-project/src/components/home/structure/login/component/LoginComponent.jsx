@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Alert } from 'react-bootstrap';
 import { useAuthContext } from '../../../../../contexts/AuthContext';
+import { fetchUsuarios, loginRequest } from '../../../../../../../common/utils';
 import './loginComponent.css';
 
 export const LoginComponent = () => {
@@ -11,101 +12,66 @@ export const LoginComponent = () => {
   const [usernameError, setUsernameError] = useState('Por favor, ingresa tu nombre de usuario.');
   const [passwordError, setPasswordError] = useState('Por favor, ingresa tu contraseña.');
   const [selectedRole, setSelectedRole] = useState('Por favor, selecciona un rol.');
+  const [roleError, setRoleError] = useState('Por favor, selecciona un rol.');
+  const [roles, setRoles] = useState([]);
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
+  useEffect(() => {
+    const fetchRoles = async () => {
+      try {
+        const data = await fetchUsuarios('token');
+        if (data) { const uniqueRoles = [...new Set(data.map(user => user.rol))];
+          setRoles(uniqueRoles);
+        } else console.error('Error al obtener la lista de usuarios');
+      } catch (error) { console.error('Error al obtener roles:', error) }
+    };
+    fetchRoles();
+  }, []);
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handleRoleChange = (event) => {
-    setSelectedRole(event.target.value);
-  };
+  const handleUsernameChange = (event) => { setUsername(event.target.value) };
+  const handlePasswordChange = (event) => { setPassword(event.target.value) };
+  const handleRoleChange = (event) => { setSelectedRole(event.target.value) };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!username) {
-      setUsernameError('Por favor, ingresa tu email.');
+    if (!username) { setUsernameError('Por favor, ingresa tu email.');
       setAlert(<Alert variant="warning">{usernameError}</Alert>);
       return;
     }
-    if (!password) {
-      setPasswordError('Por favor, ingresa tu contraseña.');
+    if (!password) { setPasswordError('Por favor, ingresa tu contraseña.');
       setAlert(<Alert variant="warning">{passwordError}</Alert>);
       return;
     }
-    if (!selectedRole) {
-      setSelectedRole('Por favor, selecciona un rol.');
-      setAlert(<Alert variant="warning">{selectedRole}</Alert>);
+    if (!selectedRole) { setAlert(<Alert variant="warning">{roleError}</Alert>);
       return;
     }
-
-    try {
-      const response = await fetch('http://localhost:3000/login/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          nombre: username,
-          contraseña: password,
-          rol: selectedRole,
-        })
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        localStorage.setItem('authToken', data.token);
-        console.log('Token:', data.token);
-        login(selectedRole);
-      } else {
-        setAlert(<Alert variant="danger" style={{ width: "42rem" }}>{data.message}</Alert>);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+    const { success, role, message } = await loginRequest(username, password, selectedRole);
+    if (success) login(role)
+    else setAlert(<Alert variant="danger" style={{ width: "42rem" }}>{message}</Alert>);
+    };
 
   return (
     <div className="login-container">
       <div className="login-form">
         <h1>Iniciar sesión</h1>
         <hr />
-
         {alert}
+        <div className="form-group">
+          <input type="text" id="username" value={username} onChange={handleUsernameChange} className="form-control" placeholder='Nombre' />
+        </div>
 
         <div className="form-group">
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={handleUsernameChange}
-            className="form-control"
-            placeholder='Nombre'
-          />
+          <input type="password" id="password" value={password} onChange={handlePasswordChange} className="form-control" placeholder='Password' />
         </div>
-        <div className="form-group">
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={handlePasswordChange}
-            className="form-control"
-            placeholder='Password'
-          />
-        </div>
+
         <div className="form-group">
           <select value={selectedRole} onChange={handleRoleChange} className='sel-rol'>
             <option value="">-- Seleccionar Rol --</option>
-            <option value="Administrador">Administrador</option>
+            {roles.map(role => (<option key={role} value={role}>{role}</option>))}
           </select>
         </div>
+
         <div className="form-group">
           <button type="submit" onClick={handleSubmit} className="btn-login">Continuar</button>
-          {/* <button type="submit" className="btn-login">Iniciar Sesión con Google</button> */}
         </div>
       </div>
     </div>

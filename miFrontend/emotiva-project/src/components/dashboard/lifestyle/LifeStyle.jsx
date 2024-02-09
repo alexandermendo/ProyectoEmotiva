@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,6 +7,7 @@ import { url } from '../../../../../common/utils';
 import './lifeStyle.css';
 
 export const LifeStyleDash = () => {
+  const navigate = useNavigate();
   const [news, setNews] = useState([]);
   const [error, setError] = useState(null);
   const [lifeEditing, setLifeEditing] = useState(null);
@@ -78,9 +80,14 @@ export const LifeStyleDash = () => {
     return text;
   };
 
+  const addLifeStyleNote = () => {
+    navigate("/dashboard/add-lifestyle")
+  }
+
   return (
     <div className='st-tab-sli'>
       <h2>Estilo de Vida</h2>
+      <button className='btn-add-staff' onClick={addLifeStyleNote}>Agregar Nota</button>
       {error ? (
         <p>Error: {error}</p>
       ) : (

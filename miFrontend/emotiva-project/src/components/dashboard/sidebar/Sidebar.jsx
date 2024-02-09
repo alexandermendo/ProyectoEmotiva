@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import './sidebar.css';
 
-export const SidebarDash = () => {
+export const SidebarDash = ({ userRole }) => {
+  // Función para verificar si un rol tiene permiso para ver cierta sección
+  const hasPermission = (allowedRoles) => {
+    return allowedRoles.includes(userRole);
+  };
+
   return (
     <>
       <div className="sidebar">
@@ -30,8 +35,11 @@ export const SidebarDash = () => {
             />
             <div className="text-side">
               <Link to="/dashboard/resumen" className="title-text">Slider</Link>
-              <Link to="/dashboard/add-slider" className="text-add-note">Ingresar Nota</Link>
+              {hasPermission(["Administrador", "Noticias"]) && (
+                <Link to="/dashboard/add-slider" className="text-add-note">Ingresar Nota</Link>
+              )}
             </div>
+
           </li>
 
           <li className="dash-item">
@@ -42,7 +50,6 @@ export const SidebarDash = () => {
             />
             <div className="text-side">
               <Link to="/dashboard/staff" className="title-text">Staff</Link>
-              <Link to="/dashboard/add-staff" className="text-add-note">Ingresar Celebridad</Link>
             </div>
           </li>
 
@@ -54,7 +61,6 @@ export const SidebarDash = () => {
             />
             <div className="text-side">
               <Link to="/dashboard/relevante-dash" className="title-text">Lo + relevante</Link>
-              <Link to="/dashboard/add-relevante" className="text-add-note">Ingresar Nota</Link>
             </div>
           </li>
 
@@ -66,7 +72,6 @@ export const SidebarDash = () => {
             />
             <div className="text-side">
               <Link to="/dashboard/lifestyle" className="title-text">Estilo de Vida</Link>
-              <Link to="/dashboard/add-lifestyle" className="text-add-note">Ingresar Nota</Link>
             </div>
           </li>
 
@@ -78,7 +83,6 @@ export const SidebarDash = () => {
             />
             <div className="text-side">
               <Link to="/dashboard/usuarios" className="title-text">Top 10</Link>
-              <Link to="#" className="text-add-note">Ingresar Nota</Link>
             </div>
           </li>
 
@@ -90,7 +94,6 @@ export const SidebarDash = () => {
             />
             <div className="text-side">
               <Link to="/dashboard/sports" className="title-text">Deportes</Link>
-              <Link to="/dashboard/add-sports" className="text-add-note">Ingresar Nota</Link>
             </div>
           </li>
 
@@ -102,7 +105,6 @@ export const SidebarDash = () => {
             />
             <div className="text-side">
               <Link to="/dashboard/entertainment" className="title-text">Entretenimiento</Link>
-              <Link to="/dashboard/add-entertainment" className="text-add-note">Ingresar Nota</Link>
             </div>
           </li>
         </ul>

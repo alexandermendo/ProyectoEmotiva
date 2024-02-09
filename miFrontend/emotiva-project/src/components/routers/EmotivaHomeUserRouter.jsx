@@ -9,18 +9,9 @@ export const EmotivaHomeUserRouter = () => {
   return (
     <div>
       {isAuthenticated ? (
-        rol === "Administrador" ? (
-          <EmotivaHomeAdmin />
-        ) : (
-          <div>
-            <p>Debe iniciar sesión como administrador para acceder a esta página.</p>
-          </div>
-        )
-      ) : (
-        <div>
-          <p>Debe iniciar sesión para acceder a esta página.</p>
-        </div>
-      )}
-    </div>
+        rol === "Administrador" || rol === "Noticias" || rol === "Deportes" || rol === "Entretenimiento" 
+        || rol === "Estilo" ? ( <EmotivaHomeAdmin />) 
+        : ( <div><p>Debe iniciar sesión como administrador para acceder a esta página.</p></div> )
+      ) : ( <div><p>Debe iniciar sesión para acceder a esta página.</p></div>)}</div> 
   );
 };

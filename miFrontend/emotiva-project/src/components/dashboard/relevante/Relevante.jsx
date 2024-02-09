@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,6 +7,7 @@ import { url } from '../../../../../common/utils';
 import './relevante.css';
 
 export const RelevanteDash = () => {
+  const navigate = useNavigate();
   const [news, setNews] = useState([]);
   const [error, setError] = useState(null);
   const [newsEditing, setNewsEditing] = useState(null);
@@ -78,9 +80,14 @@ export const RelevanteDash = () => {
     return text;
   };
 
+  const addNewsNote = () => {
+    navigate("/dashboard/add-relevante");
+  }
+
   return (
     <div className='st-tab-sli'>
       <h2>Lo + Relevante</h2>
+      <button className='btn-add-staff' onClick={addNewsNote}>Agregar Nota</button>
       {error ? (
         <p>Error: {error}</p>
       ) : (

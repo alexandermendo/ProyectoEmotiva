@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
@@ -6,6 +7,7 @@ import { url } from '../../../../../common/utils';
 import './staffDash.css';
 
 export const StaffDash = () => {
+  const navigate = useNavigate();
   const [celebrities, setCelebrities] = useState([]);
   const [error, setError] = useState(null);
   const [editingCelebrity, setEditingCelebrity] = useState(null);
@@ -34,7 +36,7 @@ export const StaffDash = () => {
     setEditingCelebrity(null);
     setIsEditModalOpen(false);
   };
-
+  
   const handleSaveUpdate = async () => {
     try {
       const formData = new FormData();
@@ -76,9 +78,14 @@ export const StaffDash = () => {
     } catch (error) { setError(error.message) }
   };
 
+  const addStaff = () => {
+    navigate("/dashboard/add-staff");
+  }
+
   return (
     <div className='st-tab-cont'>
       <h2>Staff EMOTIVA 2024</h2>
+      <button className='btn-add-staff' onClick={addStaff}>Agregar Staff</button>
       {error ? (
         <p className='text-err'>Error: {error}</p>
       ) : (
