@@ -97,7 +97,7 @@ async function authenticateUser(req, col) {
 
   if (userData.length > 0) {
     const token = jwt.sign({ nombre: userData[0].nombre, rol: userData[0].rol }, jwtSecret, { expiresIn: '5h' }); // Cambio de "usuario" a "nombre"
-    return { status: HTTP_OK, response: { token } };
+    return { status: HTTP_OK, response: { nombre: userData[0].nombre, rol: userData[0].rol, token } };
   } else {
     return { status: HTTP_UNAUTHORIZED, response: { message: 'Credenciales inválidas. Por favor, verifica tu usuario y clave.' } };
   }

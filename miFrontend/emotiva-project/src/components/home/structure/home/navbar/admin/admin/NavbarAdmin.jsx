@@ -42,7 +42,7 @@ export const NavbarAdmin = () => {
     navigate("/private/logout");
   }
 
-  const gotoDashboard = () => { navigate("/dashboard/users"); }
+  const gotoDashboard = () => { navigate("/dashboard/"); }
   const goToNews = () => { if (noticiasRef.current) { noticiasRef.current.scrollIntoView({ behavior: "smooth" })}};
   const goToSports = () => { if (deportesRef.current) { deportesRef.current.scrollIntoView({ behavior: "smooth" })}};
   const goToEntertainment = () => { if (entertainmentRef.current) { entertainmentRef.current.scrollIntoView({ behavior: "smooth" })}};

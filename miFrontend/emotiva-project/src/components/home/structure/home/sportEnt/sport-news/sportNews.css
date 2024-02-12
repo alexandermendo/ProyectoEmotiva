@@ -1,6 +1,7 @@
 .cont-sport {
   padding-top: 4em;
   padding-left: 9.5em;
+  padding-right: 6.5em;
 }
 
 .cont-sport p {
@@ -40,6 +41,12 @@
 }
 
 @media only screen and (max-width: 1024px) {
+  .cont-sport {
+    padding-top: 4em;
+    padding-left: 6.5em;
+    padding-right: 6.5em;
+  }
+
   .cont-sport h1 {
     font-size: 40px;
   }
@@ -64,6 +71,12 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .cont-sport {
+    padding-top: 4em;
+    padding-left: 2.5em;
+    padding-right: 0.5em;
+  }
+
   .cont-sport h1 {
     font-size: 30px;
   }
