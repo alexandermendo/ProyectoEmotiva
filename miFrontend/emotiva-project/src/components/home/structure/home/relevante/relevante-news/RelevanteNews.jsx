@@ -29,7 +29,6 @@ export const RelevanteNews = () => {
 
   if (loading) return <p>Cargando datos...</p>;
   // const formatDate = formatFechaHora(relevanteDetails.publishDate);
-
   return (
     <>
       <div className='cont-news-1'>
@@ -38,7 +37,7 @@ export const RelevanteNews = () => {
       </div>
 
       <div className='cont-pub'>
-        <div className="pub-dat"><p>Publicado por: {usuario[0].nombre}{' - '}{formatFechaHora(relevanteDetails.publishDate)}</p></div>
+        <div className="pub-dat"><p>Publicado en: {formatFechaHora(relevanteDetails.publishDate)}</p></div>
       </div>
 
       <div className='cont-img'>

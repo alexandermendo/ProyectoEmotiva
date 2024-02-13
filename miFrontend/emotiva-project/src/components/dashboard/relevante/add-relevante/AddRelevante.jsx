@@ -5,7 +5,9 @@ import "react-quill/dist/quill.snow.css";
 import './addRelevante.css';
 
 export const AddRelevante = () => {
-  const [formData, setFormData] = useState({ title: "", subtitle: "", description: "", fotoFileNewsPath: null });
+  const initialState = { title: "", subtitle: "", description: "", fotoFileNewsPath: null };
+  const [formData, setFormData] = useState(initialState);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -27,11 +29,17 @@ export const AddRelevante = () => {
     try {
       const response = await fetch(`${url}/news/createNews`, { method: "POST", body: formDataToSend });
       if (response.ok) {
-        console.log("Contenido agregada con éxito");
+        console.log("Contenido agregado con éxito");
         console.log("Data:", formData.title);
-      } else console.error("Error al agregar celebridad");
-    } catch (error) { console.error("Error al agregar celebridad:", error); }
+        setFormData(initialState); // Limpiar el formulario
+      } else {
+        console.error("Error al agregar contenido");
+      }
+    } catch (error) {
+      console.error("Error al agregar contenido:", error);
+    }
   };
+
   const addSlider = () => { alert('Señor Administrador, Contenido agregado exitosamente'); }
 
   return (
