@@ -9,7 +9,9 @@ export const LOGIN = '/login';
 export const HOME = '/';
 export const PRIVATE = '/private';
 export const LOGOUT = '/private/logout';
-export const url = "http://localhost:3000"
+export const url = "http://localhost:3000";
+export const apiKey = '40782e1025818ed5c01e33ca63b97baf'; // Tu clave de API
+export const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Fusagasugá&appid=${apiKey}&units=metric`;
 
 /**
  * Realiza una solicitud de inicio de sesión con las credenciales proporcionadas.
@@ -403,12 +405,15 @@ export const settingsStaff = {
   ]
 };
 
+// Definición de los elementos del menú lateral
 export const sidebarItems = [
+   // Elementos para usuarios comunes
   { role: "Noticias", link: "/dashboard/relevante-dash", text: "Lo + relevante" },
   { role: "Entretenimiento", link: "/dashboard/entertainment", text: "Entretenimiento" },
   { role: "Entretenimiento", link: "/dashboard/usuarios", text: "Top 10" },
   { role: "Deportes", link: "/dashboard/sports", text: "Deportes" },
   { role: "Estilo", link: "/dashboard/lifestyle", text: "Estilo de Vida" },
+  // Elementos adicionales para usuarios con rol de administrador
   { role: "Administrador", link: "/dashboard/users", text: "Usuarios" },
   { role: "Administrador", link: "/dashboard/resumen", text: "Slider" },
   { role: "Administrador", link: "/dashboard/staff", text: "Staff" },
@@ -418,3 +423,89 @@ export const sidebarItems = [
   { role: "Administrador", link: "/dashboard/sports", text: "Deportes" },
   { role: "Administrador", link: "/dashboard/entertainment", text: "Entretenimiento" }
 ];
+
+
+// Estado inicial para una nueva noticia
+export const initialState = { 
+  title: "", // Título de la noticia
+  subtitle: "", // Subtítulo de la noticia
+  description: "", // Descripción de la noticia
+  fotoFileNewsPath: null // Ruta del archivo de imagen de la noticia (inicialmente nula)
+};
+
+/**
+ * Maneja el cambio en los elementos de entrada del formulario.
+ * Actualiza el estado del formulario con el nuevo valor introducido.
+ *
+ * @param {Object} e - Evento de cambio que desencadenó la función.
+ * @param {Object} formData - Estado actual del formulario.
+ * @param {Function} setFormData - Función para actualizar el estado del formulario.
+ */
+export const handleInputChange = (e, formData, setFormData) => {
+  const { name, value } = e.target;
+  setFormData({ ...formData, [name]: value });
+};
+
+/**
+ * Maneja el cambio de archivo seleccionado en un input de tipo file.
+ * @param {Event} e - El evento de cambio generado por el input de tipo file.
+ * @param {Object} formData - El objeto formData actual.
+ * @param {Function} setFormData - La función para actualizar el objeto formData.
+ * */
+export const handleFileChange = (e, formData, setFormData) => {
+  const file = e.target.files[0];
+  setFormData({ ...formData, fotoFileNewsPath: file });
+};
+
+/**
+ * Función para manejar el envío de datos del formulario para crear una nueva noticia.
+ * @param {Event} e - El evento del formulario.
+ * @param {Object} formData - Los datos del formulario.
+ * @param {Function} setFormData - Función para actualizar los datos del formulario.
+ */
+export const handleSubmit = async (e, formData, setFormData) => {
+  e.preventDefault();
+  const formDataToSend = new FormData();
+  formDataToSend.append("title", formData.title);
+  formDataToSend.append("subtitle", formData.subtitle);
+  formDataToSend.append("description", formData.description);
+  formDataToSend.append("fotoFileNewsPath", formData.fotoFileNewsPath);
+
+  try {
+    const response = await fetch(`${url}/news/createNews`, { method: "POST", body: formDataToSend });
+    if (response.ok) {
+      console.log("Contenido agregado con éxito");
+      console.log("Data:", formData.title);
+      setFormData(initialState); 
+    } else {
+      console.error("Error al agregar contenido");
+    }
+  } catch (error) {
+    console.error("Error al agregar contenido:", error);
+  }
+};
+
+/**
+ * Función para agregar un elemento al slider.
+ * Solo accesible para el administrador.
+ */
+export const addSlider = () => { 
+  alert('Señor Administrador, Contenido agregado exitosamente'); 
+};
+
+/**
+ * Función asincrónica para obtener datos del clima y actualizar el estado del componente.
+ * @param {Function} setWeatherData - Función para actualizar los datos del clima en el estado del componente.
+ */
+export const fetchWeatherData = async ( setWeatherData ) => {
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error('Error al obtener los datos del clima');
+    }
+    const data = await response.json();
+    setWeatherData(data);
+  } catch (error) {
+    console.error('Error al obtener datos del clima:', error);
+  }
+};

@@ -1,46 +1,12 @@
+// AddRelevante.jsx
 import { useState } from 'react';
-import { url } from '../../../../../../common/utils';
+import { initialState, handleInputChange, handleFileChange, handleSubmit, addSlider } from '../../../../../../common/utils';
 import ReactQuill from 'react-quill';
 import "react-quill/dist/quill.snow.css";
 import './addRelevante.css';
 
 export const AddRelevante = () => {
-  const initialState = { title: "", subtitle: "", description: "", fotoFileNewsPath: null };
   const [formData, setFormData] = useState(initialState);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setFormData({ ...formData, fotoFileNewsPath: file });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formDataToSend = new FormData();
-    formDataToSend.append("title", formData.title);
-    formDataToSend.append("subtitle", formData.subtitle);
-    formDataToSend.append("description", formData.description);
-    formDataToSend.append("fotoFileNewsPath", formData.fotoFileNewsPath);
-
-    try {
-      const response = await fetch(`${url}/news/createNews`, { method: "POST", body: formDataToSend });
-      if (response.ok) {
-        console.log("Contenido agregado con éxito");
-        console.log("Data:", formData.title);
-        setFormData(initialState); // Limpiar el formulario
-      } else {
-        console.error("Error al agregar contenido");
-      }
-    } catch (error) {
-      console.error("Error al agregar contenido:", error);
-    }
-  };
-
-  const addSlider = () => { alert('Señor Administrador, Contenido agregado exitosamente'); }
 
   return (
     <div className="container">
@@ -48,64 +14,29 @@ export const AddRelevante = () => {
       <p>Lo + Relevante</p>
       <div className="row">
         <div className="col-md-6">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={(e) => handleSubmit(e, formData, setFormData)}>
             <div className="mb-3">
-              <label htmlFor="nombre" className="form-label">
-                Título
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="title"
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-              />
+              <label htmlFor="nombre" className="form-label">Título</label>
+              <input type="text" className="form-control" id="title" name="title" value={formData.title} onChange={(e) => handleInputChange(e, formData, setFormData)} />
             </div>
             <div className="mb-3">
-              <label htmlFor="apellido" className="form-label">
-                Subtítulo
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="subtitle"
-                name="subtitle"
-                value={formData.subtitle}
-                onChange={handleChange}
-              />
+              <label htmlFor="apellido" className="form-label">Subtítulo</label>
+              <input type="text" className="form-control" id="subtitle" name="subtitle" value={formData.subtitle} onChange={(e) => handleInputChange(e, formData, setFormData)} />
             </div>
             <div className="mb-3">
-              <label htmlFor="categoria" className="form-label">
-                Descripción
-              </label>
-              <ReactQuill
-                className="quill-editor"
-                id="description"
-                name="description"
-                value={formData.description}
+              <label htmlFor="categoria" className="form-label">Descripción</label>
+              <ReactQuill className="quill-editor" id="description" name="description" value={formData.description}
                 onChange={(value) => setFormData({ ...formData, description: value })}
               />
             </div>
-            <button type="submit" onClick={addSlider} className="btn-add-cel">
-              Ingresar Contenido
-            </button>
+            <button type="submit" onClick={addSlider} className="btn-add-cel">Ingresar Contenido</button>
           </form>
         </div>
 
         <div className="col-md-6">
           <div className="mb-3">
-            <label htmlFor="foto" className="form-label">
-              Foto
-            </label>
-            <input
-              type="file"
-              className="form-control"
-              id="image"
-              name="image"
-              accept="image/*"
-              onChange={handleFileChange}
-            />
+            <label htmlFor="foto" className="form-label">Foto</label>
+            <input type="file" className="form-control" id="image" name="image" accept="image/*" onChange={(e) => handleFileChange(e, formData, setFormData)} />
           </div>
         </div>
       </div>

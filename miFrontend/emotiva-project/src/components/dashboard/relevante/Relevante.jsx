@@ -86,8 +86,10 @@ export const RelevanteDash = () => {
 
   return (
     <div className='st-tab-sli'>
-      <h2>Lo + Relevante</h2>
-      <button className='btn-add-staff' onClick={addNewsNote}>Agregar Nota</button>
+      <div className='st-text-sli'>
+        <h2>Lo + Relevante</h2>
+        <button className='btn-add-staff' onClick={addNewsNote}>Agregar Nota</button>
+      </div>
       {error ? (
         <p>Error: {error}</p>
       ) : (
@@ -112,28 +114,17 @@ export const RelevanteDash = () => {
                     <div dangerouslySetInnerHTML={{ __html: truncateText(n.description, 100) }} />
                   </td>
                   <td>
-                    <button className="edit" onClick={() => handleUpdate(n)}>
-                      <FontAwesomeIcon icon={faEdit} size="1x" />
-                    </button>
-                    <button className="trash" onClick={() => handleDelete(n._id)}>
-                      <FontAwesomeIcon icon={faTrashAlt} size="1x" />
-                    </button>
+                    <button className="edit" onClick={() => handleUpdate(n)}><FontAwesomeIcon icon={faEdit} size="1x" /></button>
+                    <button className="trash" onClick={() => handleDelete(n._id)}><FontAwesomeIcon icon={faTrashAlt} size="1x" /></button>
                   </td>
                 </tr>
               ))
-            ) : (
-              <tr>
-                <td colSpan="5">No hay noticias disponibles</td>
-              </tr>
-            )}
+            ) : (<tr><td colSpan="5">No hay noticias disponibles</td></tr>)
+            }
           </tbody>
         </table>
       )}
-      <Modal
-        isOpen={isEditModalOpen}
-        onRequestClose={handleCancelUpdate}
-        contentLabel="Editar Noticia"
-        className="custom-modal"
+      <Modal isOpen={isEditModalOpen} onRequestClose={handleCancelUpdate} contentLabel="Editar Noticia"  className="custom-modal"
         overlayClassName="custom-overlay"
       >
         {newsEditing && (
@@ -143,77 +134,41 @@ export const RelevanteDash = () => {
               <form>
                 <div className="mb-3">
                   <label htmlFor="_id" className="form-label">ID</label>
-                  <input
-                    type="text"
-                    id="_id"
-                    value={newsEditing._id}
-                    onChange={(e) =>
-                      setNewsEditing({ ...newsEditing, _id: e.target.value })
-                    }
-                    className="form-control"
-                    disabled
+                  <input type="text" id="_id" value={newsEditing._id} onChange={(e) => setNewsEditing({ ...newsEditing, _id: e.target.value })}
+                    className="form-control" disabled
                   />
                 </div>
 
                 <div className="mb-3">
                   <label htmlFor="title" className="form-label">Título</label>
-                  <input
-                    type="text"
-                    id="title"
-                    value={newsEditing.title}
-                    onChange={(e) =>
-                      setNewsEditing({ ...newsEditing, title: e.target.value })
-                    }
+                  <input type="text" id="title" value={newsEditing.title} onChange={(e) => setNewsEditing({ ...newsEditing, title: e.target.value })}
                     className="form-control"
                   />
                 </div>
 
                 <div className="mb-3">
                   <label htmlFor="subtitle" className="form-label">Subtítulo</label>
-                  <input
-                    type="text"
-                    id="subtitle"
-                    value={newsEditing.subtitle}
-                    onChange={(e) =>
-                      setNewsEditing({ ...newsEditing, subtitle: e.target.value })
-                    }
+                  <input type="text" id="subtitle" value={newsEditing.subtitle} onChange={(e) => setNewsEditing({ ...newsEditing, subtitle: e.target.value })}
                     className="form-control"
                   />
                 </div>
 
                 <div className="mb-3">
                   <label htmlFor="description" className="form-label">Descripción</label>
-                  <textarea
-                    type="text"
-                    id="description"
-                    value={new DOMParser().parseFromString(newsEditing.description, 'text/html').body.textContent}
-                    onChange={(e) =>
-                      setNewsEditing({
-                        ...newsEditing,
-                        description: e.target.value,
-                      })
-                    }
+                  <textarea type="text" id="description" value={new DOMParser().parseFromString(newsEditing.description, 'text/html').body.textContent}
+                    onChange={(e) => setNewsEditing({ ...newsEditing, description: e.target.value })}
                     className="form-control"
                   />
                 </div>
 
                 <div className="mb-3">
                   <label htmlFor="image" className="form-label">Imagen</label>
-                  <input
-                    type="file"
-                    id="image"
-                    onChange={(e) => setImageFile(e.target.files[0])}
-                    className="form-control"
-                  />
+                  <input type="file" id="image" onChange={(e) => setImageFile(e.target.files[0])} className="form-control" />
                 </div>
 
                 <div className="slide d-flex justify-content-end">
-                  <button type="button" onClick={handleCancelUpdate} className='btn-cancel-sli'>
-                    Cancelar
-                  </button>
-                  <button type="button" onClick={handleSaveUpdate} className='btn-update-sli'>
-                    Guardar Cambios
-                  </button>
+                  <button type="button" onClick={handleCancelUpdate} className='btn-cancel-sli'> Cancelar </button>
+                  <button type="button" onClick={handleSaveUpdate} className='btn-update-sli'> Guardar Cambios </button>
                 </div>
               </form>
             </div>
