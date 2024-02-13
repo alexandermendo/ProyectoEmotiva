@@ -403,3 +403,18 @@ export const settingsStaff = {
   ]
 };
 
+export const sidebarItems = [
+  { role: "Noticias", link: "/dashboard/relevante-dash", text: "Lo + relevante" },
+  { role: "Entretenimiento", link: "/dashboard/entertainment", text: "Entretenimiento" },
+  { role: "Entretenimiento", link: "/dashboard/usuarios", text: "Top 10" },
+  { role: "Deportes", link: "/dashboard/sports", text: "Deportes" },
+  { role: "Estilo", link: "/dashboard/lifestyle", text: "Estilo de Vida" },
+  { role: "Administrador", link: "/dashboard/users", text: "Usuarios" },
+  { role: "Administrador", link: "/dashboard/resumen", text: "Slider" },
+  { role: "Administrador", link: "/dashboard/staff", text: "Staff" },
+  { role: "Administrador", link: "/dashboard/relevante-dash", text: "Lo + relevante" },
+  { role: "Administrador", link: "/dashboard/lifestyle", text: "Estilo de Vida" },
+  { role: "Administrador", link: "/dashboard/usuarios", text: "Top 10" },
+  { role: "Administrador", link: "/dashboard/sports", text: "Deportes" },
+  { role: "Administrador", link: "/dashboard/entertainment", text: "Entretenimiento" }
+];
