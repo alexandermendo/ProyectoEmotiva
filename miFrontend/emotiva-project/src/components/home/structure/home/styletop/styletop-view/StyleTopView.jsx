@@ -51,10 +51,7 @@ export const StyleTopView = () => {
             <p>{error && <p>Error: {error}</p>}</p>
           )}
         </div>
-
-        <button className="custom-btn-ver-mas" onClick={goToHome}>
-          Volver al Inicio <FontAwesomeIcon icon={faHouse} />
-        </button>
+        <button className="custom-btn-ver-mas" onClick={goToHome}>Volver al Inicio <FontAwesomeIcon icon={faHouse} /></button>
       </div>
     </div>
   );

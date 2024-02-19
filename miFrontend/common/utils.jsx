@@ -510,3 +510,20 @@ export const fetchWeatherData = async ( setWeatherData ) => {
     console.error('Error al obtener datos del clima:', error);
   }
 };
+
+/**
+ * Función para obtener el Top 10 de canciones más sonadas desde el servidor.
+ * @param {Function} setTop10 - Función para actualizar el estado del Top 10.
+ */
+export const fetchTop10 = async ( setTop10 ) => {
+  try {
+    const response = await fetch('http://localhost:3000/ranking/top10'); // Realizar la solicitud HTTP al endpoint
+    if (!response.ok) {
+      throw new Error('Error al obtener el Top 10 de canciones'); // Manejar errores de la solicitud
+    }
+    const data = await response.json(); // Convertir la respuesta a formato JSON
+    setTop10(data); // Establecer los datos del Top 10 en el estado
+  } catch (error) {
+    console.error(error); // Imprimir el error en la consola en caso de falla
+  }
+};

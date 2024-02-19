@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate} from "react-router-dom";
-import { getLifestyleData, url } from '../../../../../../../common/utils';
+import { Link, useNavigate } from "react-router-dom";
+import { fetchTop10, getLifestyleData, url } from '../../../../../../../common/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import './styleTop.css';
@@ -9,13 +9,17 @@ export const StyleTop = () => {
   const navigate = useNavigate();
   const styleRef = useRef();
   const [lifestyleData, setLifestyleData] = useState([]);
+  const [top10, setTop10] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => { await getLifestyleData(setLifestyleData) };
+    const fetchRanking = async () => { await fetchTop10( setTop10 )};
     fetchData();
+    fetchRanking();
   }, []);
 
   const goToNews = () => { navigate("/lifestyle"); }
+  const goToTop10 = () => { navigate("/top-10"); }
 
   return (
     <div ref={styleRef} id="lifestyle">
@@ -39,9 +43,7 @@ export const StyleTop = () => {
                   </div>
                 </Link>
               ))}
-              <button className="btn-ver-mas" onClick={goToNews}>
-                Ver Más <FontAwesomeIcon icon={faPlus} />
-              </button>
+              <button className="btn-ver-mas" onClick={goToNews}>Ver Más <FontAwesomeIcon icon={faPlus} /></button>
             </div>
           </div>
 
@@ -53,43 +55,17 @@ export const StyleTop = () => {
               </div>
 
               <ol>
-                <li>
-                  <img src="../assets/Paris.jpg" className="img-top-10" alt="Portada Canción 1" />
-                  <div className='text-top'>
-                    <h1>Top 1</h1>
-                    <p>Top 1</p>
-                  </div>
-                </li>
-                <li>
-                  <img src="../assets/Buenos Aires.jpg" className="img-top-10" alt="Portada Canción 2" />
-                  <div className='text-top'>
-                    <h1>Top 2</h1>
-                    <p>Top 2</p>
-                  </div>
-                </li>
-                <li>
-                  <img src="../assets/PR.jpg" className="img-top-10" alt="Portada Canción 3" />
-                  <div className='text-top'>
-                    <h1>Top 3</h1>
-                    <p>Top 3</p>
-                  </div>
-                </li>
-                <li>
-                  <img src="../assets/PR.jpg" className="img-top-10" alt="Portada Canción 3" />
-                  <div className='text-top'>
-                    <h1>Top 4</h1>
-                    <p>Top 4</p>
-                  </div>
-                </li>
-                <li>
-                  <img src="../assets/PR.jpg" className="img-top-10" alt="Portada Canción 3" />
-                  <div className='text-top'>
-                    <h1>Top 5</h1>
-                    <p>Top 5</p>
-                  </div>
-                </li>
+                {top10.map((item, index) => (
+                  <li key={index}>
+                    <img src={item.foto} className="img-top-10" alt={`Portada Canción ${index + 1}`} />
+                    <div className='text-top'>
+                      <h1>{item.nombre}</h1>
+                      <p>{item.artista}</p>
+                    </div>
+                  </li>
+                ))}
               </ol>
-              <button className='btn-top-list'>Ver la Lista Completa</button>
+              <button className='btn-top-list' onClick={goToTop10}>Ver la Lista Completa</button>
             </div>
           </div>
         </div>

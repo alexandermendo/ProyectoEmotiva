@@ -32,6 +32,7 @@ import { Users } from "../dashboard/users/Users";
 import { EmotivaLifeStyleNewsRouter } from "./EmotivaLifeStyleNewsRouter";
 import { EmotivaSportsNewsRouter } from "./EmotivaSportsNewsRouter";
 import { EmotivaEntertainmentNewsRouter } from "./EmotivaEntertainmentNewsRouter";
+import { EmotivaTop10Router } from "./EmotivaTop10Router";
 
 export const AppRouter = () => {
   return (
@@ -58,7 +59,8 @@ export const AppRouter = () => {
         <Route path="/lifestyle/:id" element={<EmotivaLifeStyleRouter />} />
         <Route path="/sports/:id" element={<EmotivaSportsRouter />} />
         <Route path="/entertainment/:id" element={<EmotivaEntertainmentRouter />} />
-
+        <Route path="/top-10" element={<EmotivaTop10Router />} />
+        
         <Route path="/dashboard" element={<Dashboard />}>
           <Route path="resumen" element={<Slider />} />
           <Route path="users" element={<Users />} /> 
