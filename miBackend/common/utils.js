@@ -186,6 +186,24 @@ const createEntertainment = async (req, res) => {
   }
 };
 
+
+async function actualizarUsuario(dba, userId, userData) {
+  const { nombre, email, país, departamento, ciudad, contraseña, rol } = userData;
+  if (!validator.isEmail(email)) throw new Error('El correo electrónico no es válido.');
+  const existingUser = await dba.collection('users').findOne({ _id: new ObjectId(userId) });
+  if (!existingUser) throw new Error('Usuario no encontrado.');
+
+  const updatedUser = {
+    nombre: nombre || existingUser.nombre,  email: email || existingUser.email,
+    país: país || existingUser.país,  departamento: departamento || existingUser.departamento,
+    ciudad: ciudad || existingUser.ciudad, contraseña: contraseña || existingUser.contraseña,
+    rol: rol || existingUser.rol
+  };
+  await dba.collection('users').updateOne({ _id: new ObjectId(userId) }, { $set: updatedUser }, { upsert: true });
+  return { message: 'Usuario actualizado exitosamente' };
+}
+
+
 module.exports = {
   HTTP_OK,
   HTTP_BAD_REQUEST,
@@ -201,5 +219,6 @@ module.exports = {
   createNews,
   createLifestyle,
   createSports,
-  createEntertainment
+  createEntertainment,
+  actualizarUsuario
 };

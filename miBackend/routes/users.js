@@ -4,6 +4,7 @@ const dba = require("../database/db_mongo");
 const { ObjectId } = require('mongodb');
 const validator = require('validator'); 
 const jwt = require('jsonwebtoken');
+const { actualizarUsuario } = require("../common/utils");
 
 /**
  * @name getUsers
@@ -53,21 +54,13 @@ router.post('/agregarUsuario', async (req, res) => {
  * @param {function} next - La siguiente función middleware en la cadena de solicitud-respuesta
  * @returns {object} Objeto JSON con el mensaje de éxito o error
  */
+//Hay que corregir esta función
 router.put("/actualizarUsuario/:id", async (req, res, next) => {
   try {
     const userId = req.params.id;
-    const objectIdUserId = new ObjectId(userId);
-    const { nombre, email, país, departamento, ciudad, contraseña, rol } = req.body;
-    if (!validator.isEmail(email)) return res.status(400).json({ message: 'El correo electrónico no es válido.' });
-    const existingUser = await dba.collection('users').findOne({ _id: objectIdUserId  });
-    if (!existingUser) return res.status(404).json({ message: 'Usuario no encontrado.' });
-    const updatedUser = { nombre: nombre || existingUser.nombre, email: email || existingUser.email,
-      país: país || existingUser.país, departamento: departamento || existingUser.departamento,
-      ciudad: ciudad || existingUser.ciudad, contraseña: contraseña || existingUser.contraseña,
-      rol: rol || existingUser.rol
-    };
-    await dba.collection('users').updateOne({ _id: objectIdUserId }, { $set: updatedUser }, { upsert: true });
-    res.json({ message: 'Usuario actualizado exitosamente' });
+    const userData = req.body;
+    const result = await actualizarUsuario(dba, userId, userData);
+    res.json(result);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error interno del servidor' });
