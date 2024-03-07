@@ -1,6 +1,7 @@
 // utils.js
 const { body, validationResult } = require('express-validator');
 const dba = require("../database/db_mongo");
+const { ObjectId } = require('mongodb');
 const jwt = require("jsonwebtoken");
 const col = dba.collection('users');
 
@@ -203,6 +204,15 @@ async function actualizarUsuario(dba, userId, userData) {
   return { message: 'Usuario actualizado exitosamente' };
 }
 
+const createRankingMiddleware = [
+  body('nombre').trim().notEmpty().withMessage('El campo nombre es requerido'),
+  body('artista').trim().notEmpty().withMessage('El campo artista es requerido'),
+  body('album').trim().notEmpty().withMessage('El campo album es requerido'),
+  body('genero').trim().notEmpty().withMessage('El campo genero es requerido'),
+  body('anio').trim().notEmpty().withMessage('El campo anio es requerido'),
+  body('puntuacion').trim().notEmpty().withMessage('El campo puntuacion es requerido'),
+  body('fotoFileNewsPath').trim().notEmpty().withMessage('El campo foto es requerido'),
+];
 
 const createRanking = async (req, res) => {
   try {
@@ -216,6 +226,21 @@ const createRanking = async (req, res) => {
     res.status(500).send();
   }
 };
+
+const updateRanking = async (req, res) => {
+  try {
+    const entId = req.params.id;
+    const { nombre, artista, album, anio, puntuacion  } = req.body;
+    const fotoFileNewsPath = req.file?.path;
+    if ( !nombre || !artista || !album || !anio || !puntuacion  || !fotoFileNewsPath) return res.status(400).json({ error: 'Faltan datos requeridos' });
+    const updatedRanking = { nombre, artista, album, anio, puntuacion, foto: fotoFileNewsPath };
+    await dba.collection("ranking").updateOne({ _id: new ObjectId(entId) }, { $set: updatedRanking });
+    return res.json({ message: 'Canción actualizada con éxito.' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al actualizar la canción" });
+  }
+}
 
 
 module.exports = {
@@ -235,5 +260,7 @@ module.exports = {
   createSports,
   createEntertainment,
   createRanking,
+  createRankingMiddleware,
+  updateRanking,
   actualizarUsuario
 };

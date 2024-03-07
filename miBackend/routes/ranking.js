@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const dba = require("../database/db_mongo");
 const multer = require('multer');
-const { createRanking } = require("../common/utils");
+const { createRanking, createRankingMiddleware, updateRanking } = require("../common/utils");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => { cb(null, './upload-ranking/'); },
@@ -39,5 +39,14 @@ router.post('/createRanking', upload.single('fotoFileNewsPath'), async (req, res
   }
 });
 
+// Endpoint para utils.js---
+router.put("/:id", upload.single('fotoFileNewsPath'), createRankingMiddleware, async (req, res, next) => {
+  try {
+    await updateRanking(req, res)
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al actualizar la canción" });
+  }
+});
 
 module.exports = router;
