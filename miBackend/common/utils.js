@@ -243,6 +243,18 @@ const updateRanking = async (req, res) => {
 }
 
 
+const deleteRanking = async (req, res) => {
+  try {
+    const entId = req.params.id;
+    await dba.collection("ranking").deleteOne({ _id: new ObjectId(entId) });
+    res.json({ message: 'Canción eliminada con éxito.' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al eliminar la canción" });
+  }
+}
+
+
 module.exports = {
   HTTP_OK,
   HTTP_BAD_REQUEST,
@@ -262,5 +274,6 @@ module.exports = {
   createRanking,
   createRankingMiddleware,
   updateRanking,
+  deleteRanking,
   actualizarUsuario
 };

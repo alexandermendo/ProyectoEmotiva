@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { fetchTop10 } from '../../../../../../../../common/utils';
+import { fetchTop10, url } from '../../../../../../../../common/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faArrowDown, faEquals, faHouse } from '@fortawesome/free-solid-svg-icons';
 import './top10View.css';
@@ -28,7 +28,7 @@ export const Top10View = () => {
           <li key={index}>
             <div className='ranking-info'>
               <span className='ranking-number'>{index + 1}</span> {/* Muestra el número de ranking */}
-              <img src={item.foto} className="img-top-10" alt={`Portada Canción ${index + 1}`} />
+              <img src={`${url}/${item.foto}`} className="img-top-10" alt={`Portada Canción ${index + 1}`} />
             </div>
             <div className='text-top'>
               <h2>{item.nombre}</h2> {/* Cambiado de h1 a h2 para mejor semántica */}
