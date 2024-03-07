@@ -36,6 +36,7 @@ app.use('/upload-news', express.static(path.join(__dirname, 'upload-news')));
 app.use('/upload-lifestyle', express.static(path.join(__dirname, 'upload-lifestyle')));
 app.use('/upload-sports', express.static(path.join(__dirname, 'upload-sports')));
 app.use('/upload-entertainment', express.static(path.join(__dirname, 'upload-entertainment')));
+app.use('/upload-ranking', express.static(path.join(__dirname, 'upload-ranking')));
 app.use("/slider", sliderRouter);
 app.use("/logo", logoRouter);
 app.use("/news", newsRouter);

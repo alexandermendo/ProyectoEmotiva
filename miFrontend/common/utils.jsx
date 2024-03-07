@@ -517,7 +517,7 @@ export const fetchWeatherData = async ( setWeatherData ) => {
  */
 export const fetchTop10 = async ( setTop10 ) => {
   try {
-    const response = await fetch('http://localhost:3000/ranking/top10'); // Realizar la solicitud HTTP al endpoint
+    const response = await fetch(`${url}/ranking/ranking`); // Realizar la solicitud HTTP al endpoint
     if (!response.ok) {
       throw new Error('Error al obtener el Top 10 de canciones'); // Manejar errores de la solicitud
     }

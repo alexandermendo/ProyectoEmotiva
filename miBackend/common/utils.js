@@ -204,6 +204,20 @@ async function actualizarUsuario(dba, userId, userData) {
 }
 
 
+const createRanking = async (req, res) => {
+  try {
+    const { nombre, artista, album, genero, anio, puntuacion } = req.body;
+    const fotoFileNewsPath = req.file?.path;
+    if (![nombre, artista, album, genero, anio, puntuacion, fotoFileNewsPath].every(Boolean)) throw new Error('Faltan datos requeridos');
+    await dba.collection("ranking").insertOne({ nombre, artista, album: genero, anio, puntuacion, foto: fotoFileNewsPath });
+    res.json({ message: 'Canción creada con éxito.' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send();
+  }
+};
+
+
 module.exports = {
   HTTP_OK,
   HTTP_BAD_REQUEST,
@@ -220,5 +234,6 @@ module.exports = {
   createLifestyle,
   createSports,
   createEntertainment,
+  createRanking,
   actualizarUsuario
 };

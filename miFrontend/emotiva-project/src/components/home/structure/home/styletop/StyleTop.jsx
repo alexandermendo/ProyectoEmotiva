@@ -57,7 +57,7 @@ export const StyleTop = () => {
               <ol>
                 {top10.map((item, index) => (
                   <li key={index}>
-                    <img src={item.foto} className="img-top-10" alt={`Portada Canción ${index + 1}`} />
+                    <img src={`${url}/${item.foto}`} className="img-top-10" alt={`Portada Canción ${index + 1}`} />
                     <div className='text-top'>
                       <h1>{item.nombre}</h1>
                       <p>{item.artista}</p>
