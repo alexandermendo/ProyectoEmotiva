@@ -1,5 +1,6 @@
 import { useAuthContext } from '../emotiva-project/src/contexts/AuthContext';
 import moment from 'moment-with-locales-es6';
+import { Link } from 'react-router-dom';
 moment.locale('es');
 
 /**
@@ -418,11 +419,6 @@ export const sidebarItems = [
   { role: "Administrador", link: "/dashboard/users", text: "Usuarios" },
   { role: "Administrador", link: "/dashboard/resumen", text: "Slider" },
   { role: "Administrador", link: "/dashboard/staff", text: "Staff" },
-  { role: "Administrador", link: "/dashboard/relevante-dash", text: "Lo + relevante" },
-  { role: "Administrador", link: "/dashboard/lifestyle", text: "Estilo de Vida" },
-  { role: "Administrador", link: "/dashboard/usuarios", text: "Top 10" },
-  { role: "Administrador", link: "/dashboard/sports", text: "Deportes" },
-  { role: "Administrador", link: "/dashboard/entertainment", text: "Entretenimiento" }
 ];
 
 

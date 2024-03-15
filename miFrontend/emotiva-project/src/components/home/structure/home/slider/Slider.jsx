@@ -6,22 +6,17 @@ import './slider.css';
 export const Slider = () => {
   const [sliderData, setSliderData] = useState([]);
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => { await fetchSliderData(setSliderData, setError) };
-    fetchData();
-  }, []);
+  useEffect(() => { fetchSliderData(setSliderData, setError); }, []);
 
   return (
     <div className="slider-test">
-      {sliderData && sliderData.length > 0 ? (
+      {sliderData.length > 0 ? (
         <div id="carouselExampleFade" className="carousel slide carousel-fade">
           <div className="carousel-inner">
             {sliderData.map((slide, index) => (
               <Link to={`/news/${slide._id}`} key={index} className="slider-card">
                 <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
-                  <img src={`${url}/${slide.image}`} className="img-sli d-block w-100" alt={slide.title} 
-                  />
+                  <img src={`${url}/${slide.image}`} className="img-sli d-block w-100" alt={slide.title} />
                   <div className="carousel-caption">
                     <div className="text-slider">
                       <h3>{slide.title}</h3>
@@ -33,15 +28,11 @@ export const Slider = () => {
               </Link>
             ))}
           </div>
-          <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
-            data-bs-slide="prev"
-          >
+          <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
             <span className="visually-hidden">Previous</span>
           </button>
-          <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
-            data-bs-slide="next"
-          >
+          <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
             <span className="carousel-control-next-icon" aria-hidden="true"></span>
             <span className="visually-hidden">Next</span>
           </button>

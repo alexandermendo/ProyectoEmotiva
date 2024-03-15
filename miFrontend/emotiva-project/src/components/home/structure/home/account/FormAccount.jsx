@@ -21,7 +21,7 @@ export const FormAccount = () => {
   const [rolError, setRolError] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [formSubmitted] = useState(false); 
-  const [error, setError] = useState(''); 
+  const [setError] = useState(''); 
   let [hasErrors] = useState(false);
   let navigate = useNavigate();
 
@@ -66,66 +66,23 @@ export const FormAccount = () => {
   // Función para manejar el envío del formulario
   const addUser = async (e) => {
     e.preventDefault();
-    if (!isChecked) {
-      alert('Debe aceptar términos y condiciones');
-      hasErrors = true;
-    } else  setError('');
+    if (!isChecked) { alert('Debe aceptar términos y condiciones');  hasErrors = true} else setError('');
+    if (!nombre) { setNombreError('Por favor, ingresa tu nombre.');  hasErrors = true}
+    if (!contraseña) { setContraseñaError('Por favor, ingresa tu contraseña.'); hasErrors = true }
+    if (!email) { setEmailError('Por favor, ingresa tu email.'); hasErrors = true }
+    if (!pais) { setPaisError('Por favor, ingresa tu país.'); hasErrors = true }
+    if (!departamento) { setDepartamentoError('Por favor, ingresa tu departamento.'); hasErrors = true }
+    if (!ciudad) { setCiudadError('Por favor, ingresa tu ciudad.'); hasErrors = true }
+    if (!rol) { setRolError('Por favor, ingresa tu rol.'); hasErrors = true }
+    if (hasErrors) return
 
-    if (!nombre) {
-      setNombreError('Por favor, ingresa tu nombre.');
-      hasErrors = true;
-    }
+    const userData = { nombre, email, país: pais, departamento, ciudad, contraseña, rol: 'usuario' };     // Crear un objeto con los datos del formulario
 
-    if (!contraseña) {
-      setContraseñaError('Por favor, ingresa tu contraseña.');
-      hasErrors = true;
-    }
-
-    if (!email) {
-      setEmailError('Por favor, ingresa tu email.');
-      hasErrors = true;
-    }
-
-    if (!pais) {
-      setPaisError('Por favor, ingresa tu país.');
-      hasErrors = true;
-    }
-
-    if (!departamento) {
-      setDepartamentoError('Por favor, ingresa tu departamento.');
-      hasErrors = true;
-    }
-    
-    if (!ciudad) {
-      setCiudadError('Por favor, ingresa tu ciudad.');
-      hasErrors = true;
-    }
-
-    if (!rol) {
-      setRolError('Por favor, ingresa tu rol.');
-      hasErrors = true;
-    }
-
-    if (hasErrors) {
-      return;
-    }
-
-    // Crear un objeto con los datos del formulario
-    const userData = { nombre, email, país: pais, departamento, ciudad, contraseña, rol: 'usuario' };
-
-    // Realizar la solicitud POST a la API
-    try {
-      const response = await fetch(`${url}/users/agregarUsuario`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(userData),
-      });
+    try {  // Realizar la solicitud POST a la API
+      const response = await fetch(`${url}/users/agregarUsuario`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(userData)});
       const responseData = await response.json();
-      if (response.status === 201) {
-        localStorage.setItem('token', responseData.token);
-        console.log('Usuario agregado exitosamente');
-        navigate('/');
-      } else if (response.status === 400) alert(responseData.message);
+      if (response.status === 201) { localStorage.setItem('token', responseData.token); navigate('/')} 
+      else if (response.status === 400) alert(responseData.message);
       else console.error('Error interno del servidor');
     } catch (error) { console.error('Error al enviar la solicitud:', error) }
   };
@@ -142,16 +99,14 @@ export const FormAccount = () => {
             <div className='row'>
               <div className='col-md-6'>
                 <div className="form-group">
-                  <input type="text" id="name" value={nombre} onChange={handleUsernameChange} className="form-control"
-                    placeholder='Nombre completo'/>
+                  <input type="text" id="name" value={nombre} onChange={handleUsernameChange} className="form-control" placeholder='Nombre completo'/>
                   {nombreError && <p className="error-message">{nombreError}</p>}
                 </div>
               </div>
 
               <div className='col-md-6'>
                 <div className="form-group">
-                  <input type="email" id="email" value={email} onChange={handleEmailChange} className="form-control"
-                    placeholder='Email' />
+                  <input type="email" id="email" value={email} onChange={handleEmailChange} className="form-control" placeholder='Email' />
                   {emailError && <p className="error-message">{emailError}</p>}
                 </div>
               </div>
@@ -160,16 +115,14 @@ export const FormAccount = () => {
             <div className='row'>
               <div className='col-md-6'>
                 <div className="form-group">
-                  <input type="text" id="pais" value={pais} onChange={handleCountryChange} className="form-control"
-                    placeholder='País'/>
+                  <input type="text" id="pais" value={pais} onChange={handleCountryChange} className="form-control" placeholder='País'/>
                   {paisError && <p className="error-message">{paisError}</p>}
                 </div>
               </div>
 
               <div className='col-md-6'>
                 <div className="form-group">
-                  <input type="text" id="estado" value={departamento} onChange={handleDepartmentChange}
-                    className="form-control" placeholder='Departamento/Estado'/>
+                  <input type="text" id="estado" value={departamento} onChange={handleDepartmentChange} className="form-control" placeholder='Departamento/Estado'/>
                   {departamentoError && <p className="error-message">{departamentoError}</p>}
                 </div>
               </div>
@@ -178,8 +131,7 @@ export const FormAccount = () => {
             <div className='row'>
               <div className='col-md-6'>
                 <div className="form-group">
-                  <input type="text" id="ciudad" value={ciudad} onChange={handleCityChange} className="form-control"
-                    placeholder='Ciudad'/>
+                  <input type="text" id="ciudad" value={ciudad} onChange={handleCityChange} className="form-control"  placeholder='Ciudad'/>
                   {ciudadError && <p className="error-message">{ciudadError}</p>}
                 </div>
               </div>

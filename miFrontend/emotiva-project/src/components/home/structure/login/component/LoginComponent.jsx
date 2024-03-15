@@ -12,7 +12,7 @@ export const LoginComponent = () => {
   const [usernameError, setUsernameError] = useState('Por favor, ingresa tu nombre de usuario.');
   const [passwordError, setPasswordError] = useState('Por favor, ingresa tu contraseña.');
   const [selectedRole, setSelectedRole] = useState('Por favor, selecciona un rol.');
-  const [roleError, setRoleError] = useState('Por favor, selecciona un rol.');
+  const [roleError] = useState('Por favor, selecciona un rol.');
   const [roles, setRoles] = useState([]);
 
   useEffect(() => {

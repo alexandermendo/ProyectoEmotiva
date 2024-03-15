@@ -12,8 +12,7 @@ export const StyleTopView = () => {
   const [lifeStyleData, setLifestyleData] = useState([]);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchNews = async () => { await getLifestyleData(setLifestyleData) };
+  useEffect(() => { const fetchNews = async () => { await getLifestyleData(setLifestyleData) };
     fetchNews();
   }, []);
 
@@ -29,27 +28,23 @@ export const StyleTopView = () => {
 
         <div className="card-container">
           {lifeStyleData && lifeStyleData.length > 0 ? (
-            lifeStyleData.map((noticia, index) => (
-              <Link to={`/lifestyle/${noticia._id}`} key={index} className="custom-link">
+            lifeStyleData.map(({ _id, image, publishDate, title, subtitle }, index) => (
+              <Link to={`/lifestyle/${_id}`} key={index} className="custom-link">
                 <div className="card custom-card-main">
                   <div className="row no-gutters">
-                    <div className="col-md-4">
-                      <img className="custom-card-img-2" src={`${url}/${noticia.image}`} alt="Ligero" />
-                    </div>
+                    <div className="col-md-4"><img className="custom-card-img-2" src={`${url}/${image}`} alt="Ligero" /></div>
                     <div className="col-md-8">
                       <div className="custom-card-body">
-                        <p className="custom-card-date">{formatFechaHora(noticia.publishDate)}</p>
-                        <h5 className="custom-card-title">{noticia.title}</h5>
-                        <p className="custom-card-text">{noticia.subtitle}</p>
+                        <p className="custom-card-date">{formatFechaHora(publishDate)}</p>
+                        <h5 className="custom-card-title">{title}</h5>
+                        <p className="custom-card-text">{subtitle}</p>
                       </div>
                     </div>
                   </div>
                 </div>
               </Link>
             ))
-          ) : (
-            <p>{error && <p>Error: {error}</p>}</p>
-          )}
+          ) : ( <p>{error && <p>Error: {error}</p>}</p> )}
         </div>
         <button className="custom-btn-ver-mas" onClick={goToHome}>Volver al Inicio <FontAwesomeIcon icon={faHouse} /></button>
       </div>

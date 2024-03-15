@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { fetchLogoData, url } from '../../../../../../../common/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faInstagram, faXTwitter } from "@fortawesome/free-brands-svg-icons";
+import Modal from 'react-modal';
+import { Contacto } from './contacto/Contacto';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { Terminos } from './terminos/Terminos';
 import './footer.css';
 
 export const Footer = () => {
@@ -12,6 +16,16 @@ export const Footer = () => {
   const [imageData, setImageData] = useState([{ fotoFileLogoPath: "" }]);
   const [setError] = useState(null);
   const staffRef = useRef();
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalContent, setModalContent] = useState('');
+
+  const openModal = (content) => {
+    setModalContent(content);
+    setModalIsOpen(true);
+  }
+
+  const closeModal = () => { setModalIsOpen(false) }
 
   useEffect(() => {
     const fetchLogo = async () => { await fetchLogoData(setImageData, setError) };
@@ -59,11 +73,11 @@ export const Footer = () => {
 
             <div className='col-md-4'>
               <div className='foo-ter-nav col-md-6'>
-                <h1>Términos y Condiciones</h1>
+                <h1>Conoce más</h1>
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li className="nav-item-1"><a className="nav-link-1" href="#">Acerca de Nosotros</a></li>
-                  <li className="nav-item-1"><a className="nav-link-1" href="#">Contacto</a></li>
-                  <li className="nav-item-1"><a className="nav-link-1" href="#">Política de Privacidad</a></li>
+                  <li className="nav-item-1"><a className="nav-link-1" href="#" onClick={() => openModal(<Contacto/>)}>Trabaja con Nosotros</a></li>
+                  <li className="nav-item-1"><a className="nav-link-1" href="#" onClick={() => openModal(<Terminos />)}>Términos y Condiciones</a></li>
+                  <li className="nav-item-1"><a className="nav-link-1" href="#" onClick={() => openModal('Contenido para Buzón de Sugerencias')}>Buzón de Sugerencias</a></li>
                 </ul>
               </div>
             </div>
@@ -85,6 +99,10 @@ export const Footer = () => {
               </div>
             </div>
           </div>
+          <Modal isOpen={modalIsOpen} onRequestClose={closeModal}  className="custom-modal" overlayClassName="custom-overlay">
+            <h2>{modalContent}</h2>
+            <button onClick={closeModal} className='btn-clo'><FontAwesomeIcon icon={faXmark} /></button>
+          </Modal>
         </div>
       )}
       {isMobile && (

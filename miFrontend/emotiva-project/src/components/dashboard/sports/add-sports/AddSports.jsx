@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { url } from '../../../../../../common/utils';
 import ReactQuill from 'react-quill';
+import { Alert } from 'react-bootstrap';
 import "react-quill/dist/quill.snow.css";
 import './addSports.css';
 
 export const AddSports = () => {
+  const [alert, setAlert] = useState(null);
+  const [completeMsg, setCompleteMsg] = useState('Por favor complete todos los campos');
   const [formData, setFormData] = useState({ title: "", subtitle: "", description: "", fotoFileNewsPath: null });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,11 +35,22 @@ export const AddSports = () => {
       } else console.error("Error al agregar celebridad");
     } catch (error) { console.error("Error al agregar celebridad:", error); }
   };
-  const addSlider = () => { alert('Señor Administrador, Contenido agregado exitosamente'); }
+
+  const addSlider = (event) => {
+    event.preventDefault();
+    if (formData.title === "" || formData.subtitle === "" || formData.description === "" || formData.fotoFileNewsPath === null) {
+      setCompleteMsg('Por favor complete todos los campos.');
+      setAlert(<Alert variant="warning">{completeMsg}</Alert>);
+    } else {
+      alert('Señor Administrador, Contenido agregado exitosamente');
+    }
+    return;
+  }
 
   return (
     <div className="container">
-      <h2>Ingresar Contenido</h2>            
+      <h2>Ingresar Contenido</h2>
+      {alert} {/* Aquí se renderizará el componente Alert si hay un mensaje de alerta */}
       <p>Deportes</p>
       <div className="row">
         <div className="col-md-6">

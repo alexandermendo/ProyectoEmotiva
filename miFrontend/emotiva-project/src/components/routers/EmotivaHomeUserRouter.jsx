@@ -1,17 +1,11 @@
 import { useAuthContext } from "../../contexts/AuthContext";
+import { EmotivaHome } from "../home/structure/home/structure/admin/EmotivaHome";
 import { EmotivaHomeAdmin } from "../home/structure/home/structure/admin/EmotivaHomeAdmin";
 
 export const EmotivaHomeUserRouter = () => {
-  const { isAuthenticated, rol} = useAuthContext();
-  console.log("Autenticado: ", isAuthenticated);
-  console.log("Rol: ", rol);
-
+  const { isAuthenticated, rol } = useAuthContext();
+  const isAdminPage = isAuthenticated && ["Administrador", "Noticias", "Deportes", "Entretenimiento", "Estilo"].includes(rol);
   return (
-    <div>
-      {isAuthenticated ? (
-        rol === "Administrador" || rol === "Noticias" || rol === "Deportes" || rol === "Entretenimiento" 
-        || rol === "Estilo" ? ( <EmotivaHomeAdmin />) 
-        : ( <div><p>Debe iniciar sesión como administrador para acceder a esta página.</p></div> )
-      ) : ( <div><p>Debe iniciar sesión para acceder a esta página.</p></div>)}</div> 
+    <div>{ isAdminPage ? <EmotivaHomeAdmin /> : <EmotivaHome /> }</div>
   );
 };

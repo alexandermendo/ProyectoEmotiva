@@ -9,6 +9,7 @@
 
 .ligero-container-navbar.scrolled {
   background-color: rgba(117, 41, 149, 0.9);
+  z-index: 1;
 }
 
 .navbar-nav .nav-link {
