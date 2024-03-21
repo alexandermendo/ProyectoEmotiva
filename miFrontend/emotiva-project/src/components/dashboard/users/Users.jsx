@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { url } from '../../../../../common/utils';
+import './users.css';
 
 export const Users = () => {
   const [users, setUsers] = useState([]);

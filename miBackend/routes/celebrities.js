@@ -50,21 +50,32 @@ router.get("/:id", async (req, res) => {
 router.post('/personas', upload.single('foto'), async (req, res) => {
   try {
     const { nombre, apellido, nom_cat, nom_ciu, fec_nac, biograf, red_soc } = req.body;
-    const fotoFilePath = req.file.path;
+    
+    // Validar campos requeridos
+    const requiredFields = ['nombre', 'apellido', 'nom_cat', 'nom_ciu', 'fec_nac', 'biograf', 'red_soc'];
+    if (requiredFields.some(field => !req.body[field])) {
+      return res.status(400).json({ error: 'Faltan datos requeridos' });
+    }
+
+    // Verificar si hay un archivo adjunto
+    const fotoFilePath = req.file ? req.file.path : null;
+    
+    // Construir consulta SQL
     const sqlFilePath = path.join(__dirname, 'insertCelebrities.sql');
-    const query = await fileRead(sqlFilePath)
-    const sqlT = query.replace("{nombre}", req.body.nombre).replace("{apellido}", req.body.apellido)
-      .replace("{nom_cat}", req.body.nom_cat).replace("{nom_ciu}", req.body.nom_ciu)
-      .replace("{fec_nac}", req.body.fec_nac).replace("{biograf}", req.body.biograf)
-      .replace("{red_soc}", req.body.red_soc).replace("{fotoFilePath}", req.file.path)
-    const params = { nombre, apellido, nom_cat, nom_ciu, fec_nac: new Date(fec_nac), biograf, red_soc, fotoFilePath };
-    const result = await execSQL(sqlT, params);
+    let query = await fileRead(sqlFilePath);
+    query = query.replace(/{([^{}]*)}/g, (match, p1) => req.body[p1]);
+
+    // Ejecutar consulta SQL
+    const result = await execSQL(query, req.body);
+
     res.json({ message: 'Persona guardada exitosamente' });
   } catch (error) {
     console.error('Error al guardar en la base de datos:', error);
     res.status(HTTP_INTERNAL_SERVER_ERROR).json({ message: 'Error al guardar en la base de datos' });
   }
 });
+
+
 
 router.put("/updatePersonas", upload.single("foto"), async (req, res) => {
   try {

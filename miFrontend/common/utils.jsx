@@ -409,7 +409,7 @@ export const settingsStaff = {
 
 // Definición de los elementos del menú lateral
 export const sidebarItems = [
-   // Elementos para usuarios comunes
+  // Elementos para usuarios comunes
   { role: "Noticias", link: "/dashboard/relevante-dash", text: "Lo + relevante" },
   { role: "Entretenimiento", link: "/dashboard/entertainment", text: "Entretenimiento" },
   { role: "Entretenimiento", link: "/dashboard/usuarios", text: "Top 10" },
@@ -423,7 +423,7 @@ export const sidebarItems = [
 
 
 // Estado inicial para una nueva noticia
-export const initialState = { 
+export const initialState = {
   title: "", // Título de la noticia
   subtitle: "", // Subtítulo de la noticia
   description: "", // Descripción de la noticia
@@ -460,8 +460,12 @@ export const handleFileChange = (e, formData, setFormData) => {
  * @param {Object} formData - Los datos del formulario.
  * @param {Function} setFormData - Función para actualizar los datos del formulario.
  */
-export const handleSubmit = async (e, formData, setFormData) => {
+export const handleSubmit = async (e, formData, setFormData, setError, setSuccess) => {
   e.preventDefault();
+  if (!formData.title || !formData.subtitle || !formData.description || !formData.fotoFileNewsPath) {
+    setError('Faltan datos requeridos');
+    return;
+  }
   const formDataToSend = new FormData();
   formDataToSend.append("title", formData.title);
   formDataToSend.append("subtitle", formData.subtitle);
@@ -470,31 +474,21 @@ export const handleSubmit = async (e, formData, setFormData) => {
 
   try {
     const response = await fetch(`${url}/news/createNews`, { method: "POST", body: formDataToSend });
-    if (response.ok) {
-      console.log("Contenido agregado con éxito");
-      console.log("Data:", formData.title);
-      setFormData(initialState); 
-    } else {
-      console.error("Error al agregar contenido");
+    const data = await response.json();
+    if (response.ok) { setSuccess('Noticia de Entretenimiento creada con éxito.'); setError(null); } 
+    else {
+      console.error(data.error || "Error al agregar contenido");
     }
   } catch (error) {
-    console.error("Error al agregar contenido:", error);
+    console.error("Error al agregar contenido:", error); setError("Error al agregar contenido");
   }
-};
-
-/**
- * Función para agregar un elemento al slider.
- * Solo accesible para el administrador.
- */
-export const addSlider = () => { 
-  alert('Señor Administrador, Contenido agregado exitosamente'); 
 };
 
 /**
  * Función asincrónica para obtener datos del clima y actualizar el estado del componente.
  * @param {Function} setWeatherData - Función para actualizar los datos del clima en el estado del componente.
  */
-export const fetchWeatherData = async ( setWeatherData ) => {
+export const fetchWeatherData = async (setWeatherData) => {
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {
@@ -511,7 +505,7 @@ export const fetchWeatherData = async ( setWeatherData ) => {
  * Función para obtener el Top 10 de canciones más sonadas desde el servidor.
  * @param {Function} setTop10 - Función para actualizar el estado del Top 10.
  */
-export const fetchTop10 = async ( setTop10 ) => {
+export const fetchTop10 = async (setTop10) => {
   try {
     const response = await fetch(`${url}/ranking/ranking`); // Realizar la solicitud HTTP al endpoint
     if (!response.ok) {
@@ -522,4 +516,9 @@ export const fetchTop10 = async ( setTop10 ) => {
   } catch (error) {
     console.error(error); // Imprimir el error en la consola en caso de falla
   }
+};
+
+export const Message = ({ type, children }) => {
+  const className = type === 'error' ? 'error-message' : 'success-message';
+  return <p className={className}>{children}</p>;
 };

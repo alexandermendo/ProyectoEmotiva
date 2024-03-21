@@ -26,8 +26,9 @@
   margin-bottom: 20px;
 }
 
-.form-label {
+.form-label-1 {
   font-family: Proxima Nova Regular, sans-serif;
+  color: black;
 }
 
 .form-control {
