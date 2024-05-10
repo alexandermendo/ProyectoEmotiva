@@ -1,5 +1,4 @@
 import { useAuthContext } from '../emotiva-project/src/app/contexts/AuthContext';
-// import { Link } from 'react-router-dom';
 
 /**
  * Constantes de rutas para la aplicación.
