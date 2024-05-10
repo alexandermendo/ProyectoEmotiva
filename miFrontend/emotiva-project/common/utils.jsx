@@ -1,5 +1,3 @@
-import { useAuthContext } from '../emotiva-project/src/app/contexts/AuthContext';
-
 /**
  * Constantes de rutas para la aplicación.
  */
