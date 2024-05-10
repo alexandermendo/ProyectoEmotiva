@@ -1,7 +1,5 @@
-import { useAuthContext } from '../emotiva-project/src/contexts/AuthContext';
-import moment from 'moment-with-locales-es6';
-import { Link } from 'react-router-dom';
-moment.locale('es');
+import { useAuthContext } from '../emotiva-project/src/app/contexts/AuthContext';
+// import { Link } from 'react-router-dom';
 
 /**
  * Constantes de rutas para la aplicación.
@@ -285,17 +283,6 @@ export const fetchStaffDetails = async (id, setStaffDetails, setLoading) => {
 };
 
 /**
- * Formatea una fecha y hora en el formato específico.
- *
- * @param {string} fecha - La fecha a formatear.
- * @returns {string} - La fecha y hora formateada.
- */
-export const formatFechaHora = (fecha) => {
-  const publishDateTime = moment(fecha);
-  return publishDateTime.format('DD MMMM YYYY - h:mm a');
-};
-
-/**
  * Obtiene los datos de estilo de vida mediante una solicitud asincrónica a la API.
  * @param {function} setLifestyleData - Función que actualiza el estado con los datos de estilo de vida obtenidos.
  * @returns {Promise<void>} - Una promesa que se resuelve cuando se han obtenido y actualizado los datos correctamente, o se rechaza si hay un error.
@@ -345,12 +332,21 @@ export const startDateTimeInterval = (setCurrentDateTime) => {
  * @param {Date} date - Objeto de tipo Date que representa la fecha y hora a formatear.
  * @returns {string} - Cadena de texto que representa la fecha y hora formateada según las opciones.
  */
-export const formatDateTime = (date) => {
-  const options = {
-    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric',
-    minute: 'numeric', second: 'numeric'
+// utils.jsx
+
+export const formatDateTime = (dateTimeString) => {
+  const date = new Date(dateTimeString);
+  const options = { 
+    weekday: 'long', 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric', 
+    hour: 'numeric', 
+    minute: 'numeric', 
+    second: 'numeric',
+    timeZone: 'UTC' // Cambia según la zona horaria deseada
   };
-  return date.toLocaleDateString('es-ES', options);
+  return date.toLocaleString('es-CO', options);
 };
 
 /**

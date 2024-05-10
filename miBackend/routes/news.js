@@ -39,7 +39,7 @@ router.get("/:id", async (req, res) => {
     const newsCollection = dba.collection("news");
     const newsId = req.params.id;
     const news = await newsCollection.findOne({ _id: new ObjectId(newsId) });
-    res.json(news);
+    res.json({data: news});
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Error al obtener la noticia" });
