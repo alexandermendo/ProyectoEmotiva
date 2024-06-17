@@ -59,14 +59,14 @@ export const Footer = () => {
               <div className='row'>
                 <div className='foo-ter-nav col-md-6'>
                   <h1>Navegación</h1>
-                  <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li className="nav-item-1"><a className="nav-link-1" onClick={goToHome}>Inicio</a></li>
-                    <li className="nav-item-1"><a className="nav-link-1" onClick={goToNews}>Noticias</a></li>
-                    <li className="nav-item-1"><a className="nav-link-1" onClick={goToSports}>Deportes</a></li>
-                    <li className="nav-item-1"><a className="nav-link-1" onClick={goToEntertainment}>Entretenimiento</a></li>
-                    <li className="nav-item-1"><a className="nav-link-1" onClick={goToLifeStyle}>Estilo de Vida</a></li>
-                    <li className="nav-item-1"><a className="nav-link-1" href="#staff" onClick={goToStaff}>Staff EMOTIVA 2024</a></li>
-                  </ul>
+                  <div className="navbar-nav me-auto mb-2 mb-lg-0">
+                    <a className="active" onClick={goToHome}>Inicio</a>
+                    <a onClick={goToNews}>Noticias</a>
+                    <a onClick={goToSports}>Deportes</a>
+                    <a onClick={goToEntertainment}>Entretenimiento</a>
+                    <a onClick={goToLifeStyle}>Estilo de Vida</a>
+                    <a onClick={goToStaff}>Staff EMOTIVA 2024</a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -74,11 +74,10 @@ export const Footer = () => {
             <div className='col-md-4'>
               <div className='foo-ter-nav col-md-6'>
                 <h1>Conoce más</h1>
-                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li className="nav-item-1"><a className="nav-link-1" href="#" onClick={() => openModal(<Contacto/>)}>Trabaja con Nosotros</a></li>
-                  <li className="nav-item-1"><a className="nav-link-1" href="#" onClick={() => openModal(<Terminos />)}>Términos y Condiciones</a></li>
-                  {/* <li className="nav-item-1"><a className="nav-link-1" href="#" onClick={() => openModal('Contenido para Buzón de Sugerencias')}>Buzón de Sugerencias</a></li> */}
-                </ul>
+                <div className="navbar-nav me-auto mb-2 mb-lg-0">
+                  <a onClick={() => openModal(<Contacto/>)}>Trabaja con Nosotros</a>
+                  <a onClick={() => openModal(<Terminos />)}>Términos y Condiciones</a>
+                </div>
               </div>
             </div>
 
