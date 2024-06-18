@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchWeatherData, formatDateTime, startDateTimeInterval } from '../../../../../../../../common/utils';
+import { fetchWeatherData, formatDateTime, startDateTimeInterval, convertKelvinToCelsius } from '../../../../../../../../common/utils';
 import './fecha.css';
 
 export const Fecha = () => {
@@ -8,14 +8,18 @@ export const Fecha = () => {
 
   useEffect(() => {
     const cleanupInterval = startDateTimeInterval(setCurrentDateTime);
-    const fetchWeather = async () => { await fetchWeatherData( setWeatherData )} 
+    const fetchWeather = async () => { await fetchWeatherData(setWeatherData) }
     fetchWeather();
     return cleanupInterval;
   }, []);
 
   return (
     <div className='navdate'>
-      <p>{weatherData && weatherData.name}, {weatherData && weatherData.sys && weatherData.sys.country} - {formatDateTime(currentDateTime)} - {weatherData && weatherData.main.temp.toFixed(2)}°C</p>
+      {weatherData && weatherData.name && weatherData.sys && weatherData.main && (
+        <p>
+          {weatherData.name}, {weatherData.sys.country} - {formatDateTime(currentDateTime)} - {convertKelvinToCelsius(weatherData.main.temp).toFixed(2)}°C
+        </p>
+      )}
     </div>
   );
 };

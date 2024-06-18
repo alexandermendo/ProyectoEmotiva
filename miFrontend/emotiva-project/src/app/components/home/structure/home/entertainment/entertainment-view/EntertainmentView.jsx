@@ -38,6 +38,7 @@ export const EntertainmentView = () => {
                     </div>
                     <div className="col-md-8">
                       <div className="custom-card-body">
+                        <p className="card-date">Publicado en: {new Date(noticia.publishDate).toLocaleDateString('es-CO')}</p>
                         <h5 className="custom-card-title-ent">{noticia.title}</h5>
                         <p className="custom-card-text-ent">{noticia.subtitle}</p>
                       </div>

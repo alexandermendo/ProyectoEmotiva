@@ -36,6 +36,12 @@
   padding: 15px;
 }
 
+.card-date {
+  font-family: Proxima Nova Thin, sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+}
+
 .custom-card-title {
   font-family: Proxima Nova Alt, sans-serif;
   font-size: 25px;

@@ -43,6 +43,12 @@
   left: 20%;
 }
 
+.card-date {
+  font-family: Proxima Nova Thin, sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+}
+
 .custom-card-title-ent {
   color: white;
   font-family: Proxima Nova Alt, sans-serif;

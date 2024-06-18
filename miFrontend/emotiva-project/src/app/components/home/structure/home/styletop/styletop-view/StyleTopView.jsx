@@ -28,13 +28,14 @@ export const StyleTopView = () => {
 
         <div className="card-container">
           {lifeStyleData && lifeStyleData.length > 0 ? (
-            lifeStyleData.map(({ _id, image, title, subtitle }, index) => (
+            lifeStyleData.map(({ _id, image, title, subtitle, publishDate }, index) => (
               <Link to={`/lifestyle/${_id}`} key={index} className="custom-link">
                 <div className="card custom-card-main">
                   <div className="row no-gutters">
                     <div className="col-md-4"><img className="custom-card-img-2" src={`${url}/${image}`} alt="Ligero" /></div>
                     <div className="col-md-8">
                       <div className="custom-card-body">
+                        <p className="card-date">Publicado en: {new Date(publishDate).toLocaleDateString('es-CO')}</p>
                         <h5 className="custom-card-title">{title}</h5>
                         <p className="custom-card-text">{subtitle}</p>
                       </div>

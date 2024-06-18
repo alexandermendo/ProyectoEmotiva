@@ -2,9 +2,10 @@
  * Constantes de rutas para la aplicación.
  */
 export const url = "http://localhost:3000";
-export const apiKey = '40782e1025818ed5c01e33ca63b97baf'; // Tu clave de API
-// export const apiKey = 'OPENWEATHERMAP_API_KEY'; // Tu clave de API
-export const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Fusagasugá&appid=${apiKey}&units=metric`;
+export const apiKey = 'fb18ac84896236d2dc1d11c8aaef60b9'; // Tu clave de API
+export const nameCity = 'Fusagasugá'
+export const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${nameCity}&appid=${apiKey}`
+
 
 /**
  * Realiza una solicitud de inicio de sesión con las credenciales proporcionadas.
@@ -308,6 +309,16 @@ export const fetchLogoData = async (setImageData, setError) => {
 }
 
 /**
+ * Convierte una temperatura de Kelvin a Celsius.
+ *
+ * @param {number} kelvin - Temperatura en Kelvin.
+ * @returns {number} - Temperatura en Celsius.
+ */
+export const convertKelvinToCelsius = (kelvin) => {
+  return kelvin - 273.15;
+};
+
+/**
  * Inicia un intervalo que actualiza continuamente la fecha y hora actual y llama a la función
  * proporcionada para actualizar el estado con la nueva fecha y hora.
  *
@@ -329,15 +340,16 @@ export const startDateTimeInterval = (setCurrentDateTime) => {
 
 export const formatDateTime = (dateTimeString) => {
   const date = new Date(dateTimeString);
-  const options = { 
-    weekday: 'long', 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric', 
-    hour: 'numeric', 
-    minute: 'numeric', 
-    second: 'numeric',
-    timeZone: 'UTC' // Cambia según la zona horaria deseada
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+    timeZone: 'America/Bogota' // Cambia según la zona horaria deseada
   };
   return date.toLocaleString('es-CO', options);
 };
@@ -464,7 +476,7 @@ export const handleSubmit = async (e, formData, setFormData, setError, setSucces
   try {
     const response = await fetch(`${url}/news/createNews`, { method: "POST", body: formDataToSend });
     const data = await response.json();
-    if (response.ok) { setSuccess('Noticia de Entretenimiento creada con éxito.'); setError(null); } 
+    if (response.ok) { setSuccess('Noticia de Entretenimiento creada con éxito.'); setError(null); }
     else {
       console.error(data.error || "Error al agregar contenido");
     }
