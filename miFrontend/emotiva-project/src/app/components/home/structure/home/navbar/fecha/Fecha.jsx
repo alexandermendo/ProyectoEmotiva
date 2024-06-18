@@ -17,7 +17,7 @@ export const Fecha = () => {
     <div className='navdate'>
       {weatherData && weatherData.name && weatherData.sys && weatherData.main && (
         <p>
-          {weatherData.name}, {weatherData.sys.country} - {formatDateTime(currentDateTime)} - {convertKelvinToCelsius(weatherData.main.temp).toFixed(2)}°C
+          {weatherData.name}, {weatherData.sys.country} - {formatDateTime(currentDateTime)} - {convertKelvinToCelsius(weatherData.main.temp).toFixed()}°C
         </p>
       )}
     </div>
