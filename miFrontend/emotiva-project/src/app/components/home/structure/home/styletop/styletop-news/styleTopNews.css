@@ -12,6 +12,8 @@
 .cont-style h1 {
   font-family: Proxima Nova Bold, sans-serif;
   font-weight: bold;
+  padding-left: 0%;
+  padding-right: 5%;
 }
 
 .cont-pub {

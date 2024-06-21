@@ -2,7 +2,8 @@
  * Constantes de rutas para la aplicación.
  */
 export const url = "http://localhost:3000";
-export const apiKey = 'fb18ac84896236d2dc1d11c8aaef60b9'; // Tu clave de API
+// export const apiKey = 'fb18ac84896236d2dc1d11c8aaef60b9'; // Tu clave de API
+export const apiKey = 'TUCLAVEOPEN'; // Tu clave de API
 export const nameCity = 'Fusagasugá'
 export const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${nameCity}&appid=${apiKey}`
 
